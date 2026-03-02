@@ -1,0 +1,242 @@
+{
+  "generatedAt": "2026-03-02T07:55:41.770Z",
+  "sourceRoot": "/Users/huuloc/Documents/s2/.claude",
+  "outputRoot": "/Users/huuloc/Documents/universal-skills",
+  "aliases": [
+    {
+      "alias": "/asset-management:anim-analyzer",
+      "slug": "anim-analyzer",
+      "sourceSkillPath": "plugins/s2-skills/plugins/asset-management/skills/anim-analyzer/SKILL.md"
+    },
+    {
+      "alias": "/asset-management:find-ref",
+      "slug": "find-ref",
+      "sourceSkillPath": "plugins/s2-skills/plugins/asset-management/skills/find-ref/SKILL.md"
+    },
+    {
+      "alias": "/asset-management:plugin-documenter",
+      "slug": "plugin-documenter",
+      "sourceSkillPath": "plugins/s2-skills/plugins/asset-management/skills/plugin-documenter/SKILL.md"
+    },
+    {
+      "alias": "/asset-management:read-uasset",
+      "slug": "read-uasset",
+      "sourceSkillPath": "plugins/s2-skills/plugins/asset-management/skills/read-uasset/SKILL.md"
+    },
+    {
+      "alias": "/asset-management:read-uasset-deep",
+      "slug": "read-uasset-deep",
+      "sourceSkillPath": "plugins/s2-skills/plugins/asset-management/skills/read-uasset-deep/SKILL.md"
+    },
+    {
+      "alias": "/audio-systems:audio-code-review",
+      "slug": "audio-code-review",
+      "sourceSkillPath": "plugins/s2-skills/plugins/audio-systems/skills/audio-code-review/SKILL.md"
+    },
+    {
+      "alias": "/combat-systems:combat-ai-review",
+      "slug": "combat-ai-review",
+      "sourceSkillPath": "plugins/s2-skills/plugins/combat-systems/skills/combat-ai-review/SKILL.md"
+    },
+    {
+      "alias": "/combat-systems:create-sipher-ans",
+      "slug": "create-sipher-ans",
+      "sourceSkillPath": "plugins/s2-skills/plugins/combat-systems/skills/create-sipher-ans/SKILL.md"
+    },
+    {
+      "alias": "/dev-workflow:close-editor",
+      "slug": "close-editor",
+      "sourceSkillPath": "plugins/s2-skills/plugins/dev-workflow/skills/close-editor/SKILL.md"
+    },
+    {
+      "alias": "/dev-workflow:debug-cvar-prompt",
+      "slug": "debug-cvar-prompt",
+      "sourceSkillPath": "plugins/s2-skills/plugins/dev-workflow/skills/debug-cvar-prompt/SKILL.md"
+    },
+    {
+      "alias": "/dev-workflow:huli-feature",
+      "slug": "huli-feature",
+      "sourceSkillPath": "plugins/s2-skills/plugins/dev-workflow/skills/huli-feature/SKILL.md"
+    },
+    {
+      "alias": "/dev-workflow:live-coding-refresh",
+      "slug": "live-coding-refresh",
+      "sourceSkillPath": "plugins/s2-skills/plugins/dev-workflow/skills/live-coding-refresh/SKILL.md"
+    },
+    {
+      "alias": "/dev-workflow:open-editor",
+      "slug": "open-editor",
+      "sourceSkillPath": "plugins/s2-skills/plugins/dev-workflow/skills/open-editor/SKILL.md"
+    },
+    {
+      "alias": "/dev-workflow:sipher-asset-mcp",
+      "slug": "sipher-asset-mcp",
+      "sourceSkillPath": "plugins/s2-skills/plugins/dev-workflow/skills/sipher-asset-mcp/SKILL.md"
+    },
+    {
+      "alias": "/dev-workflow:ue-cpp-build",
+      "slug": "ue-cpp-build",
+      "sourceSkillPath": "plugins/s2-skills/plugins/dev-workflow/skills/ue-cpp-build/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:create-editor-plugin",
+      "slug": "create-editor-plugin",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/create-editor-plugin/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:dynamic-dresser",
+      "slug": "dynamic-dresser",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/dynamic-dresser/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:gameplay-tag-query-builder",
+      "slug": "gameplay-tag-query-builder",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/gameplay-tag-query-builder/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:huli-bp-tools",
+      "slug": "huli-bp-tools",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/huli-bp-tools/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:ue-anim-notify-patterns",
+      "slug": "ue-anim-notify-patterns",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/ue-anim-notify-patterns/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:ue-editor-tools",
+      "slug": "ue-editor-tools",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/ue-editor-tools/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:ue-open-level-full-load",
+      "slug": "ue-open-level-full-load",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/ue-open-level-full-load/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:ue-tag-filter-system",
+      "slug": "ue-tag-filter-system",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/ue-tag-filter-system/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:ue-toolbar-extension",
+      "slug": "ue-toolbar-extension",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/ue-toolbar-extension/skill.md"
+    },
+    {
+      "alias": "/game-design:cutscene-generator",
+      "slug": "cutscene-generator",
+      "sourceSkillPath": "plugins/s2-skills/plugins/game-design/skills/cutscene-generator/skill.md"
+    },
+    {
+      "alias": "/github-workflow:github-assign-issue",
+      "slug": "github-assign-issue",
+      "sourceSkillPath": "plugins/s2-skills/plugins/github-workflow/skills/github-assign-issue/SKILL.md"
+    },
+    {
+      "alias": "/github-workflow:github-create-issue",
+      "slug": "github-create-issue",
+      "sourceSkillPath": "plugins/s2-skills/plugins/github-workflow/skills/github-create-issue/SKILL.md"
+    },
+    {
+      "alias": "/github-workflow:github-create-pr",
+      "slug": "github-create-pr",
+      "sourceSkillPath": "plugins/s2-skills/plugins/github-workflow/skills/github-create-pr/SKILL.md"
+    },
+    {
+      "alias": "/github-workflow:perf-findings-to-issues",
+      "slug": "perf-findings-to-issues",
+      "sourceSkillPath": "plugins/s2-skills/plugins/github-workflow/skills/perf-findings-to-issues/SKILL.md"
+    },
+    {
+      "alias": "/github-workflow:skill-creator",
+      "slug": "skill-creator",
+      "sourceSkillPath": "plugins/s2-skills/plugins/github-workflow/skills/skill-creator/SKILL.md"
+    },
+    {
+      "alias": "/github-workflow:vfx-project-manager",
+      "slug": "vfx-project-manager",
+      "sourceSkillPath": "plugins/s2-skills/plugins/github-workflow/skills/vfx-project-manager/SKILL.md"
+    },
+    {
+      "alias": "/qa-testing:analyze-frame-bugitgo",
+      "slug": "analyze-frame-bugitgo",
+      "sourceSkillPath": "plugins/s2-skills/plugins/qa-testing/skills/analyze-frame-bugitgo/skill.md"
+    },
+    {
+      "alias": "/qa-testing:boss-review",
+      "slug": "boss-review",
+      "sourceSkillPath": "plugins/s2-skills/plugins/qa-testing/skills/boss-review/SKILL.md"
+    },
+    {
+      "alias": "/qa-testing:create-unittest",
+      "slug": "create-unittest",
+      "sourceSkillPath": "plugins/s2-skills/plugins/qa-testing/skills/create-unittest/SKILL.md"
+    },
+    {
+      "alias": "/qa-testing:enemy-status-track",
+      "slug": "enemy-status-track",
+      "sourceSkillPath": "plugins/s2-skills/plugins/qa-testing/skills/enemy-status-track/SKILL.md"
+    },
+    {
+      "alias": "/qa-testing:generate-tests",
+      "slug": "generate-tests",
+      "sourceSkillPath": "plugins/s2-skills/plugins/qa-testing/skills/generate-tests/SKILL.md"
+    },
+    {
+      "alias": "/qa-testing:material-sampler-check",
+      "slug": "material-sampler-check",
+      "sourceSkillPath": "plugins/s2-skills/plugins/qa-testing/skills/material-sampler-check/SKILL.md"
+    },
+    {
+      "alias": "/qa-testing:ue-game-bugs",
+      "slug": "ue-game-bugs",
+      "sourceSkillPath": "plugins/s2-skills/plugins/qa-testing/skills/ue-game-bugs/SKILL.md"
+    },
+    {
+      "alias": "/system-architect:foliage-grid-builder",
+      "slug": "foliage-grid-builder",
+      "sourceSkillPath": "plugins/s2-skills/plugins/system-architect/skills/foliage-grid-builder/SKILL.md"
+    },
+    {
+      "alias": "/system-architect:graphics-debug",
+      "slug": "graphics-debug",
+      "sourceSkillPath": "plugins/s2-skills/plugins/system-architect/skills/graphics-debug/SKILL.md"
+    },
+    {
+      "alias": "/system-architect:grass-builder",
+      "slug": "grass-builder",
+      "sourceSkillPath": "plugins/s2-skills/plugins/system-architect/skills/grass-builder/SKILL.md"
+    },
+    {
+      "alias": "/system-architect:loco-strategy-builder",
+      "slug": "loco-strategy-builder",
+      "sourceSkillPath": "plugins/s2-skills/plugins/system-architect/skills/loco-strategy-builder/SKILL.md"
+    },
+    {
+      "alias": "/ugm:feature-brainstorm",
+      "slug": "feature-brainstorm",
+      "sourceSkillPath": "plugins/ue-gamedev-method/skills/ideation/feature-brainstorm/SKILL.md"
+    },
+    {
+      "alias": "/ugm:implementation-plan",
+      "slug": "implementation-plan",
+      "sourceSkillPath": "plugins/ue-gamedev-method/skills/planning/implementation-plan/SKILL.md"
+    },
+    {
+      "alias": "/ugm:pitfall-capture",
+      "slug": "pitfall-capture",
+      "sourceSkillPath": "plugins/ue-gamedev-method/skills/iteration/pitfall-capture/SKILL.md"
+    },
+    {
+      "alias": "/ugm:solution-capture",
+      "slug": "solution-capture",
+      "sourceSkillPath": "plugins/ue-gamedev-method/skills/iteration/solution-capture/SKILL.md"
+    },
+    {
+      "alias": "/ugm:worktree-workflow",
+      "slug": "worktree-workflow",
+      "sourceSkillPath": "plugins/ue-gamedev-method/skills/implementation/worktree-workflow/SKILL.md"
+    }
+  ]
+}

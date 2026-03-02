@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Collision Colors Preview</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 20px; background: #1e1e1e; color: #fff; }
+        h1 { color: #fff; }
+        table { border-collapse: collapse; width: 100%; max-width: 800px; }
+        th, td { padding: 10px 15px; text-align: left; border: 1px solid #444; }
+        th { background: #333; }
+        .color-box { width: 40px; height: 24px; border-radius: 4px; display: inline-block; vertical-align: middle; border: 1px solid #666; }
+        code { background: #333; padding: 2px 6px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>Collision Type Color Coding</h1>
+    <p>Open this file in browser to preview colors.</p>
+
+    <table>
+        <tr>
+            <th>Preview</th>
+            <th>Collision Type</th>
+            <th>Hex Color</th>
+            <th>RGB</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><span class="color-box" style="background: #FF0000"></span></td>
+            <td>Block All</td>
+            <td><code>#FF0000</code></td>
+            <td>255, 0, 0</td>
+            <td>Blocks all traces and physics</td>
+        </tr>
+        <tr>
+            <td><span class="color-box" style="background: #FF4400"></span></td>
+            <td>Block All Dynamic</td>
+            <td><code>#FF4400</code></td>
+            <td>255, 68, 0</td>
+            <td>Blocks dynamic objects only</td>
+        </tr>
+        <tr>
+            <td><span class="color-box" style="background: #00FF00"></span></td>
+            <td>Overlap All</td>
+            <td><code>#00FF00</code></td>
+            <td>0, 255, 0</td>
+            <td>Overlap events, no blocking</td>
+        </tr>
+        <tr>
+            <td><span class="color-box" style="background: #00FF88"></span></td>
+            <td>Overlap All Dynamic</td>
+            <td><code>#00FF88</code></td>
+            <td>0, 255, 136</td>
+            <td>Overlap dynamic only</td>
+        </tr>
+        <tr>
+            <td><span class="color-box" style="background: #0000FF"></span></td>
+            <td>Invisible Wall</td>
+            <td><code>#0000FF</code></td>
+            <td>0, 0, 255</td>
+            <td>Player blocking, invisible</td>
+        </tr>
+        <tr>
+            <td><span class="color-box" style="background: #4488FF"></span></td>
+            <td>Invisible Wall Dynamic</td>
+            <td><code>#4488FF</code></td>
+            <td>68, 136, 255</td>
+            <td>Dynamic blocking, invisible</td>
+        </tr>
+        <tr>
+            <td><span class="color-box" style="background: #FFFF00"></span></td>
+            <td>Trigger</td>
+            <td><code>#FFFF00</code></td>
+            <td>255, 255, 0</td>
+            <td>Trigger volumes</td>
+        </tr>
+        <tr>
+            <td><span class="color-box" style="background: #FF00FF"></span></td>
+            <td>Pawn</td>
+            <td><code>#FF00FF</code></td>
+            <td>255, 0, 255</td>
+            <td>Pawn-specific collision</td>
+        </tr>
+        <tr>
+            <td><span class="color-box" style="background: #00FFFF"></span></td>
+            <td>Camera</td>
+            <td><code>#00FFFF</code></td>
+            <td>0, 255, 255</td>
+            <td>Camera collision only</td>
+        </tr>
+        <tr>
+            <td><span class="color-box" style="background: #FF8800"></span></td>
+            <td>Physics Body</td>
+            <td><code>#FF8800</code></td>
+            <td>255, 136, 0</td>
+            <td>Physics simulation bodies</td>
+        </tr>
+        <tr>
+            <td><span class="color-box" style="background: #8800FF"></span></td>
+            <td>Vehicle</td>
+            <td><code>#8800FF</code></td>
+            <td>136, 0, 255</td>
+            <td>Vehicle collision</td>
+        </tr>
+        <tr>
+            <td><span class="color-box" style="background: #FF0088"></span></td>
+            <td>Destructible</td>
+            <td><code>#FF0088</code></td>
+            <td>255, 0, 136</td>
+            <td>Destructible mesh collision</td>
+        </tr>
+        <tr>
+            <td><span class="color-box" style="background: #808080"></span></td>
+            <td>No Collision</td>
+            <td><code>#808080</code></td>
+            <td>128, 128, 128</td>
+            <td>Collision disabled</td>
+        </tr>
+        <tr>
+            <td><span class="color-box" style="background: #A0522D"></span></td>
+            <td>Custom Channel 1</td>
+            <td><code>#A0522D</code></td>
+            <td>160, 82, 45</td>
+            <td>Project-specific channel</td>
+        </tr>
+        <tr>
+            <td><span class="color-box" style="background: #228B22"></span></td>
+            <td>Custom Channel 2</td>
+            <td><code>#228B22</code></td>
+            <td>34, 139, 34</td>
+            <td>Project-specific channel</td>
+        </tr>
+    </table>
+
+    <h2>Collision Presets (Huli Project)</h2>
+    <table>
+        <tr>
+            <th>Preset Name</th>
+            <th>Base Type</th>
+            <th>Notes</th>
+        </tr>
+        <tr><td>Sipher_PlayerCapsule</td><td>Pawn</td><td>Player character</td></tr>
+        <tr><td>Sipher_EnemyCapsule</td><td>Pawn</td><td>Enemy characters</td></tr>
+        <tr><td>Sipher_Projectile</td><td>Overlap All</td><td>Projectile collision</td></tr>
+        <tr><td>Sipher_Hitbox</td><td>Overlap All Dynamic</td><td>Combat hitboxes</td></tr>
+        <tr><td>Sipher_Hurtbox</td><td>Overlap All Dynamic</td><td>Damage receivers</td></tr>
+        <tr><td>Sipher_InteractTrigger</td><td>Trigger</td><td>Interaction zones</td></tr>
+        <tr><td>Sipher_CameraBoom</td><td>Camera</td><td>Camera arm collision</td></tr>
+        <tr><td>Sipher_EnvironmentBlock</td><td>Block All</td><td>Static environment</td></tr>
+    </table>
+
+    <p style="margin-top: 30px; color: #888;">
+        <strong>Note:</strong> Edit <code>collision_colors.md</code> for the source of truth. This HTML is for preview only.
+    </p>
+</body>
+</html>

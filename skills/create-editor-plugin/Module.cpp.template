@@ -1,0 +1,61 @@
+// Copyright Ather Labs, Inc. All Rights Reserved.
+
+#include "{{MODULE_NAME}}Module.h"
+#include "ToolMenus.h"
+
+#define LOCTEXT_NAMESPACE "F{{MODULE_NAME}}Module"
+
+void F{{MODULE_NAME}}Module::StartupModule()
+{
+	// Register menus after UToolMenus is ready
+	UToolMenus::RegisterStartupCallback(
+		FSimpleMulticastDelegate::FDelegate::CreateRaw(this, &F{{MODULE_NAME}}Module::RegisterMenus));
+
+	// Initialize feature classes
+	// {{FEATURE_NAME}}Toolbar = MakeUnique<F{{FEATURE_NAME}}Toolbar>();
+	// {{FEATURE_NAME}}Toolbar->Initialize();
+}
+
+void F{{MODULE_NAME}}Module::ShutdownModule()
+{
+	// Cleanup feature classes
+	// if ({{FEATURE_NAME}}Toolbar)
+	// {
+	//     {{FEATURE_NAME}}Toolbar->Shutdown();
+	//     {{FEATURE_NAME}}Toolbar.Reset();
+	// }
+
+	// Unregister menus
+	UToolMenus::UnRegisterStartupCallback(this);
+	UToolMenus::UnregisterOwner(this);
+}
+
+F{{MODULE_NAME}}Module& F{{MODULE_NAME}}Module::Get()
+{
+	return FModuleManager::LoadModuleChecked<F{{MODULE_NAME}}Module>("{{MODULE_NAME}}");
+}
+
+void F{{MODULE_NAME}}Module::RegisterMenus()
+{
+	FToolMenuOwnerScoped OwnerScoped(this);
+
+	// Example: Add to Tools menu
+	// UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu.Tools");
+	// if (Menu)
+	// {
+	//     FToolMenuSection& Section = Menu->FindOrAddSection("{{MODULE_NAME}}");
+	//     Section.Label = LOCTEXT("{{MODULE_NAME}}Section", "{{FRIENDLY_NAME}}");
+	//
+	//     Section.AddMenuEntry(
+	//         "{{ACTION_NAME}}",
+	//         LOCTEXT("{{ACTION_NAME}}Label", "Action Label"),
+	//         LOCTEXT("{{ACTION_NAME}}Tooltip", "Action tooltip description"),
+	//         FSlateIcon(FAppStyle::GetAppStyleSetName(), "Icons.Edit"),
+	//         FUIAction(FExecuteAction::CreateRaw(this, &F{{MODULE_NAME}}Module::On{{ACTION_NAME}}Executed))
+	//     );
+	// }
+}
+
+#undef LOCTEXT_NAMESPACE
+
+IMPLEMENT_MODULE(F{{MODULE_NAME}}Module, {{MODULE_NAME}})

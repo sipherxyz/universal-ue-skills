@@ -1,0 +1,41 @@
+// Copyright Ather Labs, Inc. All Rights Reserved.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Widgets/SCompoundWidget.h"
+#include "Widgets/DeclarativeSyntaxSupport.h"
+
+/**
+ * {{WINDOW_DESCRIPTION}}
+ */
+class {{MODULE_API}} S{{WINDOW_NAME}}Window : public SCompoundWidget
+{
+public:
+	SLATE_BEGIN_ARGS(S{{WINDOW_NAME}}Window) {}
+		/** Optional title override */
+		SLATE_ARGUMENT(FText, Title)
+	SLATE_END_ARGS()
+
+	/** Constructs this widget */
+	void Construct(const FArguments& InArgs);
+
+	/** Spawns the window as a standalone window */
+	static TSharedRef<SWindow> CreateWindow();
+
+private:
+	/** Build the main content area */
+	TSharedRef<SWidget> BuildContent();
+
+	/** Build the button bar at the bottom */
+	TSharedRef<SWidget> BuildButtonBar();
+
+	/** Handle apply button click */
+	FReply OnApplyClicked();
+
+	/** Handle close button click */
+	FReply OnCloseClicked();
+
+	/** Window title */
+	FText WindowTitle;
+};

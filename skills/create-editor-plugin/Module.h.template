@@ -1,0 +1,31 @@
+// Copyright Ather Labs, Inc. All Rights Reserved.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Modules/ModuleManager.h"
+
+// Forward declarations for feature classes
+// class F{{FEATURE_NAME}}Toolbar;
+// class F{{FEATURE_NAME}}MenuExtension;
+
+/**
+ * {{DESCRIPTION}}
+ */
+class F{{MODULE_NAME}}Module : public IModuleInterface
+{
+public:
+	/** IModuleInterface implementation */
+	virtual void StartupModule() override;
+	virtual void ShutdownModule() override;
+
+	/** Get the module instance */
+	static F{{MODULE_NAME}}Module& Get();
+
+private:
+	/** Register menu extensions with UToolMenus */
+	void RegisterMenus();
+
+	// Feature instances
+	// TUniquePtr<F{{FEATURE_NAME}}Toolbar> {{FEATURE_NAME}}Toolbar;
+};

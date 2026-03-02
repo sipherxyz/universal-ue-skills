@@ -1,0 +1,2176 @@
+{
+  "generatedAt": "2026-03-02T07:55:41.770Z",
+  "strict": true,
+  "dryRun": false,
+  "sourceRoot": "/Users/huuloc/Documents/s2/.claude",
+  "outputRoot": "/Users/huuloc/Documents/universal-skills",
+  "discoveredCount": 97,
+  "convertedCount": 97,
+  "rewrittenPathCount": 34,
+  "warningCount": 26,
+  "errorCount": 0,
+  "aliases": [
+    {
+      "alias": "/asset-management:anim-analyzer",
+      "slug": "anim-analyzer",
+      "sourceSkillPath": "plugins/s2-skills/plugins/asset-management/skills/anim-analyzer/SKILL.md"
+    },
+    {
+      "alias": "/asset-management:find-ref",
+      "slug": "find-ref",
+      "sourceSkillPath": "plugins/s2-skills/plugins/asset-management/skills/find-ref/SKILL.md"
+    },
+    {
+      "alias": "/asset-management:plugin-documenter",
+      "slug": "plugin-documenter",
+      "sourceSkillPath": "plugins/s2-skills/plugins/asset-management/skills/plugin-documenter/SKILL.md"
+    },
+    {
+      "alias": "/asset-management:read-uasset",
+      "slug": "read-uasset",
+      "sourceSkillPath": "plugins/s2-skills/plugins/asset-management/skills/read-uasset/SKILL.md"
+    },
+    {
+      "alias": "/asset-management:read-uasset-deep",
+      "slug": "read-uasset-deep",
+      "sourceSkillPath": "plugins/s2-skills/plugins/asset-management/skills/read-uasset-deep/SKILL.md"
+    },
+    {
+      "alias": "/audio-systems:audio-code-review",
+      "slug": "audio-code-review",
+      "sourceSkillPath": "plugins/s2-skills/plugins/audio-systems/skills/audio-code-review/SKILL.md"
+    },
+    {
+      "alias": "/combat-systems:combat-ai-review",
+      "slug": "combat-ai-review",
+      "sourceSkillPath": "plugins/s2-skills/plugins/combat-systems/skills/combat-ai-review/SKILL.md"
+    },
+    {
+      "alias": "/combat-systems:create-sipher-ans",
+      "slug": "create-sipher-ans",
+      "sourceSkillPath": "plugins/s2-skills/plugins/combat-systems/skills/create-sipher-ans/SKILL.md"
+    },
+    {
+      "alias": "/dev-workflow:close-editor",
+      "slug": "close-editor",
+      "sourceSkillPath": "plugins/s2-skills/plugins/dev-workflow/skills/close-editor/SKILL.md"
+    },
+    {
+      "alias": "/dev-workflow:debug-cvar-prompt",
+      "slug": "debug-cvar-prompt",
+      "sourceSkillPath": "plugins/s2-skills/plugins/dev-workflow/skills/debug-cvar-prompt/SKILL.md"
+    },
+    {
+      "alias": "/dev-workflow:huli-feature",
+      "slug": "huli-feature",
+      "sourceSkillPath": "plugins/s2-skills/plugins/dev-workflow/skills/huli-feature/SKILL.md"
+    },
+    {
+      "alias": "/dev-workflow:live-coding-refresh",
+      "slug": "live-coding-refresh",
+      "sourceSkillPath": "plugins/s2-skills/plugins/dev-workflow/skills/live-coding-refresh/SKILL.md"
+    },
+    {
+      "alias": "/dev-workflow:open-editor",
+      "slug": "open-editor",
+      "sourceSkillPath": "plugins/s2-skills/plugins/dev-workflow/skills/open-editor/SKILL.md"
+    },
+    {
+      "alias": "/dev-workflow:sipher-asset-mcp",
+      "slug": "sipher-asset-mcp",
+      "sourceSkillPath": "plugins/s2-skills/plugins/dev-workflow/skills/sipher-asset-mcp/SKILL.md"
+    },
+    {
+      "alias": "/dev-workflow:ue-cpp-build",
+      "slug": "ue-cpp-build",
+      "sourceSkillPath": "plugins/s2-skills/plugins/dev-workflow/skills/ue-cpp-build/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:create-editor-plugin",
+      "slug": "create-editor-plugin",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/create-editor-plugin/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:dynamic-dresser",
+      "slug": "dynamic-dresser",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/dynamic-dresser/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:gameplay-tag-query-builder",
+      "slug": "gameplay-tag-query-builder",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/gameplay-tag-query-builder/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:huli-bp-tools",
+      "slug": "huli-bp-tools",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/huli-bp-tools/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:ue-anim-notify-patterns",
+      "slug": "ue-anim-notify-patterns",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/ue-anim-notify-patterns/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:ue-editor-tools",
+      "slug": "ue-editor-tools",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/ue-editor-tools/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:ue-open-level-full-load",
+      "slug": "ue-open-level-full-load",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/ue-open-level-full-load/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:ue-tag-filter-system",
+      "slug": "ue-tag-filter-system",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/ue-tag-filter-system/SKILL.md"
+    },
+    {
+      "alias": "/editor-tools:ue-toolbar-extension",
+      "slug": "ue-toolbar-extension",
+      "sourceSkillPath": "plugins/s2-skills/plugins/editor-tools/skills/ue-toolbar-extension/skill.md"
+    },
+    {
+      "alias": "/game-design:cutscene-generator",
+      "slug": "cutscene-generator",
+      "sourceSkillPath": "plugins/s2-skills/plugins/game-design/skills/cutscene-generator/skill.md"
+    },
+    {
+      "alias": "/github-workflow:github-assign-issue",
+      "slug": "github-assign-issue",
+      "sourceSkillPath": "plugins/s2-skills/plugins/github-workflow/skills/github-assign-issue/SKILL.md"
+    },
+    {
+      "alias": "/github-workflow:github-create-issue",
+      "slug": "github-create-issue",
+      "sourceSkillPath": "plugins/s2-skills/plugins/github-workflow/skills/github-create-issue/SKILL.md"
+    },
+    {
+      "alias": "/github-workflow:github-create-pr",
+      "slug": "github-create-pr",
+      "sourceSkillPath": "plugins/s2-skills/plugins/github-workflow/skills/github-create-pr/SKILL.md"
+    },
+    {
+      "alias": "/github-workflow:perf-findings-to-issues",
+      "slug": "perf-findings-to-issues",
+      "sourceSkillPath": "plugins/s2-skills/plugins/github-workflow/skills/perf-findings-to-issues/SKILL.md"
+    },
+    {
+      "alias": "/github-workflow:skill-creator",
+      "slug": "skill-creator",
+      "sourceSkillPath": "plugins/s2-skills/plugins/github-workflow/skills/skill-creator/SKILL.md"
+    },
+    {
+      "alias": "/github-workflow:vfx-project-manager",
+      "slug": "vfx-project-manager",
+      "sourceSkillPath": "plugins/s2-skills/plugins/github-workflow/skills/vfx-project-manager/SKILL.md"
+    },
+    {
+      "alias": "/qa-testing:analyze-frame-bugitgo",
+      "slug": "analyze-frame-bugitgo",
+      "sourceSkillPath": "plugins/s2-skills/plugins/qa-testing/skills/analyze-frame-bugitgo/skill.md"
+    },
+    {
+      "alias": "/qa-testing:boss-review",
+      "slug": "boss-review",
+      "sourceSkillPath": "plugins/s2-skills/plugins/qa-testing/skills/boss-review/SKILL.md"
+    },
+    {
+      "alias": "/qa-testing:create-unittest",
+      "slug": "create-unittest",
+      "sourceSkillPath": "plugins/s2-skills/plugins/qa-testing/skills/create-unittest/SKILL.md"
+    },
+    {
+      "alias": "/qa-testing:enemy-status-track",
+      "slug": "enemy-status-track",
+      "sourceSkillPath": "plugins/s2-skills/plugins/qa-testing/skills/enemy-status-track/SKILL.md"
+    },
+    {
+      "alias": "/qa-testing:generate-tests",
+      "slug": "generate-tests",
+      "sourceSkillPath": "plugins/s2-skills/plugins/qa-testing/skills/generate-tests/SKILL.md"
+    },
+    {
+      "alias": "/qa-testing:material-sampler-check",
+      "slug": "material-sampler-check",
+      "sourceSkillPath": "plugins/s2-skills/plugins/qa-testing/skills/material-sampler-check/SKILL.md"
+    },
+    {
+      "alias": "/qa-testing:ue-game-bugs",
+      "slug": "ue-game-bugs",
+      "sourceSkillPath": "plugins/s2-skills/plugins/qa-testing/skills/ue-game-bugs/SKILL.md"
+    },
+    {
+      "alias": "/system-architect:foliage-grid-builder",
+      "slug": "foliage-grid-builder",
+      "sourceSkillPath": "plugins/s2-skills/plugins/system-architect/skills/foliage-grid-builder/SKILL.md"
+    },
+    {
+      "alias": "/system-architect:graphics-debug",
+      "slug": "graphics-debug",
+      "sourceSkillPath": "plugins/s2-skills/plugins/system-architect/skills/graphics-debug/SKILL.md"
+    },
+    {
+      "alias": "/system-architect:grass-builder",
+      "slug": "grass-builder",
+      "sourceSkillPath": "plugins/s2-skills/plugins/system-architect/skills/grass-builder/SKILL.md"
+    },
+    {
+      "alias": "/system-architect:loco-strategy-builder",
+      "slug": "loco-strategy-builder",
+      "sourceSkillPath": "plugins/s2-skills/plugins/system-architect/skills/loco-strategy-builder/SKILL.md"
+    },
+    {
+      "alias": "/ugm:feature-brainstorm",
+      "slug": "feature-brainstorm",
+      "sourceSkillPath": "plugins/ue-gamedev-method/skills/ideation/feature-brainstorm/SKILL.md"
+    },
+    {
+      "alias": "/ugm:implementation-plan",
+      "slug": "implementation-plan",
+      "sourceSkillPath": "plugins/ue-gamedev-method/skills/planning/implementation-plan/SKILL.md"
+    },
+    {
+      "alias": "/ugm:pitfall-capture",
+      "slug": "pitfall-capture",
+      "sourceSkillPath": "plugins/ue-gamedev-method/skills/iteration/pitfall-capture/SKILL.md"
+    },
+    {
+      "alias": "/ugm:solution-capture",
+      "slug": "solution-capture",
+      "sourceSkillPath": "plugins/ue-gamedev-method/skills/iteration/solution-capture/SKILL.md"
+    },
+    {
+      "alias": "/ugm:worktree-workflow",
+      "slug": "worktree-workflow",
+      "sourceSkillPath": "plugins/ue-gamedev-method/skills/implementation/worktree-workflow/SKILL.md"
+    }
+  ],
+  "skills": [
+    {
+      "slug": "analyze-frame-bugitgo",
+      "sourceDirRel": "plugins/s2-skills/plugins/qa-testing/skills/analyze-frame-bugitgo",
+      "sourceSkillFile": "plugins/s2-skills/plugins/qa-testing/skills/analyze-frame-bugitgo/skill.md",
+      "outputDir": "analyze-frame-bugitgo",
+      "outputSkillFile": "analyze-frame-bugitgo/SKILL.md",
+      "normalizedName": "analyze-frame-from-bugitgo-request",
+      "legacyMetadataKeys": [
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/qa-testing:analyze-frame-bugitgo"
+      ],
+      "rewrittenPaths": [
+        {
+          "original": ".claude/plugins/s2-skills/plugins/qa-testing/skills/analyze-frame-bugitgo/config/",
+          "rewritten": "./config/",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude/plugins/s2-skills/plugins/qa-testing/skills/analyze-frame-bugitgo/config/",
+          "rewritten": "./config/",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude/plugins/s2-skills/plugins/qa-testing/skills/analyze-frame-bugitgo/config/",
+          "rewritten": "./config/",
+          "reason": "mapped-.claude-reference"
+        }
+      ],
+      "issues": [
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: D:\\s2\\Saved\\BugScreenshots\\BUGFIX-1234_main_loc1\\"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "slug": "anim-analyzer",
+      "sourceDirRel": "plugins/s2-skills/plugins/asset-management/skills/anim-analyzer",
+      "sourceSkillFile": "plugins/s2-skills/plugins/asset-management/skills/anim-analyzer/SKILL.md",
+      "outputDir": "anim-analyzer",
+      "outputSkillFile": "anim-analyzer/SKILL.md",
+      "normalizedName": "anim-analyzer",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke"
+      ],
+      "aliases": [
+        "/asset-management:anim-analyzer"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "audio-code-review",
+      "sourceDirRel": "plugins/s2-skills/plugins/audio-systems/skills/audio-code-review",
+      "sourceSkillFile": "plugins/s2-skills/plugins/audio-systems/skills/audio-code-review/SKILL.md",
+      "outputDir": "audio-code-review",
+      "outputSkillFile": "audio-code-review/SKILL.md",
+      "normalizedName": "audio-code-review",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/audio-systems:audio-code-review"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "boss-review",
+      "sourceDirRel": "plugins/s2-skills/plugins/qa-testing/skills/boss-review",
+      "sourceSkillFile": "plugins/s2-skills/plugins/qa-testing/skills/boss-review/SKILL.md",
+      "outputDir": "boss-review",
+      "outputSkillFile": "boss-review/SKILL.md",
+      "normalizedName": "boss-review",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/qa-testing:boss-review"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "bug-add",
+      "sourceDirRel": "skills/bug-wiki/bug-add",
+      "sourceSkillFile": "skills/bug-wiki/bug-add/SKILL.md",
+      "outputDir": "bug-add",
+      "outputSkillFile": "bug-add/SKILL.md",
+      "normalizedName": "bug-add",
+      "legacyMetadataKeys": [
+        "skill"
+      ],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "bug-search",
+      "sourceDirRel": "skills/bug-wiki/bug-search",
+      "sourceSkillFile": "skills/bug-wiki/bug-search/SKILL.md",
+      "outputDir": "bug-search",
+      "outputSkillFile": "bug-search/SKILL.md",
+      "normalizedName": "bug-search",
+      "legacyMetadataKeys": [
+        "skill"
+      ],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "close-editor",
+      "sourceDirRel": "plugins/s2-skills/plugins/dev-workflow/skills/close-editor",
+      "sourceSkillFile": "plugins/s2-skills/plugins/dev-workflow/skills/close-editor/SKILL.md",
+      "outputDir": "close-editor",
+      "outputSkillFile": "close-editor/SKILL.md",
+      "normalizedName": "close-editor",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/dev-workflow:close-editor"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "combat-ai-review",
+      "sourceDirRel": "plugins/s2-skills/plugins/combat-systems/skills/combat-ai-review",
+      "sourceSkillFile": "plugins/s2-skills/plugins/combat-systems/skills/combat-ai-review/SKILL.md",
+      "outputDir": "combat-ai-review",
+      "outputSkillFile": "combat-ai-review/SKILL.md",
+      "normalizedName": "combat-ai-review",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/combat-systems:combat-ai-review"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "crash-report",
+      "sourceDirRel": "skills/crash-report",
+      "sourceSkillFile": "skills/crash-report/SKILL.md",
+      "outputDir": "crash-report",
+      "outputSkillFile": "crash-report/SKILL.md",
+      "normalizedName": "crash-report",
+      "legacyMetadataKeys": [
+        "skill",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [],
+      "rewrittenPaths": [
+        {
+          "original": ".claude/skills/crash-report/scripts/crash-parser.ps1",
+          "rewritten": "./scripts/crash-parser.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude/skills/crash-report/scripts/crash-parser.ps1",
+          "rewritten": "./scripts/crash-parser.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude/skills/crash-report/scripts/crash-parser.ps1",
+          "rewritten": "./scripts/crash-parser.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude/skills/crash-report/scripts/crash-parser.ps1",
+          "rewritten": "./scripts/crash-parser.ps1",
+          "reason": "mapped-.claude-reference"
+        }
+      ],
+      "issues": [
+        {
+          "kind": "warning",
+          "message": "Unresolved non-skill .claude path kept as-is: .claude/credentials/sentry.env"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "slug": "create-editor-plugin",
+      "sourceDirRel": "plugins/s2-skills/plugins/editor-tools/skills/create-editor-plugin",
+      "sourceSkillFile": "plugins/s2-skills/plugins/editor-tools/skills/create-editor-plugin/SKILL.md",
+      "outputDir": "create-editor-plugin",
+      "outputSkillFile": "create-editor-plugin/SKILL.md",
+      "normalizedName": "create-editor-plugin",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/editor-tools:create-editor-plugin"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "create-sipher-ans",
+      "sourceDirRel": "plugins/s2-skills/plugins/combat-systems/skills/create-sipher-ans",
+      "sourceSkillFile": "plugins/s2-skills/plugins/combat-systems/skills/create-sipher-ans/SKILL.md",
+      "outputDir": "create-sipher-ans",
+      "outputSkillFile": "create-sipher-ans/SKILL.md",
+      "normalizedName": "create-sipher-ans",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/combat-systems:create-sipher-ans"
+      ],
+      "rewrittenPaths": [],
+      "issues": [
+        {
+          "kind": "warning",
+          "message": "Unresolved non-skill .claude path kept as-is: .claude/rules/animation-notifies.md"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "slug": "create-unittest",
+      "sourceDirRel": "plugins/s2-skills/plugins/qa-testing/skills/create-unittest",
+      "sourceSkillFile": "plugins/s2-skills/plugins/qa-testing/skills/create-unittest/SKILL.md",
+      "outputDir": "create-unittest",
+      "outputSkillFile": "create-unittest/SKILL.md",
+      "normalizedName": "create-unittest",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "alias",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/qa-testing:create-unittest"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "cutscene-generator",
+      "sourceDirRel": "plugins/s2-skills/plugins/game-design/skills/cutscene-generator",
+      "sourceSkillFile": "plugins/s2-skills/plugins/game-design/skills/cutscene-generator/skill.md",
+      "outputDir": "cutscene-generator",
+      "outputSkillFile": "cutscene-generator/SKILL.md",
+      "normalizedName": "cutscene-generator",
+      "legacyMetadataKeys": [
+        "invoke"
+      ],
+      "aliases": [
+        "/game-design:cutscene-generator"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "debug-cvar-prompt",
+      "sourceDirRel": "plugins/s2-skills/plugins/dev-workflow/skills/debug-cvar-prompt",
+      "sourceSkillFile": "plugins/s2-skills/plugins/dev-workflow/skills/debug-cvar-prompt/SKILL.md",
+      "outputDir": "debug-cvar-prompt",
+      "outputSkillFile": "debug-cvar-prompt/SKILL.md",
+      "normalizedName": "debug-cvar-prompt",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/dev-workflow:debug-cvar-prompt"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "deep-research",
+      "sourceDirRel": "skills/deep-research",
+      "sourceSkillFile": "skills/deep-research/SKILL.md",
+      "outputDir": "deep-research",
+      "outputSkillFile": "deep-research/SKILL.md",
+      "normalizedName": "deep-research",
+      "legacyMetadataKeys": [
+        "skill"
+      ],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "dynamic-dresser",
+      "sourceDirRel": "plugins/s2-skills/plugins/editor-tools/skills/dynamic-dresser",
+      "sourceSkillFile": "plugins/s2-skills/plugins/editor-tools/skills/dynamic-dresser/SKILL.md",
+      "outputDir": "dynamic-dresser",
+      "outputSkillFile": "dynamic-dresser/SKILL.md",
+      "normalizedName": "dynamic-dresser",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/editor-tools:dynamic-dresser"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "enemy-status-track",
+      "sourceDirRel": "plugins/s2-skills/plugins/qa-testing/skills/enemy-status-track",
+      "sourceSkillFile": "plugins/s2-skills/plugins/qa-testing/skills/enemy-status-track/SKILL.md",
+      "outputDir": "enemy-status-track",
+      "outputSkillFile": "enemy-status-track/SKILL.md",
+      "normalizedName": "enemy-status-track",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/qa-testing:enemy-status-track"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "engineering-health",
+      "sourceDirRel": "skills/engineering-health",
+      "sourceSkillFile": "skills/engineering-health/SKILL.md",
+      "outputDir": "engineering-health",
+      "outputSkillFile": "engineering-health/SKILL.md",
+      "normalizedName": "engineering-health",
+      "legacyMetadataKeys": [
+        "skill",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [],
+      "rewrittenPaths": [
+        {
+          "original": ".claude/skills/engineering-health/templates/weekly-report.md",
+          "rewritten": "./templates/weekly-report.md",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude/skills/engineering-health/templates/",
+          "rewritten": "./templates/",
+          "reason": "mapped-.claude-reference"
+        }
+      ],
+      "issues": [
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: D:\\s2"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "slug": "feature-brainstorm",
+      "sourceDirRel": "plugins/ue-gamedev-method/skills/ideation/feature-brainstorm",
+      "sourceSkillFile": "plugins/ue-gamedev-method/skills/ideation/feature-brainstorm/SKILL.md",
+      "outputDir": "feature-brainstorm",
+      "outputSkillFile": "feature-brainstorm/SKILL.md",
+      "normalizedName": "feature-brainstorm",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke"
+      ],
+      "aliases": [
+        "/ugm:feature-brainstorm"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "find-ref",
+      "sourceDirRel": "plugins/s2-skills/plugins/asset-management/skills/find-ref",
+      "sourceSkillFile": "plugins/s2-skills/plugins/asset-management/skills/find-ref/SKILL.md",
+      "outputDir": "find-ref",
+      "outputSkillFile": "find-ref/SKILL.md",
+      "normalizedName": "find-ref",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/asset-management:find-ref"
+      ],
+      "rewrittenPaths": [],
+      "issues": [
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: D:\\s2\\Content\\S2\\Folder\\AssetName.uasset"
+        },
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: D:\\s2\\Content\\S2\\..."
+        },
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: D:\\s2\\Content\\..."
+        },
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: D:\\s2\\Plugins\\"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "slug": "foliage-grid-builder",
+      "sourceDirRel": "plugins/s2-skills/plugins/system-architect/skills/foliage-grid-builder",
+      "sourceSkillFile": "plugins/s2-skills/plugins/system-architect/skills/foliage-grid-builder/SKILL.md",
+      "outputDir": "foliage-grid-builder",
+      "outputSkillFile": "foliage-grid-builder/SKILL.md",
+      "normalizedName": "foliage-grid-builder",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/system-architect:foliage-grid-builder"
+      ],
+      "rewrittenPaths": [],
+      "issues": [
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: D:\\UnrealEngine\\Engine\\Binaries\\Win64\\UnrealEditor-Cmd.exe"
+        },
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: D:\\s2\\S2.uproject"
+        },
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: D:\\s2\\Saved\\Logs\\FoliageGridBuilder.log"
+        },
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: D:\\s2"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "slug": "gameplay-tag-query-builder",
+      "sourceDirRel": "plugins/s2-skills/plugins/editor-tools/skills/gameplay-tag-query-builder",
+      "sourceSkillFile": "plugins/s2-skills/plugins/editor-tools/skills/gameplay-tag-query-builder/SKILL.md",
+      "outputDir": "gameplay-tag-query-builder",
+      "outputSkillFile": "gameplay-tag-query-builder/SKILL.md",
+      "normalizedName": "gameplay-tag-query-builder",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/editor-tools:gameplay-tag-query-builder"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "generate-tests",
+      "sourceDirRel": "plugins/s2-skills/plugins/qa-testing/skills/generate-tests",
+      "sourceSkillFile": "plugins/s2-skills/plugins/qa-testing/skills/generate-tests/SKILL.md",
+      "outputDir": "generate-tests",
+      "outputSkillFile": "generate-tests/SKILL.md",
+      "normalizedName": "generate-tests",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/qa-testing:generate-tests"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "github-assign-issue",
+      "sourceDirRel": "plugins/s2-skills/plugins/github-workflow/skills/github-assign-issue",
+      "sourceSkillFile": "plugins/s2-skills/plugins/github-workflow/skills/github-assign-issue/SKILL.md",
+      "outputDir": "github-assign-issue",
+      "outputSkillFile": "github-assign-issue/SKILL.md",
+      "normalizedName": "github-assign-issue",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/github-workflow:github-assign-issue"
+      ],
+      "rewrittenPaths": [],
+      "issues": [
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: G:\\s2"
+        },
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: G:\\s2\\claude-agents\\team\\engineer-matrix.md"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "slug": "github-create-issue",
+      "sourceDirRel": "plugins/s2-skills/plugins/github-workflow/skills/github-create-issue",
+      "sourceSkillFile": "plugins/s2-skills/plugins/github-workflow/skills/github-create-issue/SKILL.md",
+      "outputDir": "github-create-issue",
+      "outputSkillFile": "github-create-issue/SKILL.md",
+      "normalizedName": "github-create-issue",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/github-workflow:github-create-issue"
+      ],
+      "rewrittenPaths": [
+        {
+          "original": ".claude/plugins/s2-skills/plugins/github-workflow/skills/github-create-issue/SKILL.md",
+          "rewritten": "./SKILL.md",
+          "reason": "mapped-.claude-reference"
+        }
+      ],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "github-create-pr",
+      "sourceDirRel": "plugins/s2-skills/plugins/github-workflow/skills/github-create-pr",
+      "sourceSkillFile": "plugins/s2-skills/plugins/github-workflow/skills/github-create-pr/SKILL.md",
+      "outputDir": "github-create-pr",
+      "outputSkillFile": "github-create-pr/SKILL.md",
+      "normalizedName": "github-create-pr",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope",
+        "flags"
+      ],
+      "aliases": [
+        "/github-workflow:github-create-pr"
+      ],
+      "rewrittenPaths": [
+        {
+          "original": ".claude/plugins/s2-skills/plugins/github-workflow/skills/github-create-pr/SKILL.md",
+          "rewritten": "./SKILL.md",
+          "reason": "mapped-.claude-reference"
+        }
+      ],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "graphics-debug",
+      "sourceDirRel": "plugins/s2-skills/plugins/system-architect/skills/graphics-debug",
+      "sourceSkillFile": "plugins/s2-skills/plugins/system-architect/skills/graphics-debug/SKILL.md",
+      "outputDir": "graphics-debug",
+      "outputSkillFile": "graphics-debug/SKILL.md",
+      "normalizedName": "graphics-debug",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/system-architect:graphics-debug"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "grass-builder",
+      "sourceDirRel": "plugins/s2-skills/plugins/system-architect/skills/grass-builder",
+      "sourceSkillFile": "plugins/s2-skills/plugins/system-architect/skills/grass-builder/SKILL.md",
+      "outputDir": "grass-builder",
+      "outputSkillFile": "grass-builder/SKILL.md",
+      "normalizedName": "grass-builder",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/system-architect:grass-builder"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "huli-bp-tools",
+      "sourceDirRel": "plugins/s2-skills/plugins/editor-tools/skills/huli-bp-tools",
+      "sourceSkillFile": "plugins/s2-skills/plugins/editor-tools/skills/huli-bp-tools/SKILL.md",
+      "outputDir": "huli-bp-tools",
+      "outputSkillFile": "huli-bp-tools/SKILL.md",
+      "normalizedName": "huli-bp-tools",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/editor-tools:huli-bp-tools"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "huli-feature",
+      "sourceDirRel": "plugins/s2-skills/plugins/dev-workflow/skills/huli-feature",
+      "sourceSkillFile": "plugins/s2-skills/plugins/dev-workflow/skills/huli-feature/SKILL.md",
+      "outputDir": "huli-feature",
+      "outputSkillFile": "huli-feature/SKILL.md",
+      "normalizedName": "huli-feature",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke"
+      ],
+      "aliases": [
+        "/dev-workflow:huli-feature"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "implementation-plan",
+      "sourceDirRel": "plugins/ue-gamedev-method/skills/planning/implementation-plan",
+      "sourceSkillFile": "plugins/ue-gamedev-method/skills/planning/implementation-plan/SKILL.md",
+      "outputDir": "implementation-plan",
+      "outputSkillFile": "implementation-plan/SKILL.md",
+      "normalizedName": "implementation-plan",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke"
+      ],
+      "aliases": [
+        "/ugm:implementation-plan"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "live-coding-refresh",
+      "sourceDirRel": "plugins/s2-skills/plugins/dev-workflow/skills/live-coding-refresh",
+      "sourceSkillFile": "plugins/s2-skills/plugins/dev-workflow/skills/live-coding-refresh/SKILL.md",
+      "outputDir": "live-coding-refresh",
+      "outputSkillFile": "live-coding-refresh/SKILL.md",
+      "normalizedName": "live-coding-refresh",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke"
+      ],
+      "aliases": [
+        "/dev-workflow:live-coding-refresh"
+      ],
+      "rewrittenPaths": [
+        {
+          "original": ".claude/plugins/s2-skills/plugins/dev-workflow/skills/live-coding-refresh/trigger-live-coding.ps1",
+          "rewritten": "./trigger-live-coding.ps1",
+          "reason": "mapped-.claude-reference"
+        }
+      ],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "loco-strategy-builder",
+      "sourceDirRel": "plugins/s2-skills/plugins/system-architect/skills/loco-strategy-builder",
+      "sourceSkillFile": "plugins/s2-skills/plugins/system-architect/skills/loco-strategy-builder/SKILL.md",
+      "outputDir": "loco-strategy-builder",
+      "outputSkillFile": "loco-strategy-builder/SKILL.md",
+      "normalizedName": "loco-strategy-builder",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/system-architect:loco-strategy-builder"
+      ],
+      "rewrittenPaths": [
+        {
+          "original": ".claude/plugins/s2-skills/plugins/system-architect/skills/loco-strategy-builder/Run-LocoPresetBuilder.ps1",
+          "rewritten": "./Run-LocoPresetBuilder.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude\\plugins\\s2-skills\\plugins\\system-architect\\skills\\loco-strategy-builder\\Run-LocoPresetBuilder.ps1",
+          "rewritten": "./Run-LocoPresetBuilder.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude\\plugins\\s2-skills\\plugins\\system-architect\\skills\\loco-strategy-builder\\Run-LocoPresetBuilder.ps1",
+          "rewritten": "./Run-LocoPresetBuilder.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude\\plugins\\s2-skills\\plugins\\system-architect\\skills\\loco-strategy-builder\\Run-LocoPresetBuilder.ps1",
+          "rewritten": "./Run-LocoPresetBuilder.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude\\plugins\\s2-skills\\plugins\\system-architect\\skills\\loco-strategy-builder\\Run-LocoPresetBuilder.ps1",
+          "rewritten": "./Run-LocoPresetBuilder.ps1",
+          "reason": "mapped-.claude-reference"
+        }
+      ],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "material-sampler-check",
+      "sourceDirRel": "plugins/s2-skills/plugins/qa-testing/skills/material-sampler-check",
+      "sourceSkillFile": "plugins/s2-skills/plugins/qa-testing/skills/material-sampler-check/SKILL.md",
+      "outputDir": "material-sampler-check",
+      "outputSkillFile": "material-sampler-check/SKILL.md",
+      "normalizedName": "material-sampler-check",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/qa-testing:material-sampler-check"
+      ],
+      "rewrittenPaths": [],
+      "issues": [
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: F:\\s2\\Content"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "slug": "merge-main",
+      "sourceDirRel": "skills/merge-main",
+      "sourceSkillFile": "skills/merge-main/SKILL.md",
+      "outputDir": "merge-main",
+      "outputSkillFile": "merge-main/SKILL.md",
+      "normalizedName": "merge-main",
+      "legacyMetadataKeys": [
+        "skill",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [],
+      "rewrittenPaths": [
+        {
+          "original": ".claude/skills/merge-main/scripts/merge-main.ps1",
+          "rewritten": "./scripts/merge-main.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude/skills/merge-main/scripts/merge-main.ps1",
+          "rewritten": "./scripts/merge-main.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude/skills/merge-main/scripts/merge-main.ps1",
+          "rewritten": "./scripts/merge-main.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude/skills/merge-main/scripts/merge-main.ps1",
+          "rewritten": "./scripts/merge-main.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude/skills/merge-main/scripts/merge-main.ps1",
+          "rewritten": "./scripts/merge-main.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude/skills/merge-main/scripts/merge-main.ps1",
+          "rewritten": "./scripts/merge-main.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude/skills/merge-main/scripts/merge-main.ps1",
+          "rewritten": "./scripts/merge-main.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude/skills/merge-main/scripts/merge-main.ps1",
+          "rewritten": "./scripts/merge-main.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude/skills/merge-main/scripts/merge-main.ps1",
+          "rewritten": "./scripts/merge-main.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude/skills/merge-main/scripts/merge-main.ps1",
+          "rewritten": "./scripts/merge-main.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude/skills/merge-main/scripts/merge-main.ps1",
+          "rewritten": "./scripts/merge-main.ps1",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": ".claude/skills/merge-main/scripts/merge-main.ps1",
+          "rewritten": "./scripts/merge-main.ps1",
+          "reason": "mapped-.claude-reference"
+        }
+      ],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "n2c-code-generator",
+      "sourceDirRel": "plugins/unreal/plugins/nodetocode/skills/n2c-code-generator",
+      "sourceSkillFile": "plugins/unreal/plugins/nodetocode/skills/n2c-code-generator/SKILL.md",
+      "outputDir": "n2c-code-generator",
+      "outputSkillFile": "n2c-code-generator/SKILL.md",
+      "normalizedName": "n2c-code-generator",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "n2c-context-gatherer",
+      "sourceDirRel": "plugins/unreal/plugins/nodetocode/skills/n2c-context-gatherer",
+      "sourceSkillFile": "plugins/unreal/plugins/nodetocode/skills/n2c-context-gatherer/SKILL.md",
+      "outputDir": "n2c-context-gatherer",
+      "outputSkillFile": "n2c-context-gatherer/SKILL.md",
+      "normalizedName": "n2c-context-gatherer",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "n2c-json-export",
+      "sourceDirRel": "plugins/unreal/plugins/nodetocode/skills/n2c-json-export",
+      "sourceSkillFile": "plugins/unreal/plugins/nodetocode/skills/n2c-json-export/SKILL.md",
+      "outputDir": "n2c-json-export",
+      "outputSkillFile": "n2c-json-export/SKILL.md",
+      "normalizedName": "n2c-json-export",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "n2c-orchestrator",
+      "sourceDirRel": "plugins/unreal/plugins/nodetocode/skills/n2c-orchestrator",
+      "sourceSkillFile": "plugins/unreal/plugins/nodetocode/skills/n2c-orchestrator/SKILL.md",
+      "outputDir": "n2c-orchestrator",
+      "outputSkillFile": "n2c-orchestrator/SKILL.md",
+      "normalizedName": "n2c-orchestrator",
+      "legacyMetadataKeys": [
+        "invocable"
+      ],
+      "aliases": [],
+      "rewrittenPaths": [
+        {
+          "original": "G:\\s2\\.claude\\plugins\\unreal\\skills\\n2c-json-export\\SKILL.md",
+          "rewritten": "../n2c-json-export/SKILL.md",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": "G:\\s2\\.claude\\plugins\\unreal\\skills\\n2c-context-gatherer\\SKILL.md",
+          "rewritten": "../n2c-context-gatherer/SKILL.md",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": "G:\\s2\\.claude\\plugins\\unreal\\skills\\n2c-code-generator\\SKILL.md",
+          "rewritten": "../n2c-code-generator/SKILL.md",
+          "reason": "mapped-.claude-reference"
+        },
+        {
+          "original": "G:\\s2\\.claude\\plugins\\unreal\\skills\\n2c-validator\\SKILL.md",
+          "rewritten": "../n2c-validator/SKILL.md",
+          "reason": "mapped-.claude-reference"
+        }
+      ],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "n2c-validator",
+      "sourceDirRel": "plugins/unreal/plugins/nodetocode/skills/n2c-validator",
+      "sourceSkillFile": "plugins/unreal/plugins/nodetocode/skills/n2c-validator/SKILL.md",
+      "outputDir": "n2c-validator",
+      "outputSkillFile": "n2c-validator/SKILL.md",
+      "normalizedName": "n2c-validator",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "open-editor",
+      "sourceDirRel": "plugins/s2-skills/plugins/dev-workflow/skills/open-editor",
+      "sourceSkillFile": "plugins/s2-skills/plugins/dev-workflow/skills/open-editor/SKILL.md",
+      "outputDir": "open-editor",
+      "outputSkillFile": "open-editor/SKILL.md",
+      "normalizedName": "open-editor",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/dev-workflow:open-editor"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "perf-findings-to-issues",
+      "sourceDirRel": "plugins/s2-skills/plugins/github-workflow/skills/perf-findings-to-issues",
+      "sourceSkillFile": "plugins/s2-skills/plugins/github-workflow/skills/perf-findings-to-issues/SKILL.md",
+      "outputDir": "perf-findings-to-issues",
+      "outputSkillFile": "perf-findings-to-issues/SKILL.md",
+      "normalizedName": "perf-findings-to-issues",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/github-workflow:perf-findings-to-issues"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "pitfall-capture",
+      "sourceDirRel": "plugins/ue-gamedev-method/skills/iteration/pitfall-capture",
+      "sourceSkillFile": "plugins/ue-gamedev-method/skills/iteration/pitfall-capture/SKILL.md",
+      "outputDir": "pitfall-capture",
+      "outputSkillFile": "pitfall-capture/SKILL.md",
+      "normalizedName": "pitfall-capture",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke"
+      ],
+      "aliases": [
+        "/ugm:pitfall-capture"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "plugin-documenter",
+      "sourceDirRel": "plugins/s2-skills/plugins/asset-management/skills/plugin-documenter",
+      "sourceSkillFile": "plugins/s2-skills/plugins/asset-management/skills/plugin-documenter/SKILL.md",
+      "outputDir": "plugin-documenter",
+      "outputSkillFile": "plugin-documenter/SKILL.md",
+      "normalizedName": "plugin-documenter",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/asset-management:plugin-documenter"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ralph-go",
+      "sourceDirRel": "skills/ralph-go",
+      "sourceSkillFile": "skills/ralph-go/SKILL.md",
+      "outputDir": "ralph-go",
+      "outputSkillFile": "ralph-go/SKILL.md",
+      "normalizedName": "ralph-go",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ralph-new",
+      "sourceDirRel": "skills/ralph-new",
+      "sourceSkillFile": "skills/ralph-new/SKILL.md",
+      "outputDir": "ralph-new",
+      "outputSkillFile": "ralph-new/SKILL.md",
+      "normalizedName": "ralph-new",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ralph-plan",
+      "sourceDirRel": "skills/ralph-plan",
+      "sourceSkillFile": "skills/ralph-plan/SKILL.md",
+      "outputDir": "ralph-plan",
+      "outputSkillFile": "ralph-plan/SKILL.md",
+      "normalizedName": "ralph-plan",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "read-uasset",
+      "sourceDirRel": "plugins/s2-skills/plugins/asset-management/skills/read-uasset",
+      "sourceSkillFile": "plugins/s2-skills/plugins/asset-management/skills/read-uasset/SKILL.md",
+      "outputDir": "read-uasset",
+      "outputSkillFile": "read-uasset/SKILL.md",
+      "normalizedName": "read-uasset",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/asset-management:read-uasset"
+      ],
+      "rewrittenPaths": [],
+      "issues": [
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: C:\\Users\\Admin\\AppData\\Local\\Temp\\extract_uasset_strings.ps1"
+        },
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: D:\\s2\\Content\\Input\\IMC_MainCharacter.uasset"
+        },
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: D:\\s2\\Content\\Input\\IMC*.uasset"
+        },
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: D:\\s2\\Content\\Input\\IA_*.uasset"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "slug": "read-uasset-deep",
+      "sourceDirRel": "plugins/s2-skills/plugins/asset-management/skills/read-uasset-deep",
+      "sourceSkillFile": "plugins/s2-skills/plugins/asset-management/skills/read-uasset-deep/SKILL.md",
+      "outputDir": "read-uasset-deep",
+      "outputSkillFile": "read-uasset-deep/SKILL.md",
+      "normalizedName": "read-uasset-deep",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke"
+      ],
+      "aliases": [
+        "/asset-management:read-uasset-deep"
+      ],
+      "rewrittenPaths": [],
+      "issues": [
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: D:\\s2\\Content\\S2\\Core_Boss\\s2_boss_baiwuchang\\BT\\BT_s2_boss_baiwuchang_phase_01_ver2.uasset"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "slug": "sipher-asset-mcp",
+      "sourceDirRel": "plugins/s2-skills/plugins/dev-workflow/skills/sipher-asset-mcp",
+      "sourceSkillFile": "plugins/s2-skills/plugins/dev-workflow/skills/sipher-asset-mcp/SKILL.md",
+      "outputDir": "sipher-asset-mcp",
+      "outputSkillFile": "sipher-asset-mcp/SKILL.md",
+      "normalizedName": "sipher-asset-mcp",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/dev-workflow:sipher-asset-mcp"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "skill-creator",
+      "sourceDirRel": "plugins/s2-skills/plugins/github-workflow/skills/skill-creator",
+      "sourceSkillFile": "plugins/s2-skills/plugins/github-workflow/skills/skill-creator/SKILL.md",
+      "outputDir": "skill-creator",
+      "outputSkillFile": "skill-creator/SKILL.md",
+      "normalizedName": "skill-creator",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "license"
+      ],
+      "aliases": [
+        "/github-workflow:skill-creator"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "solution-capture",
+      "sourceDirRel": "plugins/ue-gamedev-method/skills/iteration/solution-capture",
+      "sourceSkillFile": "plugins/ue-gamedev-method/skills/iteration/solution-capture/SKILL.md",
+      "outputDir": "solution-capture",
+      "outputSkillFile": "solution-capture/SKILL.md",
+      "normalizedName": "solution-capture",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke"
+      ],
+      "aliases": [
+        "/ugm:solution-capture"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "stress-test",
+      "sourceDirRel": "skills/stress-test",
+      "sourceSkillFile": "skills/stress-test/SKILL.md",
+      "outputDir": "stress-test",
+      "outputSkillFile": "stress-test/SKILL.md",
+      "normalizedName": "stress-test",
+      "legacyMetadataKeys": [
+        "skill",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: D:\\s2"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-ai-coordinator-debugger",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-ai-coordinator-debugger",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-ai-coordinator-debugger/SKILL.md",
+      "outputDir": "ue-ai-coordinator-debugger",
+      "outputSkillFile": "ue-ai-coordinator-debugger/SKILL.md",
+      "normalizedName": "ue-ai-coordinator-debugger",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-anim-blueprint-optimizer",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-anim-blueprint-optimizer",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-anim-blueprint-optimizer/SKILL.md",
+      "outputDir": "ue-anim-blueprint-optimizer",
+      "outputSkillFile": "ue-anim-blueprint-optimizer/SKILL.md",
+      "normalizedName": "ue-anim-blueprint-optimizer",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-anim-notify-patterns",
+      "sourceDirRel": "plugins/s2-skills/plugins/editor-tools/skills/ue-anim-notify-patterns",
+      "sourceSkillFile": "plugins/s2-skills/plugins/editor-tools/skills/ue-anim-notify-patterns/SKILL.md",
+      "outputDir": "ue-anim-notify-patterns",
+      "outputSkillFile": "ue-anim-notify-patterns/SKILL.md",
+      "normalizedName": "ue-anim-notify-patterns",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke"
+      ],
+      "aliases": [
+        "/editor-tools:ue-anim-notify-patterns"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-anim-notify-wizard",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-anim-notify-wizard",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-anim-notify-wizard/SKILL.md",
+      "outputDir": "ue-anim-notify-wizard",
+      "outputSkillFile": "ue-anim-notify-wizard/SKILL.md",
+      "normalizedName": "ue-anim-notify-wizard",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-audio-metasound-integration",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-audio-metasound-integration",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-audio-metasound-integration/SKILL.md",
+      "outputDir": "ue-audio-metasound-integration",
+      "outputSkillFile": "ue-audio-metasound-integration/SKILL.md",
+      "normalizedName": "ue-audio-metasound-integration",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-behavior-tree-validator",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-behavior-tree-validator",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-behavior-tree-validator/SKILL.md",
+      "outputDir": "ue-behavior-tree-validator",
+      "outputSkillFile": "ue-behavior-tree-validator/SKILL.md",
+      "normalizedName": "ue-behavior-tree-validator",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-blueprint-profiler",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-blueprint-profiler",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-blueprint-profiler/SKILL.md",
+      "outputDir": "ue-blueprint-profiler",
+      "outputSkillFile": "ue-blueprint-profiler/SKILL.md",
+      "normalizedName": "ue-blueprint-profiler",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-blueprint-to-cpp",
+      "sourceDirRel": "plugins/unreal/plugins/nodetocode/skills/ue-blueprint-to-cpp",
+      "sourceSkillFile": "plugins/unreal/plugins/nodetocode/skills/ue-blueprint-to-cpp/SKILL.md",
+      "outputDir": "ue-blueprint-to-cpp",
+      "outputSkillFile": "ue-blueprint-to-cpp/SKILL.md",
+      "normalizedName": "ue-blueprint-to-cpp",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-boss-phase-validator",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-boss-phase-validator",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-boss-phase-validator/SKILL.md",
+      "outputDir": "ue-boss-phase-validator",
+      "outputSkillFile": "ue-boss-phase-validator/SKILL.md",
+      "normalizedName": "ue-boss-phase-validator",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-build-project",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-build-project",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-build-project/SKILL.md",
+      "outputDir": "ue-build-project",
+      "outputSkillFile": "ue-build-project/SKILL.md",
+      "normalizedName": "ue-build-project",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-collision-preset-auditor",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-collision-preset-auditor",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-collision-preset-auditor/SKILL.md",
+      "outputDir": "ue-collision-preset-auditor",
+      "outputSkillFile": "ue-collision-preset-auditor/SKILL.md",
+      "normalizedName": "ue-collision-preset-auditor",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-combo-graph-validator",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-combo-graph-validator",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-combo-graph-validator/SKILL.md",
+      "outputDir": "ue-combo-graph-validator",
+      "outputSkillFile": "ue-combo-graph-validator/SKILL.md",
+      "normalizedName": "ue-combo-graph-validator",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-cpp-build",
+      "sourceDirRel": "plugins/s2-skills/plugins/dev-workflow/skills/ue-cpp-build",
+      "sourceSkillFile": "plugins/s2-skills/plugins/dev-workflow/skills/ue-cpp-build/SKILL.md",
+      "outputDir": "ue-cpp-build",
+      "outputSkillFile": "ue-cpp-build/SKILL.md",
+      "normalizedName": "ue-cpp-build",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/dev-workflow:ue-cpp-build"
+      ],
+      "rewrittenPaths": [],
+      "issues": [
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: E:\\S2_\\Source\\S2\\Private\\Combat\\SipherCombatAbility.cpp"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-crash-callstack-linker",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-crash-callstack-linker",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-crash-callstack-linker/SKILL.md",
+      "outputDir": "ue-crash-callstack-linker",
+      "outputSkillFile": "ue-crash-callstack-linker/SKILL.md",
+      "normalizedName": "ue-crash-callstack-linker",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: D:\\Build\\S2\\Source\\S2\\Private\\Core\\ASC\\SipherAbilitySystemComponent.cpp:342"
+        },
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: D:\\Build\\S2\\Source\\S2\\Private\\GameplayAbilities\\SipherGameplayAbility.cpp:128"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-datatable-migrator",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-datatable-migrator",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-datatable-migrator/SKILL.md",
+      "outputDir": "ue-datatable-migrator",
+      "outputSkillFile": "ue-datatable-migrator/SKILL.md",
+      "normalizedName": "ue-datatable-migrator",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-detect-engine",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-detect-engine",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-detect-engine/SKILL.md",
+      "outputDir": "ue-detect-engine",
+      "outputSkillFile": "ue-detect-engine/SKILL.md",
+      "normalizedName": "ue-detect-engine",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-editor-tools",
+      "sourceDirRel": "plugins/s2-skills/plugins/editor-tools/skills/ue-editor-tools",
+      "sourceSkillFile": "plugins/s2-skills/plugins/editor-tools/skills/ue-editor-tools/SKILL.md",
+      "outputDir": "ue-editor-tools",
+      "outputSkillFile": "ue-editor-tools/SKILL.md",
+      "normalizedName": "ue-editor-tools",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/editor-tools:ue-editor-tools"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-enemy-preflight-check",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-enemy-preflight-check",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-enemy-preflight-check/SKILL.md",
+      "outputDir": "ue-enemy-preflight-check",
+      "outputSkillFile": "ue-enemy-preflight-check/SKILL.md",
+      "normalizedName": "ue-enemy-preflight-check",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-game-bugs",
+      "sourceDirRel": "plugins/s2-skills/plugins/qa-testing/skills/ue-game-bugs",
+      "sourceSkillFile": "plugins/s2-skills/plugins/qa-testing/skills/ue-game-bugs/SKILL.md",
+      "outputDir": "ue-game-bugs",
+      "outputSkillFile": "ue-game-bugs/SKILL.md",
+      "normalizedName": "ue-game-bugs",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/qa-testing:ue-game-bugs"
+      ],
+      "rewrittenPaths": [],
+      "issues": [
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: H:\\Jenkins\\workspace\\source\\s2"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-gameplay-tag-manager",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-gameplay-tag-manager",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-gameplay-tag-manager/SKILL.md",
+      "outputDir": "ue-gameplay-tag-manager",
+      "outputSkillFile": "ue-gameplay-tag-manager/SKILL.md",
+      "normalizedName": "ue-gameplay-tag-manager",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-gas-ability-generator",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-gas-ability-generator",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-gas-ability-generator/SKILL.md",
+      "outputDir": "ue-gas-ability-generator",
+      "outputSkillFile": "ue-gas-ability-generator/SKILL.md",
+      "normalizedName": "ue-gas-ability-generator",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-gas-debugger",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-gas-debugger",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-gas-debugger/SKILL.md",
+      "outputDir": "ue-gas-debugger",
+      "outputSkillFile": "ue-gas-debugger/SKILL.md",
+      "normalizedName": "ue-gas-debugger",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-gas-effect-builder",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-gas-effect-builder",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-gas-effect-builder/SKILL.md",
+      "outputDir": "ue-gas-effect-builder",
+      "outputSkillFile": "ue-gas-effect-builder/SKILL.md",
+      "normalizedName": "ue-gas-effect-builder",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-hitbox-visualizer-export",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-hitbox-visualizer-export",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-hitbox-visualizer-export/SKILL.md",
+      "outputDir": "ue-hitbox-visualizer-export",
+      "outputSkillFile": "ue-hitbox-visualizer-export/SKILL.md",
+      "normalizedName": "ue-hitbox-visualizer-export",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-level-instance-auditor",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-level-instance-auditor",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-level-instance-auditor/SKILL.md",
+      "outputDir": "ue-level-instance-auditor",
+      "outputSkillFile": "ue-level-instance-auditor/SKILL.md",
+      "normalizedName": "ue-level-instance-auditor",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-level-streaming-analyzer",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-level-streaming-analyzer",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-level-streaming-analyzer/SKILL.md",
+      "outputDir": "ue-level-streaming-analyzer",
+      "outputSkillFile": "ue-level-streaming-analyzer/SKILL.md",
+      "normalizedName": "ue-level-streaming-analyzer",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-localization-scanner",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-localization-scanner",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-localization-scanner/SKILL.md",
+      "outputDir": "ue-localization-scanner",
+      "outputSkillFile": "ue-localization-scanner/SKILL.md",
+      "normalizedName": "ue-localization-scanner",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-memory-leak-hunter",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-memory-leak-hunter",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-memory-leak-hunter/SKILL.md",
+      "outputDir": "ue-memory-leak-hunter",
+      "outputSkillFile": "ue-memory-leak-hunter/SKILL.md",
+      "normalizedName": "ue-memory-leak-hunter",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-montage-sync-checker",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-montage-sync-checker",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-montage-sync-checker/SKILL.md",
+      "outputDir": "ue-montage-sync-checker",
+      "outputSkillFile": "ue-montage-sync-checker/SKILL.md",
+      "normalizedName": "ue-montage-sync-checker",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-network-replication-review",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-network-replication-review",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-network-replication-review/SKILL.md",
+      "outputDir": "ue-network-replication-review",
+      "outputSkillFile": "ue-network-replication-review/SKILL.md",
+      "normalizedName": "ue-network-replication-review",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-open-level-full-load",
+      "sourceDirRel": "plugins/s2-skills/plugins/editor-tools/skills/ue-open-level-full-load",
+      "sourceSkillFile": "plugins/s2-skills/plugins/editor-tools/skills/ue-open-level-full-load/SKILL.md",
+      "outputDir": "ue-open-level-full-load",
+      "outputSkillFile": "ue-open-level-full-load/SKILL.md",
+      "normalizedName": "ue-open-level-full-load",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/editor-tools:ue-open-level-full-load"
+      ],
+      "rewrittenPaths": [
+        {
+          "original": ".claude/plugins/s2-skills/plugins/qa-testing/skills/analyze-frame-bugitgo/config/",
+          "rewritten": "../analyze-frame-bugitgo/config/",
+          "reason": "mapped-.claude-reference"
+        }
+      ],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-run-automation-tests",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-run-automation-tests",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-run-automation-tests/SKILL.md",
+      "outputDir": "ue-run-automation-tests",
+      "outputSkillFile": "ue-run-automation-tests/SKILL.md",
+      "normalizedName": "ue-run-automation-tests",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-shader-complexity-report",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-shader-complexity-report",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-shader-complexity-report/SKILL.md",
+      "outputDir": "ue-shader-complexity-report",
+      "outputSkillFile": "ue-shader-complexity-report/SKILL.md",
+      "normalizedName": "ue-shader-complexity-report",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-state-tree-reviewer",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-state-tree-reviewer",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-state-tree-reviewer/SKILL.md",
+      "outputDir": "ue-state-tree-reviewer",
+      "outputSkillFile": "ue-state-tree-reviewer/SKILL.md",
+      "normalizedName": "ue-state-tree-reviewer",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-tag-filter-system",
+      "sourceDirRel": "plugins/s2-skills/plugins/editor-tools/skills/ue-tag-filter-system",
+      "sourceSkillFile": "plugins/s2-skills/plugins/editor-tools/skills/ue-tag-filter-system/SKILL.md",
+      "outputDir": "ue-tag-filter-system",
+      "outputSkillFile": "ue-tag-filter-system/SKILL.md",
+      "normalizedName": "ue-tag-filter-system",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/editor-tools:ue-tag-filter-system"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-texture-budget-enforcer",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-texture-budget-enforcer",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-texture-budget-enforcer/SKILL.md",
+      "outputDir": "ue-texture-budget-enforcer",
+      "outputSkillFile": "ue-texture-budget-enforcer/SKILL.md",
+      "normalizedName": "ue-texture-budget-enforcer",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-toolbar-extension",
+      "sourceDirRel": "plugins/s2-skills/plugins/editor-tools/skills/ue-toolbar-extension",
+      "sourceSkillFile": "plugins/s2-skills/plugins/editor-tools/skills/ue-toolbar-extension/skill.md",
+      "outputDir": "ue-toolbar-extension",
+      "outputSkillFile": "ue-toolbar-extension/SKILL.md",
+      "normalizedName": "ue-toolbar-extension",
+      "legacyMetadataKeys": [
+        "invoke"
+      ],
+      "aliases": [
+        "/editor-tools:ue-toolbar-extension"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-trc-compliance-checker",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-trc-compliance-checker",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-trc-compliance-checker/SKILL.md",
+      "outputDir": "ue-trc-compliance-checker",
+      "outputSkillFile": "ue-trc-compliance-checker/SKILL.md",
+      "normalizedName": "ue-trc-compliance-checker",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-vfx-niagara-profiler",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-vfx-niagara-profiler",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-vfx-niagara-profiler/SKILL.md",
+      "outputDir": "ue-vfx-niagara-profiler",
+      "outputSkillFile": "ue-vfx-niagara-profiler/SKILL.md",
+      "normalizedName": "ue-vfx-niagara-profiler",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-weapon-data-validator",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-weapon-data-validator",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-weapon-data-validator/SKILL.md",
+      "outputDir": "ue-weapon-data-validator",
+      "outputSkillFile": "ue-weapon-data-validator/SKILL.md",
+      "normalizedName": "ue-weapon-data-validator",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "ue-xr-compliance-checker",
+      "sourceDirRel": "plugins/unreal/plugins/ue-tools/skills/ue-xr-compliance-checker",
+      "sourceSkillFile": "plugins/unreal/plugins/ue-tools/skills/ue-xr-compliance-checker/SKILL.md",
+      "outputDir": "ue-xr-compliance-checker",
+      "outputSkillFile": "ue-xr-compliance-checker/SKILL.md",
+      "normalizedName": "ue-xr-compliance-checker",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "validation-rule-generator",
+      "sourceDirRel": "plugins/s2-skills/plugins/qa-testing/skills/validation-rule-generator",
+      "sourceSkillFile": "plugins/s2-skills/plugins/qa-testing/skills/validation-rule-generator/SKILL.md",
+      "outputDir": "validation-rule-generator",
+      "outputSkillFile": "validation-rule-generator/SKILL.md",
+      "normalizedName": "validation-rule-generator",
+      "legacyMetadataKeys": [],
+      "aliases": [],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    },
+    {
+      "slug": "vfx-project-manager",
+      "sourceDirRel": "plugins/s2-skills/plugins/github-workflow/skills/vfx-project-manager",
+      "sourceSkillFile": "plugins/s2-skills/plugins/github-workflow/skills/vfx-project-manager/SKILL.md",
+      "outputDir": "vfx-project-manager",
+      "outputSkillFile": "vfx-project-manager/SKILL.md",
+      "normalizedName": "vfx-project-manager",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke",
+        "type",
+        "category",
+        "scope"
+      ],
+      "aliases": [
+        "/github-workflow:vfx-project-manager"
+      ],
+      "rewrittenPaths": [],
+      "issues": [
+        {
+          "kind": "warning",
+          "message": "Absolute machine-specific path kept as-is: C:\\Users\\"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "slug": "worktree-workflow",
+      "sourceDirRel": "plugins/ue-gamedev-method/skills/implementation/worktree-workflow",
+      "sourceSkillFile": "plugins/ue-gamedev-method/skills/implementation/worktree-workflow/SKILL.md",
+      "outputDir": "worktree-workflow",
+      "outputSkillFile": "worktree-workflow/SKILL.md",
+      "normalizedName": "worktree-workflow",
+      "legacyMetadataKeys": [
+        "skill",
+        "invoke"
+      ],
+      "aliases": [
+        "/ugm:worktree-workflow"
+      ],
+      "rewrittenPaths": [],
+      "issues": [],
+      "status": "ok"
+    }
+  ]
+}

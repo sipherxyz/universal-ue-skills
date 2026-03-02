@@ -1,0 +1,40 @@
+// Copyright Ather Labs, Inc. All Rights Reserved.
+
+#pragma once
+
+#include "CoreMinimal.h"
+
+class U{{TARGET_ASSET_CLASS}};
+struct FToolMenuSection;
+
+/**
+ * Toolbar extension for {{EDITOR_NAME}}.
+ * Adds a "{{BUTTON_LABEL}}" button to the asset editor toolbar.
+ *
+ * Uses UToolMenus to extend "{{MENU_PATH}}"
+ */
+class {{MODULE_API}} F{{TOOLBAR_CLASS_NAME}}
+{
+public:
+	F{{TOOLBAR_CLASS_NAME}}();
+	~F{{TOOLBAR_CLASS_NAME}}();
+
+	/** Initialize and register toolbar extension */
+	void Initialize();
+
+	/** Cleanup and unregister */
+	void Shutdown();
+
+private:
+	/** Register menus with UToolMenus */
+	void RegisterMenus();
+
+	/** Build the toolbar entry dynamically based on editing context */
+	void BuildToolbarEntry(FToolMenuSection& Section);
+
+	/** Execute action when button is clicked */
+	void On{{BUTTON_NAME}}Clicked(TWeakObjectPtr<U{{TARGET_ASSET_CLASS}}> WeakAsset);
+
+	/** Whether we're initialized */
+	bool bIsInitialized = false;
+};

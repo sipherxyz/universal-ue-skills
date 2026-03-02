@@ -1,0 +1,135 @@
+// Copyright Ather Labs, Inc. All Rights Reserved.
+
+#include "S{{WINDOW_NAME}}Window.h"
+#include "Widgets/Input/SButton.h"
+#include "Widgets/Layout/SBox.h"
+#include "Widgets/Layout/SBorder.h"
+#include "Widgets/Layout/SScrollBox.h"
+#include "Widgets/Text/STextBlock.h"
+#include "Styling/AppStyle.h"
+#include "Editor.h"
+
+#define LOCTEXT_NAMESPACE "S{{WINDOW_NAME}}Window"
+
+void S{{WINDOW_NAME}}Window::Construct(const FArguments& InArgs)
+{
+	WindowTitle = InArgs._Title.IsEmpty()
+		? LOCTEXT("DefaultTitle", "{{WINDOW_DISPLAY_NAME}}")
+		: InArgs._Title;
+
+	ChildSlot
+	[
+		SNew(SBorder)
+		.BorderImage(FAppStyle::GetBrush("ToolPanel.GroupBorder"))
+		.Padding(FMargin(8.0f))
+		[
+			SNew(SVerticalBox)
+
+			// Main content area
+			+ SVerticalBox::Slot()
+			.FillHeight(1.0f)
+			[
+				BuildContent()
+			]
+
+			// Button bar
+			+ SVerticalBox::Slot()
+			.AutoHeight()
+			.Padding(0, 8, 0, 0)
+			[
+				BuildButtonBar()
+			]
+		]
+	];
+}
+
+TSharedRef<SWindow> S{{WINDOW_NAME}}Window::CreateWindow()
+{
+	TSharedRef<SWindow> Window = SNew(SWindow)
+		.Title(LOCTEXT("WindowTitle", "{{WINDOW_DISPLAY_NAME}}"))
+		.ClientSize(FVector2D({{WINDOW_WIDTH}}, {{WINDOW_HEIGHT}}))
+		.SupportsMinimize(false)
+		.SupportsMaximize(false)
+		[
+			SNew(S{{WINDOW_NAME}}Window)
+		];
+
+	// Add as a standalone window
+	FSlateApplication::Get().AddWindow(Window);
+
+	return Window;
+}
+
+TSharedRef<SWidget> S{{WINDOW_NAME}}Window::BuildContent()
+{
+	return SNew(SScrollBox)
+		+ SScrollBox::Slot()
+		[
+			SNew(SVerticalBox)
+
+			// Header
+			+ SVerticalBox::Slot()
+			.AutoHeight()
+			.Padding(0, 0, 0, 8)
+			[
+				SNew(STextBlock)
+				.Text(LOCTEXT("ContentHeader", "{{CONTENT_HEADER}}"))
+				.Font(FAppStyle::GetFontStyle("NormalFontBold"))
+			]
+
+			// Main content - customize this section
+			+ SVerticalBox::Slot()
+			.AutoHeight()
+			[
+				SNew(STextBlock)
+				.Text(LOCTEXT("ContentPlaceholder", "Add your content here"))
+			]
+		];
+}
+
+TSharedRef<SWidget> S{{WINDOW_NAME}}Window::BuildButtonBar()
+{
+	return SNew(SHorizontalBox)
+
+		+ SHorizontalBox::Slot()
+		.FillWidth(1.0f)
+
+		+ SHorizontalBox::Slot()
+		.AutoWidth()
+		.Padding(4, 0, 0, 0)
+		[
+			SNew(SButton)
+			.Text(LOCTEXT("ApplyButton", "Apply"))
+			.OnClicked(this, &S{{WINDOW_NAME}}Window::OnApplyClicked)
+		]
+
+		+ SHorizontalBox::Slot()
+		.AutoWidth()
+		.Padding(4, 0, 0, 0)
+		[
+			SNew(SButton)
+			.Text(LOCTEXT("CloseButton", "Close"))
+			.OnClicked(this, &S{{WINDOW_NAME}}Window::OnCloseClicked)
+		];
+}
+
+FReply S{{WINDOW_NAME}}Window::OnApplyClicked()
+{
+	// TODO: Implement apply logic
+
+	return FReply::Handled();
+}
+
+FReply S{{WINDOW_NAME}}Window::OnCloseClicked()
+{
+	// Close the containing window
+	TSharedPtr<SWindow> ParentWindow = FSlateApplication::Get().FindWidgetWindow(AsShared());
+	if (ParentWindow.IsValid())
+	{
+		ParentWindow->RequestDestroyWindow();
+	}
+
+	return FReply::Handled();
+}
+
+#undef LOCTEXT_NAMESPACE

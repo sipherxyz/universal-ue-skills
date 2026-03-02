@@ -1,0 +1,120 @@
+// Copyright {{Company}}. All Rights Reserved.
+
+#include "{{ToolbarClassName}}.h"
+
+#include "{{TargetAssetHeader}}"
+#include "Editor.h"
+#include "Styling/AppStyle.h"
+#include "ToolMenus.h"
+#include "Toolkits/AssetEditorToolkitMenuContext.h"
+
+#define LOCTEXT_NAMESPACE "{{ToolbarClassName}}"
+
+{{ToolbarClassName}}::{{ToolbarClassName}}()
+{
+}
+
+{{ToolbarClassName}}::~{{ToolbarClassName}}()
+{
+	Shutdown();
+}
+
+void {{ToolbarClassName}}::Initialize()
+{
+	if (bIsInitialized)
+	{
+		return;
+	}
+
+	// Register toolbar extension using UToolMenus
+	UToolMenus::RegisterStartupCallback(
+		FSimpleMulticastDelegate::FDelegate::CreateRaw(this, &{{ToolbarClassName}}::RegisterMenus));
+
+	bIsInitialized = true;
+}
+
+void {{ToolbarClassName}}::Shutdown()
+{
+	if (!bIsInitialized)
+	{
+		return;
+	}
+
+	// Unregister from UToolMenus
+	UToolMenus::UnRegisterStartupCallback(this);
+	UToolMenus::UnregisterOwner(this);
+
+	bIsInitialized = false;
+}
+
+void {{ToolbarClassName}}::RegisterMenus()
+{
+	FToolMenuOwnerScoped OwnerScoped(this);
+
+	// Extend the asset editor toolbar
+	UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("{{MenuPath}}");
+	if (Menu)
+	{
+		FToolMenuSection& Section = Menu->FindOrAddSection("{{SectionName}}");
+		Section.Label = LOCTEXT("{{SectionName}}Label", "{{SectionDisplayName}}");
+
+		// Use dynamic entry to get access to the editing context
+		Section.AddDynamicEntry("{{ButtonName}}Button",
+			FNewToolMenuSectionDelegate::CreateRaw(this, &{{ToolbarClassName}}::BuildToolbarEntry));
+	}
+}
+
+void {{ToolbarClassName}}::BuildToolbarEntry(FToolMenuSection& Section)
+{
+	// Get the context to access the asset being edited
+	UAssetEditorToolkitMenuContext* Context = Section.FindContext<UAssetEditorToolkitMenuContext>();
+	if (!Context)
+	{
+		return;
+	}
+
+	// Get the editing objects
+	TArray<UObject*> EditingObjects = Context->GetEditingObjects();
+	if (EditingObjects.Num() == 0)
+	{
+		return;
+	}
+
+	// Check if we're editing the target asset type
+	{{TargetAssetClass}}* Asset = Cast<{{TargetAssetClass}}>(EditingObjects[0]);
+	if (!Asset)
+	{
+		return;
+	}
+
+	// Create a weak pointer for the lambda (prevents dangling references)
+	TWeakObjectPtr<{{TargetAssetClass}}> WeakAsset = Asset;
+
+	// Add the toolbar button
+	Section.AddEntry(FToolMenuEntry::InitToolBarButton(
+		"{{ButtonName}}",
+		FUIAction(
+			FExecuteAction::CreateRaw(this, &{{ToolbarClassName}}::On{{ButtonName}}Clicked, WeakAsset),
+			FCanExecuteAction::CreateLambda([WeakAsset]() { return WeakAsset.IsValid(); })
+		),
+		LOCTEXT("{{ButtonName}}", "{{DisplayLabel}}"),
+		LOCTEXT("{{ButtonName}}Tooltip", "{{Tooltip}}"),
+		FSlateIcon(FAppStyle::GetAppStyleSetName(), "{{IconName}}")
+	));
+}
+
+void {{ToolbarClassName}}::On{{ButtonName}}Clicked(TWeakObjectPtr<{{TargetAssetClass}}> WeakAsset)
+{
+	{{TargetAssetClass}}* Asset = WeakAsset.Get();
+	if (!Asset)
+	{
+		return;
+	}
+
+	// TODO: Implement your button action here
+	// Example: Open a dialog, perform an operation, etc.
+
+	UE_LOG(LogTemp, Log, TEXT("{{ButtonName}} clicked for asset: %s"), *Asset->GetName());
+}
+
+#undef LOCTEXT_NAMESPACE

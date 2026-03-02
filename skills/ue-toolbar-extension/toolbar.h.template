@@ -1,0 +1,40 @@
+// Copyright {{Company}}. All Rights Reserved.
+
+#pragma once
+
+#include "CoreMinimal.h"
+
+class {{TargetAssetClass}};
+struct FToolMenuSection;
+
+/**
+ * Toolbar extension for {{EditorName}}.
+ * Adds a "{{DisplayLabel}}" button to the asset editor toolbar.
+ *
+ * Uses UToolMenus to extend "{{MenuPath}}"
+ */
+class {{ModuleAPI}} {{ToolbarClassName}}
+{
+public:
+	{{ToolbarClassName}}();
+	~{{ToolbarClassName}}();
+
+	/** Initialize and register toolbar extension */
+	void Initialize();
+
+	/** Cleanup and unregister */
+	void Shutdown();
+
+private:
+	/** Register menus with UToolMenus */
+	void RegisterMenus();
+
+	/** Build the toolbar entry dynamically based on editing context */
+	void BuildToolbarEntry(FToolMenuSection& Section);
+
+	/** Execute action when button is clicked */
+	void On{{ButtonName}}Clicked(TWeakObjectPtr<{{TargetAssetClass}}> WeakAsset);
+
+	/** Whether we're initialized */
+	bool bIsInitialized = false;
+};

@@ -1,0 +1,30 @@
+// Copyright Ather Labs, Inc. All Rights Reserved.
+
+using UnrealBuildTool;
+
+public class {{MODULE_NAME}} : ModuleRules
+{
+	public {{MODULE_NAME}}(ReadOnlyTargetRules Target) : base(Target)
+	{
+		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+
+		PublicDependencyModuleNames.AddRange(new string[]
+		{
+			"Core",
+			"CoreUObject",
+			"Engine"
+		});
+
+		PrivateDependencyModuleNames.AddRange(new string[]
+		{
+			"Slate",
+			"SlateCore",
+			"UnrealEd",
+			"ToolMenus",
+			"InputCore"
+		});
+
+		// Add feature-specific dependencies below
+		// Example: "GameplayTags", "AssetRegistry", "PropertyEditor"
+	}
+}
