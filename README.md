@@ -12,40 +12,54 @@ Universal Unreal Engine skill pack compatible with Codex and Claude Code.
 
 ## Install
 
-### Quick commands
+### A) Install from local clone
 
-Install to Codex:
+Use [`scripts/install-skills.sh`](scripts/install-skills.sh).
+
+Global install (both Codex + Claude Code):
 
 ```bash
-bash scripts/install-skills.sh codex
+bash scripts/install-skills.sh --agent both --scope global
 ```
 
-Install to Claude Code:
+Project-scoped install (current directory):
 
 ```bash
-bash scripts/install-skills.sh claude
+bash scripts/install-skills.sh --agent both --scope project --project-dir .
 ```
 
-Install to both:
+Agent-specific installs:
 
 ```bash
-bash scripts/install-skills.sh both
+# Codex only (global)
+bash scripts/install-skills.sh --agent codex --scope global
+
+# Claude Code only (project)
+bash scripts/install-skills.sh --agent claude --scope project --project-dir /path/to/project
 ```
 
-### Manual install commands
+### B) Install without cloning (curl installer)
 
-Codex:
+Use [`scripts/install-from-github.sh`](scripts/install-from-github.sh) directly:
 
 ```bash
-mkdir -p ~/.codex/skills
-cp -R skills/* ~/.codex/skills/
+bash <(curl -fsSL https://raw.githubusercontent.com/buihuuloc/universal-ue-skills/main/scripts/install-from-github.sh) --agent both --scope global
 ```
 
-Claude Code:
+Project-scoped via curl:
 
 ```bash
-mkdir -p ~/.claude/skills
-cp -R skills/* ~/.claude/skills/
+bash <(curl -fsSL https://raw.githubusercontent.com/buihuuloc/universal-ue-skills/main/scripts/install-from-github.sh) \
+  --agent both \
+  --scope project \
+  --project-dir /path/to/project
+```
+
+### Legacy positional syntax (still supported)
+
+```bash
+bash scripts/install-skills.sh both global
+bash scripts/install-skills.sh codex project /path/to/project
 ```
 
 ## Notes
