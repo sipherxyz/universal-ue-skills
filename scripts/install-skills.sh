@@ -3,24 +3,26 @@ set -euo pipefail
 
 usage() {
   cat <<'EOF'
-Install universal UE skills for Codex and/or Claude Code.
+Install universal UE skills for Codex, Claude Code, and Pi.
 
 Usage:
-  scripts/install-skills.sh [codex|claude|both] [global|project] [project-dir]
+  scripts/install-skills.sh [codex|claude|pi|both|all] [global|project] [project-dir]
   scripts/install-skills.sh [options]
 
 Options:
-  --agent codex|claude|both   Agent target (default: both)
+  --agent codex|claude|pi|both|all   Agent target (default: both)
   --scope global|project      Install scope (default: global)
   --project-dir PATH          Project root when scope=project (default: current directory)
   --source-dir PATH           Skills source directory (default: <repo>/skills)
   --codex-dir PATH            Override Codex skills destination
   --claude-dir PATH           Override Claude skills destination
+  --pi-dir PATH               Override Pi skills destination
   --dry-run                   Print actions without copying
   -h, --help                  Show this help
 
 Examples:
-  scripts/install-skills.sh both global
+  scripts/install-skills.sh all global
+  scripts/install-skills.sh pi global
   scripts/install-skills.sh codex project /Users/me/work/my-game
   scripts/install-skills.sh --agent claude --scope project --project-dir .
 EOF
@@ -33,11 +35,12 @@ PROJECT_DIR="$(pwd)"
 SKILLS_SRC="$ROOT_DIR/skills"
 CODEX_DIR=""
 CLAUDE_DIR=""
+PI_DIR=""
 DRY_RUN=0
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    codex|claude|claude-code|both)
+    codex|claude|claude-code|pi|both|all)
       AGENT="$1"
       shift
       ;;
@@ -69,6 +72,10 @@ while [[ $# -gt 0 ]]; do
       CLAUDE_DIR="${2:-}"
       shift 2
       ;;
+    --pi-dir)
+      PI_DIR="${2:-}"
+      shift 2
+      ;;
     --dry-run)
       DRY_RUN=1
       shift
@@ -88,9 +95,12 @@ done
 if [[ "$AGENT" == "claude-code" ]]; then
   AGENT="claude"
 fi
+if [[ "$AGENT" == "all" ]]; then
+  AGENT="both-pi"
+fi
 
 case "$AGENT" in
-  codex|claude|both) ;;
+  codex|claude|pi|both|both-pi) ;;
   *)
     echo "Invalid --agent value: $AGENT" >&2
     usage >&2
@@ -129,6 +139,14 @@ if [[ -z "$CLAUDE_DIR" ]]; then
     CLAUDE_DIR="$HOME/.claude/skills"
   else
     CLAUDE_DIR="$PROJECT_DIR/.claude/skills"
+  fi
+fi
+
+if [[ -z "$PI_DIR" ]]; then
+  if [[ "$SCOPE" == "global" ]]; then
+    PI_DIR="$HOME/.pi/skills"
+  else
+    PI_DIR="$PROJECT_DIR/.pi/skills"
   fi
 fi
 
@@ -192,9 +210,18 @@ case "$AGENT" in
     install_to "$CLAUDE_DIR" "claude"
     ensure_claude_plugin_manifest "$CLAUDE_DIR"
     ;;
+  pi)
+    install_to "$PI_DIR" "pi"
+    ;;
   both)
     install_to "$CODEX_DIR" "codex"
     install_to "$CLAUDE_DIR" "claude"
+    ensure_claude_plugin_manifest "$CLAUDE_DIR"
+    ;;
+  both-pi)
+    install_to "$CODEX_DIR" "codex"
+    install_to "$CLAUDE_DIR" "claude"
+    install_to "$PI_DIR" "pi"
     ensure_claude_plugin_manifest "$CLAUDE_DIR"
     ;;
 esac

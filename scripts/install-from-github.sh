@@ -11,11 +11,12 @@ Usage:
 Options:
   --repo OWNER/REPO            GitHub repo (default: buihuuloc/universal-ue-skills)
   --ref BRANCH_OR_TAG          Git ref (default: main)
-  --agent codex|claude|both    Agent target (default: both)
+  --agent codex|claude|pi|both|all  Agent target (default: both)
   --scope global|project       Install scope (default: global)
   --project-dir PATH           Project root for project scope (default: current directory)
   --codex-dir PATH             Override Codex destination
   --claude-dir PATH            Override Claude destination
+  --pi-dir PATH                Override Pi destination
   --dry-run                    Print actions only
   -h, --help                   Show this help
 

@@ -1,6 +1,6 @@
 # Universal UE Skills
 
-Universal Unreal Engine skill pack compatible with Codex and Claude Code.
+Universal Unreal Engine skill pack compatible with Codex, Claude Code, and Pi.
 
 ## Contents
 
@@ -8,7 +8,7 @@ Universal Unreal Engine skill pack compatible with Codex and Claude Code.
 - `metadata/aliases.json` - legacy invoke alias mapping
 - `metadata/migration-report.json` - conversion report
 - `metadata/migration-report.md` - human-readable migration report
-- `scripts/install-skills.sh` - installer for Codex and Claude Code
+- `scripts/install-skills.sh` - installer for Codex, Claude Code, and Pi
 
 ## Install
 
@@ -16,16 +16,16 @@ Universal Unreal Engine skill pack compatible with Codex and Claude Code.
 
 Use [`scripts/install-skills.sh`](scripts/install-skills.sh).
 
-Global install (both Codex + Claude Code):
+Global install (Codex + Claude Code + Pi):
 
 ```bash
-bash scripts/install-skills.sh --agent both --scope global
+bash scripts/install-skills.sh --agent all --scope global
 ```
 
 Project-scoped install (current directory):
 
 ```bash
-bash scripts/install-skills.sh --agent both --scope project --project-dir .
+bash scripts/install-skills.sh --agent all --scope project --project-dir .
 ```
 
 Agent-specific installs:
@@ -36,6 +36,9 @@ bash scripts/install-skills.sh --agent codex --scope global
 
 # Claude Code only (project)
 bash scripts/install-skills.sh --agent claude --scope project --project-dir /path/to/project
+
+# Pi only (global)
+bash scripts/install-skills.sh --agent pi --scope global
 ```
 
 ### B) Install without cloning (curl installer)
@@ -43,14 +46,14 @@ bash scripts/install-skills.sh --agent claude --scope project --project-dir /pat
 Use [`scripts/install-from-github.sh`](scripts/install-from-github.sh) directly:
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/buihuuloc/universal-ue-skills/main/scripts/install-from-github.sh) --agent both --scope global
+bash <(curl -fsSL https://raw.githubusercontent.com/buihuuloc/universal-ue-skills/main/scripts/install-from-github.sh) --agent all --scope global
 ```
 
 Project-scoped via curl:
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/buihuuloc/universal-ue-skills/main/scripts/install-from-github.sh) \
-  --agent both \
+  --agent all \
   --scope project \
   --project-dir /path/to/project
 ```
@@ -58,7 +61,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/buihuuloc/universal-ue-skill
 ### Legacy positional syntax (still supported)
 
 ```bash
-bash scripts/install-skills.sh both global
+bash scripts/install-skills.sh all global
 bash scripts/install-skills.sh codex project /path/to/project
 ```
 
