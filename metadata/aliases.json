@@ -237,6 +237,11 @@
       "alias": "/ugm:worktree-workflow",
       "slug": "worktree-workflow",
       "sourceSkillPath": "plugins/ue-gamedev-method/skills/implementation/worktree-workflow/SKILL.md"
+    },
+    {
+      "alias": "/dev-workflow:setup-bpgenerator",
+      "slug": "setup-bpgenerator",
+      "sourceSkillPath": "plugins/s2-skills/plugins/dev-workflow/skills/setup-bpgenerator/SKILL.md"
     }
   ]
 }
