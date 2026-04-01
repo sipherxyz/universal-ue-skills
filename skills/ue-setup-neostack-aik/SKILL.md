@@ -212,6 +212,21 @@ If team members use Claude Code alongside AIK, create `.claude/settings.local.js
 }
 ```
 
+## Extension Context
+
+For TA/tooling work that extends AIK beyond setup, keep this mental model:
+
+- AIK works best by **operating inside Unreal Editor**, not by raw `.uasset` binary patching.
+- Assets should be handled as **Unreal objects and editor graphs**, then finalized through the normal Unreal lifecycle.
+- Prefer **asset-specific tools** first; use broad scripting only as fallback.
+- Good AI workflows should follow: **discover → read → mutate → finalize → validate → save → report**.
+
+Read [reference/aik-extension-context.md](reference/aik-extension-context.md) when you need:
+- the architectural takeaway behind how AIK edits assets
+- why graph finalization matters
+- what safety patterns to copy
+- how to split future Unreal skills for AI agents
+
 ## Legacy Metadata
 
 ```yaml
