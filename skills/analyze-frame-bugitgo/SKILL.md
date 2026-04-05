@@ -3,6 +3,16 @@ name: analyze-frame-from-bugitgo-request
 description: Automated screenshot capture and material validation at QA-reported bug locations using BugItGo coordinates
 ---
 
+## Configuration
+
+This skill reads project-specific values from `skills.config.json` at the repository root.
+
+Required keys: `project.root`, `project.uproject`, `project.screenshots_path`, `network.artteam_share`, `network.archive_share`
+
+If `skills.config.json` is not found, prompt the user for these paths.
+
+---
+
 # Bug Screenshot Analysis Skill
 
 **Role:** Bug Screenshot Capture & Material Validation Specialist
@@ -29,7 +39,7 @@ Before using this skill, ensure:
 
 1. **UE Editor** is installed and registered in Epic Games Launcher
 2. **Project opened at least once** (shaders compiled, content cached)
-3. **Network folder accessible**: `\\172.30.22.11\artteam\Temp\s2\report_from_bugitgo`
+3. **Network folder accessible**: `{network.artteam_share}` (from `skills.config.json`)
 4. **Git credentials configured** for branch checkout operations
 5. **Config folder exists**: `./config/`
 6. **VPN connected** if working remotely (for network storage access)
@@ -40,10 +50,10 @@ Before using this skill, ensure:
 
 ```
 {CWD} = Current Working Directory (project root)
-{ProjectFile} = S2.uproject
+{ProjectFile} = {project.uproject} (from skills.config.json)
 {EnginePath} = Resolved via open-editor skill (see ../open-editor/SKILL.md)
 {ConfigPath} = {CWD}/./config/
-{OutputPath} = \\172.30.22.11\artteam\Temp\s2\report_from_bugitgo
+{OutputPath} = {network.artteam_share} (from skills.config.json)
 {FallbackOutput} = {CWD}/Saved/BugScreenshots/
 {ReportFolder} = {OutputPath}/{issue_code}_{branch}_{location}/
 ```
@@ -508,7 +518,7 @@ Agent:
 9. Running material validation... ✓ 3 issues found
 10. Generating report... ✓ Saved
 
-Report: \\172.30.22.11\artteam\Temp\s2\report_from_bugitgo\BUGFIX-1234_main_loc1\report.md
+Report: {network.artteam_share}\BUGFIX-1234_main_loc1\report.md
 
 Summary:
 - 16 screenshots captured
@@ -543,7 +553,7 @@ Agent:
 2. Git pull origin main... ✓ Updated
 3. Checking UE Editor... ✗ Editor not running
 4. Invoking /open-editor skill...
-   - Reading cached engine path... Found: F:/S2UE (5.7.1-huli)
+   - Reading cached engine path... Found: {engine.path} (5.7.1-huli)
    - Launching Unreal Editor... ✓ Started
 5. Waiting for Editor startup... (120s timeout)
 6. Loading level: /Game/Maps/Loc1/Loc1_Main...
@@ -569,9 +579,9 @@ Total time: 7m 15s
 Agent:
 ...
 9. Saving to network folder...
-   ⚠ Warning: Network folder unreachable (\\172.30.22.11)
+   ⚠ Warning: Network folder unreachable ({network.artteam_share})
    Falling back to local storage...
-   ✓ Saved to: D:\s2\Saved\BugScreenshots\BUGFIX-1234_main_loc1\
+   ✓ Saved to: {project.screenshots_path}\BUGFIX-1234_main_loc1\
 
 Action required: Manually copy to network when available.
 ```
@@ -618,7 +628,7 @@ Action required: Manually copy to network when available.
 - This skill is Windows-specific (PowerShell, registry queries, network paths)
 - Requires Unreal Editor 5.7.1 or later
 - Config files use markdown format for non-tech user editability
-- Network storage (`\\172.30.22.11`) requires VPN when working remotely
+- Network storage (`{network.artteam_share}`) requires VPN when working remotely
 - First run on a level may take longer due to shader compilation (cold cache)
 - "Mirror" realm has been renamed to "Dream" in the project
 - All 16 screenshots are captured sequentially (no parallel capture due to view mode switching)

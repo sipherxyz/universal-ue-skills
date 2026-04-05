@@ -3,6 +3,10 @@ name: material-sampler-check
 description: Guide to run Material Sampler Fixer tool before committing material changes
 ---
 
+## Configuration
+This skill reads project-specific values from `skills.config.json` at the repository root.
+If not found, auto-detect using `ue-detect-engine` skill or prompt the user.
+
 # Material Sampler Type Check - Pre-Commit Guide
 
 **Purpose:** Ensure material instances have correct sampler types before committing changes via Git Fork
@@ -33,7 +37,7 @@ Run the Material Sampler Fixer tool **before committing** when your changes incl
 ### Step 1: Select Folder to Scan
 
 1. Click **Browse...** button
-2. Navigate to your project's Content folder: `F:\s2\Content`
+2. Navigate to your project's Content folder: `{project.content_path}`
 3. Or select a specific subfolder if you know where your changed materials are
 
 ### Step 2: Scan for Issues

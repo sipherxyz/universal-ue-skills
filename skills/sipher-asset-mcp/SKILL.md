@@ -59,7 +59,7 @@ Update `.mcp.json` with the **actual resolved project path** (NOT `${workspaceFo
 }
 ```
 
-Where `{RESOLVED_PROJECT_PATH}` is the actual path like `G:/s2` or `C:/Projects/S2`.
+Where `{RESOLVED_PROJECT_PATH}` is the actual path like `C:/Projects/MyGame` or `{project.root}` from `skills.config.json`.
 
 ### Step 5: Verify Module
 
@@ -76,7 +76,7 @@ Inform user to restart Claude Code or start a new conversation to reload the MCP
 - Python 3.10+ detected
 - `.uproject` file found in CWD
 - sipher-asset-mcp package installed
-- `.mcp.json` uses **actual resolved path** (e.g., `G:/s2`), NOT `${workspaceFolder}`
+- `.mcp.json` uses **actual resolved path** (e.g., `{project.root}`), NOT `${workspaceFolder}`
 - Module imports successfully
 - User instructed to restart Claude Code
 

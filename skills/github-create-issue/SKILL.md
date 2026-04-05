@@ -3,13 +3,18 @@ name: github-create-issue
 description: Create GitHub task issues with hybrid auto-generation and user review
 ---
 
+## Configuration
+This skill reads project-specific values from `skills.config.json` at the repository root.
+Required keys: `github.repo`, `github.owner`, `github.project_number`, `milestones.*`, `team.*`
+If not found, prompt the user for repository and project details.
+
 # GitHub Issue Creator Skill
 
 **Role:** GitHub Issue Automation
 **Scope:** Project-wide issue creation with intelligent context extraction
 **Platform:** Windows + gh CLI
-**Repository:** sipherxyz/s2
-**Project:** S2 Huli Nine Tails Vengeance
+**Repository:** {github.repo}
+**Project:** {project.fullname}
 
 ## Objective
 
@@ -102,10 +107,10 @@ Sub Types (by domain):
 {CWD} = Current Working Directory
 {Branch} = Current git branch name
 {BaseCommit} = Merge base with main branch
-{ProjectName} = "S2 Huli"
-{ProjectNumber} = 5
-{ProjectID} = "PVT_kwDOBR2Dpc4Azdrn"
-{RepoOwner} = "sipherxyz"
+{ProjectName} = "{project.fullname}"
+{ProjectNumber} = {github.project_number}
+{ProjectID} = "{github.project_node_id}"
+{RepoOwner} = "{github.owner}"
 {RepoName} = "s2"
 {Today} = Current date in YYYY-MM-DD format
 ```
@@ -114,19 +119,19 @@ Sub Types (by domain):
 
 Query available milestones at runtime:
 ```bash
-gh api repos/sipherxyz/s2/milestones --jq '.[] | "\(.number): \(.title)"'
+gh api repos/{github.repo}/milestones --jq '.[] | "\(.number): \(.title)"'
 ```
 
 **Domain-to-Milestone Mapping:**
 
 | Domain Labels | Suggested Milestone |
 |---------------|---------------------|
-| `combat`, `gameplay` | COMBAT (16) |
-| `ai`, `system` | GAME-AI (13) |
+| `combat`, `gameplay` | {milestones.combat.name} ({milestones.combat.number}) |
+| `ai`, `system` | {milestones.game_ai.name} ({milestones.game_ai.number}) |
 | `vfx`, `ArtAnim`, `main-char` | PRE-PROD: META (10) |
 | `level-design` | PRE-PROD: ENV (1) |
 | `UXUI` | PRE-PROD: META (10) |
-| `Engineering` (framework) | GAME-AI (13) or COMBAT (16) based on content |
+| `Engineering` (framework) | {milestones.game_ai.name} ({milestones.game_ai.number}) or {milestones.combat.name} ({milestones.combat.number}) based on content |
 | Default | alpha (9) |
 
 ## Workflow
@@ -430,12 +435,12 @@ Logic:
 ```
 Logic:
 1. Query available milestones:
-   gh api repos/sipherxyz/s2/milestones --jq '.[] | "\(.number): \(.title)"'
+   gh api repos/{github.repo}/milestones --jq '.[] | "\(.number): \(.title)"'
 
 2. Auto-select based on domain labels:
-   - If "combat" or "gameplay" in labels → COMBAT (16)
-   - If "ai" in labels → GAME-AI (13)
-   - If "system" in labels → GAME-AI (13)
+   - If "combat" or "gameplay" in labels → {milestones.combat.name} ({milestones.combat.number})
+   - If "ai" in labels → {milestones.game_ai.name} ({milestones.game_ai.number})
+   - If "system" in labels → {milestones.game_ai.name} ({milestones.game_ai.number})
    - If "vfx" or "ArtAnim" in labels → PRE-PROD: META (10)
    - If "level-design" in labels → PRE-PROD: ENV (1)
    - If "UXUI" in labels → PRE-PROD: META (10)
@@ -445,17 +450,17 @@ Logic:
 
 Example:
 Labels: task, Engineering, system
-Auto-detected Milestone: GAME-AI (13)
+Auto-detected Milestone: {milestones.game_ai.name} ({milestones.game_ai.number})
 ```
 
 #### Project Assignment
 
 ```
 Logic:
-1. Default project: "S2 Huli" (number 5)
-2. Project ID: PVT_kwDOBR2Dpc4Azdrn
+1. Default project: "{project.fullname}" (number {github.project_number})
+2. Project ID: {github.project_node_id}
 3. After issue creation, add to project board:
-   gh project item-add 5 --owner sipherxyz --url {issue_url}
+   gh project item-add {github.project_number} --owner {github.owner} --url {issue_url}
 ```
 
 ### Step 6: Present Draft to User
@@ -497,8 +502,8 @@ Estimated Hours: 24
 Due Date: 2025-12-31
 
 Labels: task, Engineering, system
-Milestone: GAME-AI (13)
-Project: S2 Huli
+Milestone: {milestones.game_ai.name} ({milestones.game_ai.number})
+Project: {project.fullname}
 
 ═══════════════════════════════════════
 
@@ -676,7 +681,7 @@ EOF
 )" \
   --label "task,Engineering,system" \
   --milestone 13 \
-  --repo sipherxyz/s2
+  --repo {github.repo}
 ```
 
 **Important:**
@@ -688,7 +693,7 @@ EOF
 **Parse Output:**
 ```
 Example output:
-https://github.com/sipherxyz/s2/issues/16177
+https://github.com/{github.repo}/issues/16177
 
 Extract:
 - Issue URL (full)
@@ -697,20 +702,20 @@ Extract:
 
 ### Step 10: Add Issue to Project Board
 
-After issue creation, add to S2 Huli project:
+After issue creation, add to {project.fullname} project:
 
 ```bash
-gh project item-add 5 --owner sipherxyz --url https://github.com/sipherxyz/s2/issues/16177
+gh project item-add {github.project_number} --owner {github.owner} --url https://github.com/{github.repo}/issues/16177
 ```
 
 **Logic:**
-1. Use project number 5 (S2 Huli)
+1. Use project number {github.project_number}
 2. Pass the newly created issue URL
 3. If fails due to missing scope, warn user:
    ```
    Warning: Could not add issue to project board.
    Run: gh auth refresh -s project
-   Then manually add at: https://github.com/orgs/sipherxyz/projects/5
+   Then manually add at: https://github.com/orgs/{github.owner}/projects/{github.project_number}
    ```
 
 ### Step 11: Return Success Info
@@ -721,11 +726,11 @@ Output formatted success message:
 ✓ Issue created successfully!
 
 Issue #16177: Smart IO Creator Tool
-URL: https://github.com/sipherxyz/s2/issues/16177
+URL: https://github.com/{github.repo}/issues/16177
 
 Labels: task, Engineering, system
 Milestone: GAME-AI
-Project: S2 Huli
+Project: {project.fullname}
 Size: L (24 hours)
 Due: 2025-12-31
 
@@ -743,7 +748,7 @@ Tip: Use /github-create-pr to create a PR linked to this issue
 **Return Values (for programmatic use):**
 ```
 IssueNumber: 16177
-IssueURL: https://github.com/sipherxyz/s2/issues/16177
+IssueURL: https://github.com/{github.repo}/issues/16177
 IssueTitle: [ENG-FRAMEWORK-001] Smart IO Creator Tool
 ```
 
@@ -774,8 +779,8 @@ This may be due to missing 'project' scope.
 Solution:
 1. Run: gh auth refresh -s project
 2. Manually add issue to project board:
-   - Navigate to: https://github.com/orgs/sipherxyz/projects
-   - Find project: "S2 Huli Nine Tails Vengeance"
+   - Navigate to: https://github.com/orgs/{github.owner}/projects
+   - Find project: "{project.fullname}"
    - Add issue #16177
 
 Future runs should add to project automatically.
@@ -934,7 +939,7 @@ Use: Include "Closes #16177" in PR body
 - [ ] Estimates size from lines changed
 - [ ] Auto-detects domain labels from file paths
 - [ ] Auto-detects milestone from domain labels
-- [ ] Adds issue to S2 Huli project board
+- [ ] Adds issue to {project.fullname} project board
 - [ ] Presents draft for user review
 - [ ] Allows editing specific fields (including milestone/project)
 - [ ] Validates labels against repository
@@ -979,7 +984,7 @@ Your choice: 1
 
 ✓ Issue created successfully!
 Issue #16177: Smart IO Creator Tool
-URL: https://github.com/sipherxyz/s2/issues/16177
+URL: https://github.com/{github.repo}/issues/16177
 ```
 
 ### Session 2: Edit Before Creation
@@ -1010,7 +1015,7 @@ Your choice: j (Done editing, create issue)
 
 ✓ Issue created successfully!
 Issue #16178: Smart IO Creator Tool
-URL: https://github.com/sipherxyz/s2/issues/16178
+URL: https://github.com/{github.repo}/issues/16178
 ```
 
 ### Session 3: Manual Input Mode
@@ -1043,8 +1048,8 @@ Issue #16179: Optimize AI Pathfinding Performance
 ## Notes
 
 - All `gh` commands are already permitted in `settings.local.json`
-- Project: "S2 Huli" (number 5, ID: PVT_kwDOBR2Dpc4Azdrn)
-- Repository is hardcoded: sipherxyz/s2
+- Project: "{project.fullname}" (number {github.project_number}, ID: {github.project_node_id})
+- Repository is hardcoded: {github.repo}
 - No Claude attribution footer (per CLAUDE.md guidelines)
 - Date format is always YYYY-MM-DD
 - Labels must be validated before creation

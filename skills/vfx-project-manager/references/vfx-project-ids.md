@@ -4,46 +4,48 @@ All IDs for GitHub Projects V2 API operations on the VFX team's project board.
 
 ## Repository
 
-```
-Owner: sipherxyz
-Repo: s2
-```
-
-## Project #5 (S2 Huli Nine Tails Vengance)
+All values below are read from `skills.config.json` at the repository root.
 
 ```
-Project Number: 5
-Project Node ID: PVT_kwDOBR2Dpc4Azdrn
+Owner: {github.owner}
+Repo: {project.name}
+```
+
+## Project #{github.project_number} ({project.fullname})
+
+```
+Project Number: {github.project_number}
+Project Node ID: {github.project_node_id}
 ```
 
 ## Field IDs
 
 | Field | ID | Type |
 |-------|-----|------|
-| Status | `PVTSSF_lADOBR2Dpc4AzdrnzgpQGXw` | SingleSelect |
-| Start date | `PVTF_lADOBR2Dpc4AzdrnzgpQGdY` | Date |
-| End date | `PVTF_lADOBR2Dpc4AzdrnzgpQGdc` | Date |
-| Size | `PVTSSF_lADOBR2Dpc4AzdrnzgpQGdM` | SingleSelect |
+| Status | `{github.fields.status_id}` | SingleSelect |
+| Start date | `{github.fields.start_date_id}` | Date |
+| End date | `{github.fields.end_date_id}` | Date |
+| Size | `{github.fields.size_id}` | SingleSelect |
 
 ## Status Options
 
 | Status | Option ID |
 |--------|-----------|
-| To Do | `f75ad846` |
-| Fixed | `7177aeee` |
+| To Do | `{github.status_options.todo}` |
+| Fixed | `{github.status_options.fixed}` |
 
 > **Note:** "Done" status option ID is not yet captured. Query it if needed:
 > ```bash
-> gh api graphql -f query='{ node(id: "PVT_kwDOBR2Dpc4Azdrn") { ... on ProjectV2 { field(name: "Status") { ... on ProjectV2SingleSelectField { options { id name } } } } } }'
+> gh api graphql -f query='{ node(id: "{github.project_node_id}") { ... on ProjectV2 { field(name: "Status") { ... on ProjectV2SingleSelectField { options { id name } } } } } }'
 > ```
 
 ## Issue Type IDs
 
 | Type | ID |
 |------|-----|
-| Task | `IT_kwDOBR2Dpc4A5bA_` |
-| Bug | `IT_kwDOBR2Dpc4A5bBD` |
-| Feature | `IT_kwDOBR2Dpc4A5bBE` |
+| Task | `{github.issue_types.task}` |
+| Bug | `{github.issue_types.bug}` |
+| Feature | `{github.issue_types.feature}` |
 
 ## VFX Team Members
 
@@ -62,7 +64,7 @@ Project Node ID: PVT_kwDOBR2Dpc4Azdrn
 
 ```graphql
 query {
-  repository(owner:"sipherxyz", name:"s2") {
+  repository(owner:"{github.owner}", name:"{project.name}") {
     issue(number:{NUMBER}) {
       id number title
       projectItems(first:5) {
@@ -93,10 +95,10 @@ query {
 ```graphql
 mutation {
   s0: updateProjectV2ItemFieldValue(input: {
-    projectId: "PVT_kwDOBR2Dpc4Azdrn",
+    projectId: "{github.project_node_id}",
     itemId: "{ITEM_ID}",
-    fieldId: "PVTSSF_lADOBR2Dpc4AzdrnzgpQGXw",
-    value: { singleSelectOptionId: "f75ad846" }
+    fieldId: "{github.fields.status_id}",
+    value: { singleSelectOptionId: "{github.status_options.todo}" }
   }) { projectV2Item { id } }
 }
 ```
@@ -106,15 +108,15 @@ mutation {
 ```graphql
 mutation {
   d0s: updateProjectV2ItemFieldValue(input: {
-    projectId: "PVT_kwDOBR2Dpc4Azdrn",
+    projectId: "{github.project_node_id}",
     itemId: "{ITEM_ID}",
-    fieldId: "PVTF_lADOBR2Dpc4AzdrnzgpQGdY",
+    fieldId: "{github.fields.start_date_id}",
     value: { date: "2026-02-16" }
   }) { projectV2Item { id } }
   d0e: updateProjectV2ItemFieldValue(input: {
-    projectId: "PVT_kwDOBR2Dpc4Azdrn",
+    projectId: "{github.project_node_id}",
     itemId: "{ITEM_ID}",
-    fieldId: "PVTF_lADOBR2Dpc4AzdrnzgpQGdc",
+    fieldId: "{github.fields.end_date_id}",
     value: { date: "2026-02-20" }
   }) { projectV2Item { id } }
 }
@@ -126,7 +128,7 @@ mutation {
 mutation {
   updateIssue(input: {
     id: "{ISSUE_NODE_ID}",
-    issueTypeId: "IT_kwDOBR2Dpc4A5bA_"
+    issueTypeId: "{github.issue_types.task}"
   }) { issue { id } }
 }
 ```

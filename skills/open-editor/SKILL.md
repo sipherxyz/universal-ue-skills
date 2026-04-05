@@ -49,7 +49,7 @@ Read file: {CWD}/Saved/claude-data.txt
 **Expected format:**
 ```txt
 [UnrealEngine]
-EnginePath=F:/S2UE
+EnginePath={engine.path}
 EngineAssociation=5.7.1-huli
 LastOpened=2025-12-14T12:00:00
 
@@ -247,7 +247,7 @@ User: open editor
 Assistant:
 1. Detecting project file... Found: S2.uproject
 2. Reading cached engine path from ./Saved/claude-data.txt...
-3. Found: EnginePath=F:/S2UE (5.7.1-huli)
+3. Found: EnginePath={engine.path} (5.7.1-huli)
 4. Launching Unreal Editor...
 5. Done! Editor is starting.
 ```
@@ -259,7 +259,7 @@ Assistant:
 1. Detecting project file... Found: S2.uproject
 2. Cache not found, detecting engine...
 3. Reading S2.uproject... EngineAssociation: 5.7.1-huli
-4. Querying registry... Found: F:/S2UE
+4. Querying registry... Found: {engine.path}
 5. Saving cache to claude-data.txt...
 6. Launching Unreal Editor...
 7. Done! Editor is starting.
@@ -270,7 +270,7 @@ Assistant:
 User: open editor and regenerate project files
 Assistant:
 1. Detecting project file... Found: S2.uproject
-2. Reading cached engine path... Found: F:/S2UE
+2. Reading cached engine path... Found: {engine.path}
 3. Regenerating project files...
 4. Running UnrealBuildTool -projectfiles...
 5. Project files regenerated successfully!
@@ -285,7 +285,7 @@ Assistant:
 **Format (INI-style):**
 ```ini
 [UnrealEngine]
-EnginePath=F:/S2UE
+EnginePath={engine.path}
 EngineAssociation=5.7.1-huli
 LastOpened=2025-12-14T10:30:00
 

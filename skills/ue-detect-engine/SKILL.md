@@ -170,13 +170,13 @@ powershell -Command "(Get-Content S2.uproject | ConvertFrom-Json).EngineAssociat
 
 ```ini
 [UnrealEngine]
-EnginePath=G:/UnrealEngine
+EnginePath={engine.path}
 EngineAssociation={71C58201-4B67-1872-E953-7BB83BB142F3}
 LastDetected=2026-01-27T12:00:00
 
 [ProjectInfo]
 ProjectName=S2
-ProjectPath=G:/s2
+ProjectPath={project.root}
 ```
 
 ## Engine Association Types

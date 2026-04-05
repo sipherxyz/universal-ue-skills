@@ -9,7 +9,7 @@ Defines where screenshot reports are saved.
 | Setting | Value |
 |---------|-------|
 | Type | Network Share |
-| Path | `\\172.30.22.11\artteam\Temp\s2\report_from_bugitgo` |
+| Path | `{network.artteam_share}` (from `skills.config.json`) |
 | Access | Read/Write for Art Team |
 
 ---
@@ -45,7 +45,7 @@ Used when network share is unavailable.
 | Setting | Value |
 |---------|-------|
 | Auto-delete after | 90 days |
-| Archive location | `\\172.30.22.11\artteam\Archive\bug_reports\` |
+| Archive location | `{network.archive_share}` (from `skills.config.json`) |
 | Keep reports with issues | Yes (never auto-delete) |
 
 ---

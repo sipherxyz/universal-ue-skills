@@ -3,6 +3,10 @@ name: combat-ai-review
 description: Multi-agent Combat AI review with parallel analysis and consensus debate (supports Behavior Trees and State Trees)
 ---
 
+## Configuration
+This skill reads project-specific values from `skills.config.json` at the repository root.
+If not found, auto-detect using `ue-detect-engine` skill or prompt the user.
+
 # Combat AI Multi-Agent Review Skill
 
 **Role:** Multi-Agent Review Coordinator
@@ -73,8 +77,8 @@ Use the SipherAIBPTools commandlet to generate the markdown files.
 **Run Commandlet (Behavior Tree):**
 ```powershell
 # Windows PowerShell command
-$EnginePath = "F:/S2UE"  # From registry lookup
-$ProjectPath = "D:/s2/S2.uproject"
+$EnginePath = "{engine.path}"  # From skills.config.json or registry lookup
+$ProjectPath = "{project.root}/{project.uproject}"
 $BTPath = "/Game/S2/Core_Boss/s2_boss_gaolanying/BT_Boss_GaoLanYing_Phase2"
 
 # By default, outputs to $env:TEMP/SipherAIBPTools/ (outside repository)
@@ -89,8 +93,8 @@ $BTPath = "/Game/S2/Core_Boss/s2_boss_gaolanying/BT_Boss_GaoLanYing_Phase2"
 **Run Commandlet (State Tree):**
 ```powershell
 # Windows PowerShell command
-$EnginePath = "F:/S2UE"  # From registry lookup
-$ProjectPath = "D:/s2/S2.uproject"
+$EnginePath = "{engine.path}"  # From skills.config.json or registry lookup
+$ProjectPath = "{project.root}/{project.uproject}"
 $STPath = "/Game/S2/Core_Ene/s2_ene_swordshield_01A_prototype/ST_ene_swordshield_combat"
 
 # By default, outputs to $env:TEMP/SipherAIBPTools/ (outside repository)

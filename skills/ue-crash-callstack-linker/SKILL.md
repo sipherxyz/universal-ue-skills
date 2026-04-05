@@ -3,6 +3,10 @@ name: ue-crash-callstack-linker
 description: Map crash callstacks to source code lines, identify likely causes, and suggest fixes based on crash patterns. Use when investigating crashes, analyzing minidumps, or debugging fatal errors. Triggers on "crash analysis", "callstack", "minidump", "crash report", "fatal error", "access violation", "stack trace".
 ---
 
+## Configuration
+This skill reads project-specific values from `skills.config.json` at the repository root.
+If not found, auto-detect using `ue-detect-engine` skill or prompt the user.
+
 # UE Crash Callstack Linker
 
 Map crash callstacks to source code and identify likely causes.
@@ -24,10 +28,10 @@ Map crash callstacks to source code and identify likely causes.
 ```
 Access violation - code c0000005 (first/second chance not available)
 
-UE4Editor_S2!USipherAbilitySystemComponent::ApplyGameplayEffectSpecToSelf() [D:\Build\S2\Source\S2\Private\Core\ASC\SipherAbilitySystemComponent.cpp:342]
+UE4Editor_S2!USipherAbilitySystemComponent::ApplyGameplayEffectSpecToSelf() [{project.root}/Source/{project.name}/Private/Core\ASC\SipherAbilitySystemComponent.cpp:342]
 UE4Editor_Engine!UAbilitySystemComponent::ApplyGameplayEffectToSelf()
 UE4Editor_GameplayAbilities!UGameplayAbility::ApplyGameplayEffectToOwner()
-UE4Editor_S2!USipherGameplayAbility::CommitAbility() [D:\Build\S2\Source\S2\Private\GameplayAbilities\SipherGameplayAbility.cpp:128]
+UE4Editor_S2!USipherGameplayAbility::CommitAbility() [{project.root}/Source/{project.name}/Private/GameplayAbilities\SipherGameplayAbility.cpp:128]
 ```
 
 ### Parsed Frames

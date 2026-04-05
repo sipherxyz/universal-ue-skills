@@ -3,6 +3,10 @@ name: n2c-validator
 description: Validate generated C++ code and auto-fix common issues. Sub-agent of n2c-orchestrator.
 ---
 
+## Configuration
+This skill reads project-specific values from `skills.config.json` at the repository root.
+If not found, auto-detect using `ue-detect-engine` skill or prompt the user.
+
 # N2C Validator Agent
 
 Validates generated C++ code against project context and auto-fixes known issues.
@@ -240,7 +244,7 @@ If orchestrator requests compile verification:
 ```bash
 # Single-module build
 "{EnginePath}/Engine/Build/BatchFiles/Build.bat" S2Editor Win64 Development \
-  -Project="G:/s2/S2.uproject" \
+  -Project="{project.root}/{project.uproject}" \
   -Module=S2 \
   -WaitMutex \
   2>&1 | tee build_output.txt

@@ -1,6 +1,6 @@
 ---
 name: ue-cpp-build
-description: Compile UE5.7 C++ code with error analysis, hot-reload support, and build diagnostics
+description: Compile UE5 C++ code with error analysis, hot-reload support, Live Coding vs Full Build detection, and build diagnostics. Use when compiling C++ code, fixing build errors, or iterating on code changes. Triggers on "build project", "compile", "build C++", "rebuild", "full build", "live coding".
 ---
 
 # Unreal Engine C++ Build & Compile Skill
@@ -9,6 +9,13 @@ description: Compile UE5.7 C++ code with error analysis, hot-reload support, and
 **Scope:** Project-wide compilation and build operations
 **Engine Version:** Auto-detected from *.uproject
 **Platform:** Windows (Win64)
+
+## Configuration
+
+This skill reads project paths from `skills.config.json` at the repository root.
+- `project.root` / `project.uproject` — project location
+- `engine.path` — custom engine installation
+If not found, auto-detect using `ue-detect-engine` skill and CWD.
 
 ## Objective
 
@@ -55,6 +62,24 @@ wmic process where "name='UnrealEditor.exe'" get commandline | findstr "{Project
 ```
 
 **Decision tree:**
+
+```
+┌─────────────────────────────────────────┐
+│ Is UnrealEditor.exe running?            │
+│     ↓ YES              ↓ NO            │
+│ ┌─────────────┐   ┌──────────────────┐ │
+│ │ Live Coding │   │ Ask Configuration│ │
+│ │ (5-15 sec)  │   │ Development or   │ │
+│ │             │   │ DebugGame?       │ │
+│ └─────────────┘   └──────────────────┘ │
+│                         ↓              │
+│                   ┌──────────────────┐ │
+│                   │ Full Build (UBT) │ │
+│                   │ (60-300 sec)     │ │
+│                   └──────────────────┘ │
+└─────────────────────────────────────────┘
+```
+
 - Editor running + project match → Use Live Coding (fast, 5-15 seconds)
 - Editor not running → Use Build.bat or UBT (full rebuild)
 - Editor running but different project → Use Build.bat or UBT
@@ -169,7 +194,9 @@ E:\S2_\Source\S2\Private\Combat\SipherCombatAbility.cpp(123,45): error C2065: 'U
 | C2061 | Syntax error | Check for missing semicolons, brackets |
 | C2143 | Syntax error | Missing header, wrong namespace |
 | C2039 | Not a member | Check class hierarchy, include base class |
-| C2664 | Cannot convert | Type mismatch, check function signatures |
+| C2440 | Cannot convert type | Add cast or fix type mismatch |
+| C2664 | Cannot convert argument | Type mismatch, check function signatures |
+| C4430 | Missing type specifier | Add return type to function |
 | C4996 | Deprecated | Update to new API (check engine source) |
 | LNK2001 | Unresolved external | Missing module dependency in Build.cs |
 | LNK2019 | Unresolved external | Missing implementation, wrong export macro |
@@ -380,7 +407,7 @@ Suggestions:
 User: compile
 Assistant:
 1. Detecting project... Found: S2.uproject
-2. Engine path: F:/S2UE (5.7.1-huli)
+2. Engine path: {engine.path}
 3. Editor detected running (PID: 12345)
 4. Using Live Coding for fast hot-reload...
 5. Hot-reload succeeded in 8.3 seconds
@@ -392,7 +419,7 @@ Assistant:
 User: compile
 Assistant:
 1. Detecting project... Found: S2.uproject
-2. Engine path: F:/S2UE (5.7.1-huli)
+2. Engine path: {engine.path}
 3. Editor not running, using full build...
 4. [Asks user: Development (recommended) or DebugGame?]
 5. User selects: Development
@@ -431,6 +458,93 @@ Would you like me to:
 1. Read the header file to check for missing member?
 2. Search codebase for 'DamageAmount' definition?
 3. Apply a specific fix?
+```
+
+## Build Error Parsing
+
+### Error Parsing Pattern
+
+```powershell
+# Parse build output for errors
+$Output = & $BuildCommand 2>&1
+
+$Errors = $Output | Where-Object { $_ -match "error C\d+:" -or $_ -match "error LNK\d+:" }
+
+foreach ($Error in $Errors) {
+    if ($Error -match "(.+)\((\d+)\):\s*error\s+(C\d+|LNK\d+):\s*(.+)") {
+        $File = $Matches[1]
+        $Line = $Matches[2]
+        $Code = $Matches[3]
+        $Message = $Matches[4]
+
+        Write-Host "Error in $File at line $Line"
+        Write-Host "  $Code: $Message"
+    }
+}
+```
+
+## Build Output Locations
+
+| Output | Location |
+|--------|----------|
+| Binaries | `{ProjectPath}/Binaries/Win64/` |
+| Intermediate | `{ProjectPath}/Intermediate/Build/Win64/` |
+| Build Logs | `{ProjectPath}/Saved/Logs/` |
+| Compilation DB | `{ProjectPath}/.vscode/compile_commands.json` |
+
+## Build Report Template
+
+```markdown
+# Build Report
+
+## Summary
+- **Build Method**: {Live Coding / Full Build}
+- **Configuration**: {Development / DebugGame}
+- **Duration**: {Time}
+- **Result**: {Success / Failed}
+
+## Errors Found
+| File | Line | Code | Message |
+|------|------|------|---------|
+| {File} | {Line} | {Code} | {Message} |
+
+## Suggested Fixes
+1. {Fix suggestion based on error analysis}
+
+## Warnings
+- {Warning count} warnings found
+- Critical warnings: {List}
+
+## Next Steps
+- [ ] Fix errors listed above
+- [ ] Re-run build to verify fixes
+- [ ] Test changes in editor
+```
+
+## Troubleshooting
+
+### Build Fails with "Mutex" Error
+```bash
+# Another build is running, wait or:
+taskkill /IM UnrealBuildTool.exe /F
+```
+
+### Live Coding Fails
+- Check editor is focused on correct project
+- Verify no .h files were modified
+- Fall back to full build
+
+### Out of Memory
+```bash
+# Reduce parallel compilation
+-MaxParallelActions=4
+```
+
+### Cached Build Issues
+```bash
+# Clean intermediate files
+rmdir /s /q Intermediate\Build
+rmdir /s /q Binaries\Win64\*.pdb
 ```
 
 ## Notes

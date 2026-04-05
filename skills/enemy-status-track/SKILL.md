@@ -3,10 +3,14 @@ name: enemy-status-track
 description: Track and audit enemy content implementation status across Core_Ene and Core_Boss folders. Update tracking spreadsheet with asset completeness.
 ---
 
+## Configuration
+This skill reads project-specific values from `skills.config.json` at the repository root.
+If not found, auto-detect using `ue-detect-engine` skill or prompt the user.
+
 # Enemy Status Tracking Skill
 
 **Role:** Enemy Content Auditor
-**Scope:** `Content/S2/Core_Ene/` and `Content/S2/Core_Boss/`
+**Scope:** `{project.content_path}/Core_Ene/` and `{project.content_path}/Core_Boss/`
 **Tracker:** `enemy_status_tracker.md`
 **Platform:** Windows (PowerShell for asset discovery)
 
@@ -55,7 +59,7 @@ Follow the detailed workflow in [ENEMY_STATUS_TRACK_INSTRUCTION.md](ENEMY_STATUS
 User: Update the status for s2_eli_beast_01A
 
 Agent:
-1. Scans Content/S2/Core_Ene/s2_eli_beast_01A/
+1. Scans {project.content_path}/Core_Ene/s2_eli_beast_01A/
 2. Checks each category folder
 3. Updates enemy_status_tracker.md
 4. Reports findings
@@ -77,5 +81,5 @@ skill: enemy-status-track
 invoke: /qa-testing:enemy-status-track
 type: qa-review
 category: content-tracking
-scope: Content/S2/Core_Ene/**, Content/S2/Core_Boss/**
+scope: {project.content_path}/Core_Ene/**, {project.content_path}/Core_Boss/**
 ```

@@ -3,6 +3,10 @@ name: n2c-json-export
 description: Export Blueprint to NodeToCode JSON format using N2CExport commandlet. Sub-agent of n2c-orchestrator.
 ---
 
+## Configuration
+This skill reads project-specific values from `skills.config.json` at the repository root.
+If not found, auto-detect using `ue-detect-engine` skill or prompt the user.
+
 # N2C JSON Export Agent
 
 Exports Blueprint graphs to NodeToCode JSON format via commandlet.
@@ -12,7 +16,7 @@ Exports Blueprint graphs to NodeToCode JSON format via commandlet.
 ```json
 {
   "blueprintPath": "/Game/S2/Core/GAS/GA_Jump",
-  "outputPath": "G:/s2/Saved/NodeToCode/Export/GA_Jump.json",
+  "outputPath": "{project.root}/Saved/NodeToCode/Export/GA_Jump.json",
   "depth": 2,
   "prettyPrint": true
 }
@@ -24,7 +28,7 @@ Exports Blueprint graphs to NodeToCode JSON format via commandlet.
 ```json
 {
   "success": true,
-  "jsonPath": "G:/s2/Saved/NodeToCode/Export/GA_Jump.json",
+  "jsonPath": "{project.root}/Saved/NodeToCode/Export/GA_Jump.json",
   "metadata": {
     "blueprintName": "GA_Jump",
     "baseClass": "USipherGameplayAbilityRuntime",
@@ -102,7 +106,7 @@ fi
 ### Step 3: Verify Project File
 
 ```powershell
-$projectFile = "G:/s2/S2.uproject"
+$projectFile = "{project.root}/{project.uproject}"
 
 if (-not (Test-Path $projectFile)) {
   return { success: false, errorCode: "PROJECT_NOT_FOUND" }
@@ -112,7 +116,7 @@ if (-not (Test-Path $projectFile)) {
 ### Step 4: Prepare Output Directory
 
 ```powershell
-$outputDir = "G:/s2/Saved/NodeToCode/Export"
+$outputDir = "{project.root}/Saved/NodeToCode/Export"
 New-Item -ItemType Directory -Path $outputDir -Force | Out-Null
 ```
 
@@ -121,7 +125,7 @@ New-Item -ItemType Directory -Path $outputDir -Force | Out-Null
 ```powershell
 $editorCmd = "$enginePath\Engine\Binaries\Win64\UnrealEditor-Cmd.exe"
 $arguments = @(
-  "`"G:/s2/S2.uproject`"",
+  "`"{project.root}/{project.uproject}`"",
   "-run=N2CExport",
   "-Blueprint=$blueprintPath",
   "-Output=`"$outputPath`"",
@@ -233,7 +237,7 @@ $metadata = @{
 ```json
 {
   "success": true,
-  "jsonPath": "G:/s2/Saved/NodeToCode/Export/GA_Jump.json",
+  "jsonPath": "{project.root}/Saved/NodeToCode/Export/GA_Jump.json",
   "metadata": {
     "blueprintName": "GA_Jump",
     "baseClass": "USipherGameplayAbilityRuntime",

@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "Centralized configuration for universal-ue-skills. Skills reference these values instead of hardcoding paths, repos, and team data. Copy this file and fill in your values before using skills.",
+
+  "project": {
+    "name": "S2",
+    "uproject": "S2.uproject",
+    "fullname": "S2 Huli Nine Tails Vengeance",
+    "root": "${PROJECT_ROOT}",
+    "content_path": "${PROJECT_ROOT}/Content",
+    "screenshots_path": "${PROJECT_ROOT}/Saved/BugScreenshots",
+    "input_assets_path": "${PROJECT_ROOT}/Content/Input"
+  },
+
+  "engine": {
+    "path": "${ENGINE_PATH}",
+    "editor_cmd": "${ENGINE_PATH}/Engine/Binaries/Win64/UnrealEditor-Cmd.exe",
+    "version": "5.7"
+  },
+
+  "github": {
+    "owner": "sipherxyz",
+    "repo": "sipherxyz/s2",
+    "skills_repo": "sipherxyz/universal-ue-skills",
+    "project_number": 5,
+    "project_node_id": "PVT_kwDOBR2Dpc4Azdrn",
+    "fields": {
+      "status_id": "PVTSSF_lADOBR2Dpc4AzdrnzgpQGXw",
+      "start_date_id": "PVTF_lADOBR2Dpc4AzdrnzgpQGdY",
+      "end_date_id": "PVTF_lADOBR2Dpc4AzdrnzgpQGdc",
+      "size_id": "PVTSSF_lADOBR2Dpc4AzdrnzgpQGdM"
+    },
+    "status_options": {
+      "todo": "f75ad846",
+      "fixed": "7177aeee"
+    },
+    "issue_types": {
+      "task": "IT_kwDOBR2Dpc4A5bA_",
+      "bug": "IT_kwDOBR2Dpc4A5bBD",
+      "feature": "IT_kwDOBR2Dpc4A5bBE"
+    }
+  },
+
+  "milestones": {
+    "combat": { "name": "COMBAT", "number": 16 },
+    "game_ai": { "name": "GAME-AI", "number": 13 },
+    "preprod": { "name": "PRE-PROD: Core Combat Complete", "number": 2 },
+    "default": { "number": 2 }
+  },
+
+  "team": {
+    "principal": { "handle": "buihuuloc" },
+    "vfx": [
+      { "handle": "TienDang-VFX", "role": "lead" },
+      { "handle": "TyVo-VFX", "role": "member" },
+      { "handle": "HoaNguyen-VFX", "role": "member" },
+      { "handle": "TuanDangVFXAther", "role": "member" }
+    ],
+    "lighting": [
+      { "handle": "QuangTranLightingArtAther", "role": "member" }
+    ],
+    "creative": [
+      { "handle": "VuDuong-CREATIVE", "role": "member" }
+    ]
+  },
+
+  "network": {
+    "artteam_share": "\\\\172.30.22.11\\artteam\\Temp\\s2\\report_from_bugitgo",
+    "archive_share": "\\\\172.30.22.11\\artteam\\Archive\\bug_reports"
+  },
+
+  "ci": {
+    "jenkins_workspace": "${JENKINS_WORKSPACE}"
+  },
+
+  "tools": {
+    "renderdoc_module": "${RENDERDOC_PATH}/module/renderdoc.json"
+  },
+
+  "_resolution_instructions": "Skills should resolve config values at runtime. Read this file with: cat skills.config.json or Read tool. Replace ${VAR} placeholders with auto-detected or user-provided values. Use ue-detect-engine skill to resolve ENGINE_PATH. Use git rev-parse --show-toplevel or CWD to resolve PROJECT_ROOT."
+}

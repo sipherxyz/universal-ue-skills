@@ -3,6 +3,10 @@ name: n2c-context-gatherer
 description: Gather project context for C++ code generation including include paths, base class signatures, and API patterns. Sub-agent of n2c-orchestrator.
 ---
 
+## Configuration
+This skill reads project-specific values from `skills.config.json` at the repository root.
+If not found, auto-detect using `ue-detect-engine` skill or prompt the user.
+
 # N2C Context Gatherer Agent
 
 Gathers verified include paths, base class signatures, and API patterns from the project.
@@ -11,7 +15,7 @@ Gathers verified include paths, base class signatures, and API patterns from the
 
 ```json
 {
-  "jsonPath": "G:/s2/Saved/NodeToCode/Export/GA_Jump.json",
+  "jsonPath": "{project.root}/Saved/NodeToCode/Export/GA_Jump.json",
   "metadata": {
     "baseClass": "USipherGameplayAbilityRuntime",
     "referencedTypes": ["FSipherAbilityData_Animation", "PlayerCombatAttributeSet"]
@@ -33,7 +37,7 @@ Gathers verified include paths, base class signatures, and API patterns from the
   "baseClassContext": {
     "className": "USipherGameplayAbilityRuntime",
     "headerPath": "GameplayAbilities/SipherGameplayAbilityRuntime.h",
-    "fullHeaderPath": "G:/s2/Source/S2/Public/GameplayAbilities/SipherGameplayAbilityRuntime.h",
+    "fullHeaderPath": "{project.root}/Source/S2/Public/GameplayAbilities/SipherGameplayAbilityRuntime.h",
     "virtualMethods": [
       {
         "name": "K2_OverrideRuntimeData_Implementation",
@@ -148,7 +152,7 @@ for type_name in types_to_resolve:
     header_path = find_header(type_name)
     if header_path:
         # Convert absolute path to relative include path
-        # G:/s2/Source/S2/Public/Core/ASC/SipherASC.h -> Core/ASC/SipherASC.h
+        # {project.root}/Source/S2/Public/Core/ASC/SipherASC.h -> Core/ASC/SipherASC.h
         relative_path = make_relative(header_path, "Source/S2/Public/")
         include_map[type_name] = relative_path
     else:
@@ -259,7 +263,7 @@ for member in member_variables:
   "baseClassContext": {
     "className": "USipherGameplayAbilityRuntime",
     "headerPath": "GameplayAbilities/SipherGameplayAbilityRuntime.h",
-    "fullHeaderPath": "G:/s2/Source/S2/Public/GameplayAbilities/SipherGameplayAbilityRuntime.h",
+    "fullHeaderPath": "{project.root}/Source/S2/Public/GameplayAbilities/SipherGameplayAbilityRuntime.h",
     "virtualMethods": [ ... ],
     "memberVariables": ["AnimationData", "AbilityData"]
   },

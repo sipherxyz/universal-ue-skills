@@ -9,6 +9,12 @@ description: Redistribute IFA actors to match grid cell sizes using SipherFoliag
 **Scope:** Level-specific IFA redistribution
 **Platform:** Windows (Win64)
 
+## Configuration
+This skill reads project paths from `skills.config.json` at the repository root.
+- `project.root` / `project.uproject` — project location  
+- `engine.path` / `engine.editor_cmd` — engine installation
+If not found, auto-detect using `ue-detect-engine` skill and CWD.
+
 ## Objective
 
 Run `USipherFoliageGridBuilder` to redistribute `AInstancedFoliageActor` instances
@@ -28,7 +34,7 @@ based on grid cell sizes defined in `FSipherWPGridConfig`.
 - Use PowerShell to avoid Git bash path conversion (`/Game/...` → `C:/Program Files/Git/Game/...`)
 
 ```powershell
-powershell -Command "& 'D:\UnrealEngine\Engine\Binaries\Win64\UnrealEditor-Cmd.exe' 'D:\s2\S2.uproject' '{LevelPath}' '-run=SipherWorldPartitionBuilderCommandlet' '-Builder=SipherFoliage' '-Build' '-nullrhi' '-nosplash' '-unattended' 2>&1 | Tee-Object -FilePath 'D:\s2\Saved\Logs\FoliageGridBuilder.log'"
+powershell -Command "& '{engine.editor_cmd}' '{project.root}\{project.uproject}' '{LevelPath}' '-run=SipherWorldPartitionBuilderCommandlet' '-Builder=SipherFoliage' '-Build' '-nullrhi' '-nosplash' '-unattended' 2>&1 | Tee-Object -FilePath '{project.root}\Saved\Logs\FoliageGridBuilder.log'"
 ```
 
 ### Dynamic Engine Path Detection
@@ -159,8 +165,8 @@ LogSipherFoliageGridBuilder: Display: [SAVE] Complete: 13 saved, 0 failed
 ### Direct PowerShell Command
 
 ```powershell
-# From project root (D:\s2)
-powershell -Command "& 'D:\UnrealEngine\Engine\Binaries\Win64\UnrealEditor-Cmd.exe' 'D:\s2\S2.uproject' '/Game/S2/Main_Flow/Teaser/Level/L_Teaser_Temp_Autumn_03' '-run=SipherWorldPartitionBuilderCommandlet' '-Builder=SipherFoliage' '-Build' '-nullrhi' '-nosplash' '-unattended' 2>&1 | Tee-Object -FilePath 'D:\s2\Saved\Logs\FoliageGridBuilder.log'"
+# From project root ({project.root})
+powershell -Command "& '{engine.editor_cmd}' '{project.root}\{project.uproject}' '/Game/S2/Main_Flow/Teaser/Level/L_Teaser_Temp_Autumn_03' '-run=SipherWorldPartitionBuilderCommandlet' '-Builder=SipherFoliage' '-Build' '-nullrhi' '-nosplash' '-unattended' 2>&1 | Tee-Object -FilePath '{project.root}\Saved\Logs\FoliageGridBuilder.log'"
 ```
 
 ## Configuration

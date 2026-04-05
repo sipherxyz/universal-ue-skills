@@ -193,7 +193,7 @@ SipherAPT.StartHeatmap
 - name: Run Automation Tests
   shell: pwsh
   run: |
-    $Engine = "G:/UnrealEngine"
+    $Engine = "{engine.path}"
     $Project = "${{ github.workspace }}/S2.uproject"
 
     & "$Engine/Engine/Binaries/Win64/UnrealEditor-Cmd.exe" $Project `

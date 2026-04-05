@@ -3,12 +3,17 @@ name: github-assign-issue
 description: Recommend and auto-assign GitHub issues to engineers based on domain expertise matrix
 ---
 
+## Configuration
+This skill reads project-specific values from `skills.config.json` at the repository root.
+Required keys: `github.repo`, `github.owner`, `github.project_number`, `milestones.*`, `team.*`
+If not found, prompt the user for repository and project details.
+
 # GitHub Issue Auto-Assignment Skill
 
 **Role:** Issue Assignment Automation
 **Scope:** Project-wide issue routing and assignment
 **Platform:** Windows + gh CLI
-**Repository:** sipherxyz/s2
+**Repository:** {github.repo}
 
 ## Objective
 
@@ -18,17 +23,17 @@ Analyze GitHub issues and recommend (or auto-assign) appropriate engineers based
 
 1. `gh` CLI authenticated: `gh auth status`
 2. Engineer matrix file exists at `{project-root}/claude-agents/team/engineer-matrix.md`
-3. Issue must be in the sipherxyz/s2 repository
+3. Issue must be in the {github.repo} repository
 
 ## Dynamic Context Resolution
 
 ```
 {CWD} = Current Working Directory
-{ProjectRoot} = G:\s2
+{ProjectRoot} = {project.root}
 {MatrixPath} = {ProjectRoot}/claude-agents/team/engineer-matrix.md
-{RepoOwner} = sipherxyz
+{RepoOwner} = {github.owner}
 {RepoName} = s2
-{FallbackAssignee} = buihuuloc
+{FallbackAssignee} = {team.principal.handle}
 ```
 
 ## Workflow
@@ -39,8 +44,8 @@ Accept GitHub issue URL or issue number:
 
 ```
 Input formats:
-- Full URL: https://github.com/sipherxyz/s2/issues/123
-- Short URL: sipherxyz/s2#123
+- Full URL: https://github.com/{github.repo}/issues/123
+- Short URL: {github.repo}#123
 - Number only: 123 (assumes current repo)
 ```
 
@@ -49,7 +54,7 @@ Input formats:
 ### Step 2: Fetch Issue Details
 
 ```bash
-gh issue view {number} --json number,title,body,labels,assignees --repo sipherxyz/s2
+gh issue view {number} --json number,title,body,labels,assignees --repo {github.repo}
 ```
 
 **Extract:**
@@ -152,7 +157,7 @@ ISSUE ASSIGNMENT RECOMMENDATION
 ═══════════════════════════════════════════════════════════════
 
 Issue #123: Fix combo system animation desync
-URL: https://github.com/sipherxyz/s2/issues/123
+URL: https://github.com/{github.repo}/issues/123
 
 Current Assignees: (none)
 Labels: combat, Engineering, bug
@@ -178,13 +183,13 @@ Assignee:   @DuyTranSipher (Duy Tran) - Game Engineer
 Reasoning:  Primary owner of 'combat' domain
 Confidence: HIGH
 
-Backup:     @buihuuloc (Loc Bui) - Principal Engineer
+Backup:     @{team.principal.handle} (Loc Bui) - Principal Engineer
 
 ═══════════════════════════════════════════════════════════════
 
 Options:
   1. Assign to @DuyTranSipher
-  2. Assign to @buihuuloc (backup)
+  2. Assign to @{team.principal.handle} (backup)
   3. Select different assignee
   4. Skip assignment
 
@@ -198,7 +203,7 @@ Your choice (1/2/3/4): _
 If user selects option 1 or 2 (or `--quick` mode):
 
 ```bash
-gh issue edit {number} --add-assignee {username} --repo sipherxyz/s2
+gh issue edit {number} --add-assignee {username} --repo {github.repo}
 ```
 
 **Validate response:**
@@ -215,7 +220,7 @@ Assigned to: @DuyTranSipher (Duy Tran)
 Domain: combat
 Confidence: HIGH
 
-View issue: https://github.com/sipherxyz/s2/issues/123
+View issue: https://github.com/{github.repo}/issues/123
 ```
 
 **Return Values (for programmatic use):**
@@ -233,9 +238,9 @@ Confidence: HIGH
 ### Error: Issue Not Found
 
 ```
-Error: Issue #9999 not found in sipherxyz/s2
+Error: Issue #9999 not found in {github.repo}
 
-Verify issue exists: gh issue view 9999 --web --repo sipherxyz/s2
+Verify issue exists: gh issue view 9999 --web --repo {github.repo}
 ```
 
 ### Error: Matrix Not Found
@@ -243,7 +248,7 @@ Verify issue exists: gh issue view 9999 --web --repo sipherxyz/s2
 ```
 Error: Engineer matrix not found
 
-Expected: G:\s2\claude-agents\team\engineer-matrix.md
+Expected: {project.root}\claude-agents\team\engineer-matrix.md
 
 Run: /github-assign-issue --init-matrix
 ```
@@ -267,7 +272,7 @@ Your choice: _
 ```
 Warning: Primary engineer @DuyTranSipher is unavailable (U)
 
-Falling back to backup: @buihuuloc
+Falling back to backup: @{team.principal.handle}
 
 Continue with backup assignment? (y/N): _
 ```
@@ -329,7 +334,7 @@ BATCH ASSIGNMENT PREVIEW
 | #100  | Fix combo animation      | combat  | @DuyTranSipher   | HIGH       |
 | #101  | UI menu flicker          | UXUI    | @HungLeSipher    | MEDIUM     |
 | #102  | AI pathing stuck         | ai      | @KhoaLeSipher    | HIGH       |
-| #103  | General cleanup          | -       | @buihuuloc       | DEFAULT    |
+| #103  | General cleanup          | -       | @{team.principal.handle}       | DEFAULT    |
 
 ═══════════════════════════════════════════════════════════════
 
@@ -378,7 +383,7 @@ Domain Score = (Label Matches × 10) + (Title Keywords × 5) + (File Paths × 3)
 | >= 15 | HIGH | Strong signal (label + keyword) |
 | 10-14 | MEDIUM | Single strong signal (label only) |
 | 5-9 | LOW | Weak signals (keywords/paths only) |
-| < 5 | DEFAULT | Fallback to @buihuuloc |
+| < 5 | DEFAULT | Fallback to @{team.principal.handle} |
 
 ### Tie-Breaking Rules
 
@@ -424,11 +429,11 @@ After bug analysis:
 - [ ] Aggregates signals with correct weights
 - [ ] Matches engineer based on domain ownership
 - [ ] Checks engineer availability
-- [ ] Falls back to backup or @buihuuloc
+- [ ] Falls back to backup or @{team.principal.handle}
 - [ ] Presents recommendation with confidence level
 - [ ] Executes assignment via gh CLI
 - [ ] Handles missing matrix file (--init-matrix)
-- [ ] Handles no domain match (fallback to @buihuuloc)
+- [ ] Handles no domain match (fallback to @{team.principal.handle})
 - [ ] Handles all engineers unavailable
 - [ ] Handles already assigned issues
 - [ ] Supports --dry-run mode
@@ -440,10 +445,10 @@ After bug analysis:
 
 ## Notes
 
-- All `gh` commands target `--repo sipherxyz/s2` explicitly
+- All `gh` commands target `--repo {github.repo}` explicitly
 - Matrix file is plain markdown for easy manual editing
 - Availability must be manually updated by team leads
-- Fallback owner is @buihuuloc for all unmatched issues
+- Fallback owner is @{team.principal.handle} for all unmatched issues
 - No Claude attribution footer per CLAUDE.md guidelines
 
 ## Legacy Metadata

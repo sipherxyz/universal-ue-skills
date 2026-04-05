@@ -9,6 +9,12 @@ description: Convert landscape grass to foliage actors using CascadeFoliage Gras
 **Scope:** Level-specific grass conversion
 **Platform:** Windows (Win64)
 
+## Configuration
+This skill reads project paths from `skills.config.json` at the repository root.
+- `project.root` / `project.uproject` — project location  
+- `engine.path` / `engine.editor_cmd` — engine installation
+If not found, auto-detect using `ue-detect-engine` skill and CWD.
+
 ## Objective
 
 Run `USipherCascadeFoliageGrassBuilder` to convert landscape grass into `AInstancedFoliageActor` instances for Cascade Foliage system management.
@@ -29,10 +35,10 @@ $EnginePath = (Get-ItemProperty "HKCU:\SOFTWARE\Epic Games\Unreal Engine\Builds"
 # Uses SipherWorldPartitionBuilderCommandlet (not engine's WorldPartitionBuilderCommandlet)
 # to trigger Streamline D3D12 disable via SipherWorldPartitionEditorPreConfigModule
 Start-Process -FilePath "$EnginePath\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" `
-  -ArgumentList ".\S2.uproject","{LevelPath}","-run=SipherWorldPartitionBuilderCommandlet","-Builder=/Script/SipherCascadeFoliageEditor.SipherCascadeFoliageGrassBuilder","-nullrhi","-nosplash","-unattended" `
+  -ArgumentList "{project.root}\{project.uproject}","{LevelPath}","-run=SipherWorldPartitionBuilderCommandlet","-Builder=/Script/SipherCascadeFoliageEditor.SipherCascadeFoliageGrassBuilder","-nullrhi","-nosplash","-unattended" `
   -Wait -NoNewWindow `
-  -RedirectStandardOutput ".\Saved\Logs\GrassBuilder.log" `
-  -RedirectStandardError ".\Saved\Logs\GrassBuilder_err.log"
+  -RedirectStandardOutput "{project.root}\Saved\Logs\GrassBuilder.log" `
+  -RedirectStandardError "{project.root}\Saved\Logs\GrassBuilder_err.log"
 ```
 
 > **Note:** Must use `SipherWorldPartitionBuilderCommandlet` to avoid Streamline/DLSS crash.

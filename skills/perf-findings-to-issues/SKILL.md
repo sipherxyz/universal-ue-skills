@@ -3,12 +3,17 @@ name: perf-findings-to-issues
 description: Create GitHub issues from Performance Analyzer findings JSON export
 ---
 
+## Configuration
+This skill reads project-specific values from `skills.config.json` at the repository root.
+Required keys: `github.repo`, `github.owner`, `github.project_number`, `milestones.*`, `team.*`
+If not found, prompt the user for repository and project details.
+
 # Performance Findings to GitHub Issues
 
 **Role:** Performance Issue Automation
 **Scope:** Create batched GitHub issues from Performance Analyzer exports
 **Platform:** Windows + gh CLI
-**Repository:** sipherxyz/s2
+**Repository:** {github.repo}
 
 ## Objective
 
@@ -127,14 +132,14 @@ gh issue create \
 EOF
 )" \
   --label "task,performance,Engineering,material" \
-  --milestone 16 \
-  --repo sipherxyz/s2
+  --milestone {milestones.combat.number} \
+  --repo {github.repo}
 ```
 
 ### Step 5: Add to Project Board
 
 ```bash
-gh project item-add 5 --owner sipherxyz --url {issue_url}
+gh project item-add {github.project_number} --owner {github.owner} --url {issue_url}
 ```
 
 ### Step 6: Output Results
@@ -166,7 +171,7 @@ gh project item-add 5 --owner sipherxyz --url {issue_url}
 
 | Severity | Milestone |
 |----------|-----------|
-| Critical | COMBAT (16) - immediate |
+| Critical | {milestones.combat.name} ({milestones.combat.number}) - immediate |
 | High | alpha (9) |
 | Medium | alpha (9) |
 | Info | Backlog |

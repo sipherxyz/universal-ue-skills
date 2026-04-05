@@ -5,15 +5,17 @@ description: Add a bug and solution to the community collection
 
 # Bug Wiki Add
 
+## Configuration
+This skill requires the following environment variable:
+- `ACS_COMMUNITY_WRITE_KEY` — API key for the ACS community collection (do NOT hardcode this value)
+
+This skill also reads `github.repo` from `skills.config.json` at the repository root.
+
 Add a bug report and solution to the community collection for others to discover via `/bug-search`.
 
 ## API Key
 
-Use this key for all community write requests:
-
-```
-ACS_COMMUNITY_WRITE_KEY=cs_community_2026
-```
+The API key is read from the `ACS_COMMUNITY_WRITE_KEY` environment variable.
 
 ## How to Submit
 
@@ -21,7 +23,7 @@ Use WebFetch to POST directly to the API. **NEVER use curl/Bash.**
 
 ```
 POST https://acs.sipher.gg/webhook/community
-Authorization: Bearer cs_community_2026
+Authorization: Bearer ${ACS_COMMUNITY_WRITE_KEY}
 Content-Type: application/json
 
 {
@@ -30,7 +32,7 @@ Content-Type: application/json
   "component": "Audio System",
   "severity": "medium",
   "tags": ["audio", "performance"],
-  "source": "https://github.com/sipherxyz/s2/issues/123"
+  "source": "https://github.com/{github.repo}/issues/123"
 }
 ```
 

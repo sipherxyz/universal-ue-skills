@@ -3,12 +3,16 @@ name: stress-test
 description: Run automated stress tests using SipherStressTest plugin to find random crashes
 ---
 
+## Configuration
+This skill reads project-specific values from `skills.config.json` at the repository root.
+If not found, auto-detect using `ue-detect-engine` skill or prompt the user.
+
 # Stress Test Skill
 
 **Role:** QA Automation Engineer
 **Scope:** Automated stress testing and crash detection
 **Plugin:** SipherStressTest
-**Platform:** Windows (Win64)
+**Platform:** Windows
 
 ## Objective
 
@@ -23,7 +27,7 @@ Help users record gameplay sessions and run automated stress tests to find rando
 ## Dynamic Path Resolution
 
 ```
-{CWD} = Current Working Directory (D:\s2)
+{CWD} = Current Working Directory ({project.root})
 {ProjectFile} = S2.uproject
 {RecordingsDir} = {CWD}/Saved/StressTest/Recordings
 {ResultsDir} = {CWD}/Saved/StressTestResults

@@ -10,6 +10,12 @@ description: Find asset references and dependencies using SipherReferenceFinder 
 **Platform:** Windows (Unreal Editor Commandlet)
 **Use Cases:** Dependency analysis, refactoring impact assessment, asset cleanup, GameplayTag usage tracking
 
+## Configuration
+This skill reads project paths from `skills.config.json` at the repository root.
+- `project.root` / `project.uproject` — project location  
+- `engine.path` / `engine.editor_cmd` — engine installation
+If not found, auto-detect using `ue-detect-engine` skill and CWD.
+
 ## Objective
 
 Find all referencers (assets that use a target asset) and dependencies (assets that the target uses) for any Unreal Engine asset. Also supports finding all assets that use specific GameplayTags.
@@ -17,8 +23,8 @@ Find all referencers (assets that use a target asset) and dependencies (assets t
 ## Prerequisites
 
 - S2Editor must be built with the `SipherAIBPTools` plugin enabled
-- Engine path: `F:/S2UE/Engine/Binaries/Win64/UnrealEditor-Cmd.exe`
-- Project path: `D:/s2/S2.uproject`
+- Engine path: `{engine.editor_cmd}`
+- Project path: `{project.root}/{project.uproject}`
 
 ## Usage
 
@@ -26,38 +32,38 @@ Find all referencers (assets that use a target asset) and dependencies (assets t
 
 **Convert file path to UE package path:**
 ```
-D:\s2\Content\S2\Folder\AssetName.uasset
+{project.content_path}\S2\Folder\AssetName.uasset
          ↓
 /Game/S2/Folder/AssetName
 ```
 
 **Command:**
 ```bash
-"F:/S2UE/Engine/Binaries/Win64/UnrealEditor-Cmd.exe" "D:/s2/S2.uproject" -run=SipherReferenceFinder -asset="//Game/S2/Path/To/Asset" -stdout
+"{engine.editor_cmd}" "{project.root}/{project.uproject}" -run=SipherReferenceFinder -asset="//Game/S2/Path/To/Asset" -stdout
 ```
 
 > **Note:** Use `//Game` (double slash) to prevent bash path expansion on Windows.
 
 **Example:**
 ```bash
-"F:/S2UE/Engine/Binaries/Win64/UnrealEditor-Cmd.exe" "D:/s2/S2.uproject" -run=SipherReferenceFinder -asset="//Game/S2/BehaviorTrees/BBD_eli_beast_" -stdout
+"{engine.editor_cmd}" "{project.root}/{project.uproject}" -run=SipherReferenceFinder -asset="//Game/S2/BehaviorTrees/BBD_eli_beast_" -stdout
 ```
 
 ### Find GameplayTag References
 
 **Find all assets using a specific tag:**
 ```bash
-"F:/S2UE/Engine/Binaries/Win64/UnrealEditor-Cmd.exe" "D:/s2/S2.uproject" -run=SipherReferenceFinder -tag="Sipher.ComboGraph" -stdout
+"{engine.editor_cmd}" "{project.root}/{project.uproject}" -run=SipherReferenceFinder -tag="Sipher.ComboGraph" -stdout
 ```
 
 **Include child tags:**
 ```bash
-"F:/S2UE/Engine/Binaries/Win64/UnrealEditor-Cmd.exe" "D:/s2/S2.uproject" -run=SipherReferenceFinder -tag="Sipher.ComboGraph" -children -stdout
+"{engine.editor_cmd}" "{project.root}/{project.uproject}" -run=SipherReferenceFinder -tag="Sipher.ComboGraph" -children -stdout
 ```
 
 **Find all GameplayTags usage:**
 ```bash
-"F:/S2UE/Engine/Binaries/Win64/UnrealEditor-Cmd.exe" "D:/s2/S2.uproject" -run=SipherReferenceFinder -alltags -stdout
+"{engine.editor_cmd}" "{project.root}/{project.uproject}" -run=SipherReferenceFinder -alltags -stdout
 ```
 
 ## Output
@@ -78,7 +84,7 @@ Total: 30 reference(s).
 
 ### Generated Reports
 
-Reports are saved to: `D:/s2/Saved/Reports/References/`
+Reports are saved to: `{project.root}/Saved/Reports/References/`
 
 | Format | File Pattern | Content |
 |--------|--------------|---------|
@@ -139,9 +145,9 @@ Script
 
 | File System Path | UE Package Path |
 |------------------|-----------------|
-| `D:\s2\Content\S2\...` | `/Game/S2/...` |
-| `D:\s2\Content\...` | `/Game/...` |
-| `D:\s2\Plugins\{Plugin}\Content\...` | `/{Plugin}/...` |
+| `{project.content_path}\S2\...` | `/Game/S2/...` |
+| `{project.content_path}\...` | `/Game/...` |
+| `{project.root}\Plugins\{Plugin}\Content\...` | `/{Plugin}/...` |
 
 ## Parameters
 
@@ -160,7 +166,7 @@ Script
 
 Before deleting an asset, check if anything uses it:
 ```bash
-"F:/S2UE/Engine/Binaries/Win64/UnrealEditor-Cmd.exe" "D:/s2/S2.uproject" -run=SipherReferenceFinder -asset="//Game/S2/ToDelete/MyAsset" -stdout
+"{engine.editor_cmd}" "{project.root}/{project.uproject}" -run=SipherReferenceFinder -asset="//Game/S2/ToDelete/MyAsset" -stdout
 ```
 
 If **Referencers = 0**, safe to delete.
@@ -169,7 +175,7 @@ If **Referencers = 0**, safe to delete.
 
 Before renaming/moving an asset:
 ```bash
-"F:/S2UE/Engine/Binaries/Win64/UnrealEditor-Cmd.exe" "D:/s2/S2.uproject" -run=SipherReferenceFinder -asset="//Game/S2/OldPath/MyBlueprint" -stdout
+"{engine.editor_cmd}" "{project.root}/{project.uproject}" -run=SipherReferenceFinder -asset="//Game/S2/OldPath/MyBlueprint" -stdout
 ```
 
 All listed referencers will need redirector or update.
@@ -178,14 +184,14 @@ All listed referencers will need redirector or update.
 
 Find where a tag is used before removing it:
 ```bash
-"F:/S2UE/Engine/Binaries/Win64/UnrealEditor-Cmd.exe" "D:/s2/S2.uproject" -run=SipherReferenceFinder -tag="Sipher.Deprecated.OldTag" -stdout
+"{engine.editor_cmd}" "{project.root}/{project.uproject}" -run=SipherReferenceFinder -tag="Sipher.Deprecated.OldTag" -stdout
 ```
 
 ### 4. Dependency Chain Analysis
 
 Understand what an asset needs:
 ```bash
-"F:/S2UE/Engine/Binaries/Win64/UnrealEditor-Cmd.exe" "D:/s2/S2.uproject" -run=SipherReferenceFinder -asset="//Game/S2/Characters/BP_MainCharacter" -stdout
+"{engine.editor_cmd}" "{project.root}/{project.uproject}" -run=SipherReferenceFinder -asset="//Game/S2/Characters/BP_MainCharacter" -stdout
 ```
 
 Review Dependencies section to understand all required assets.
@@ -196,19 +202,19 @@ The commandlet requires loading the Asset Registry which takes ~10-15 seconds. U
 
 ```bash
 # With explicit timeout
-timeout 120 "F:/S2UE/Engine/Binaries/Win64/UnrealEditor-Cmd.exe" ...
+timeout 120 "{engine.editor_cmd}" ...
 ```
 
 ## Filtering Output
 
 ### Quick Check (grep for specific info)
 ```bash
-"F:/S2UE/Engine/Binaries/Win64/UnrealEditor-Cmd.exe" "D:/s2/S2.uproject" -run=SipherReferenceFinder -asset="//Game/S2/MyAsset" -stdout 2>&1 | grep -E "REFERENCERS|DEPENDENCIES|Total"
+"{engine.editor_cmd}" "{project.root}/{project.uproject}" -run=SipherReferenceFinder -asset="//Game/S2/MyAsset" -stdout 2>&1 | grep -E "REFERENCERS|DEPENDENCIES|Total"
 ```
 
 ### Get Markdown Path Only
 ```bash
-"F:/S2UE/Engine/Binaries/Win64/UnrealEditor-Cmd.exe" "D:/s2/S2.uproject" -run=SipherReferenceFinder -asset="//Game/S2/MyAsset" -stdout 2>&1 | grep "Markdown report written"
+"{engine.editor_cmd}" "{project.root}/{project.uproject}" -run=SipherReferenceFinder -asset="//Game/S2/MyAsset" -stdout 2>&1 | grep "Markdown report written"
 ```
 
 ## Integration with Other Skills
@@ -234,7 +240,7 @@ Find all assets using combat-related GameplayTags for review.
 
 ### No results found
 - Verify asset path is correct (no .uasset extension)
-- Check if asset exists: `ls "D:/s2/Content/Path/To/Asset.uasset"`
+- Check if asset exists: `ls "{project.content_path}/Path/To/Asset.uasset"`
 
 ### Commandlet timeout
 - Asset Registry loading takes 10-15 seconds

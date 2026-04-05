@@ -11,7 +11,7 @@ Generates C++ code from NodeToCode JSON using project-verified context.
 
 ```json
 {
-  "jsonPath": "G:/s2/Saved/NodeToCode/Export/GA_Jump.json",
+  "jsonPath": "{project.root}/Saved/NodeToCode/Export/GA_Jump.json",
   "context": {
     "includeMap": { ... },
     "baseClassContext": { ... },

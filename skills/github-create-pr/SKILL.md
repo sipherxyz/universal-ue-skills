@@ -5,6 +5,11 @@ description: Create GitHub PRs with linked issues following project templates
 
 > **CRITICAL:** This skill MUST use the exact PR template structure. NEVER use alternative formats like `## Summary` / `## Changes` / `## Test plan`. See [Template Compliance](#️-critical-template-compliance) section before building PR body.
 
+## Configuration
+This skill reads project-specific values from `skills.config.json` at the repository root.
+Required keys: `github.repo`, `github.owner`, `github.project_number`, `milestones.*`, `team.*`
+If not found, prompt the user for repository and project details.
+
 # GitHub PR Creator Skill
 
 ## Quick Reference
@@ -42,8 +47,8 @@ description: Create GitHub PRs with linked issues following project templates
 **Role:** Pull Request Automation
 **Scope:** Project-wide PR creation with issue linking
 **Platform:** Windows + gh CLI
-**Repository:** sipherxyz/s2
-**Project:** S2 Huli Nine Tails Vengeance
+**Repository:** {github.repo}
+**Project:** {project.fullname}
 
 ## Objective
 
@@ -168,12 +173,12 @@ Create PR with these auto-detected values?
 | **Assignee** | Auto-detect from `gh api user --jq '.login'` | `--assignee {username}` |
 | **Labels** | Auto-detect from file changes (see Label Detection) | `--label "task,Engineering,..."` |
 | **Milestone** | Auto-detect from domain labels (see Milestone Detection) | `--milestone {number}` |
-| **Project** | Always "S2 Huli" (project 5) | `gh project item-add 5 --owner sipherxyz --url {pr_url}` |
+| **Project** | Always "{project.fullname}" (project {github.project_number}) | `gh project item-add {github.project_number} --owner {github.owner} --url {pr_url}` |
 | **Linked Issue** | Create via github-create-issue or use existing | `Closes #{number}` in body |
 
 **If `gh pr edit` fails due to Projects Classic deprecation, use API:**
 ```bash
-gh api repos/sipherxyz/s2/issues/{pr_number} -X PATCH \
+gh api repos/{github.repo}/issues/{pr_number} -X PATCH \
   -f milestone={milestone_number} \
   -f "labels[]=task" -f "labels[]=Engineering" -f "labels[]=..."
 ```
@@ -193,10 +198,10 @@ Before using this skill:
 {Branch} = Current git branch name
 {RemoteBranch} = Remote tracking branch (origin/{Branch})
 {BaseBranch} = Target branch (default: main)
-{ProjectName} = "S2 Huli"
-{ProjectNumber} = 5
-{ProjectID} = "PVT_kwDOBR2Dpc4Azdrn"
-{RepoOwner} = "sipherxyz"
+{ProjectName} = "{project.fullname}"
+{ProjectNumber} = {github.project_number}
+{ProjectID} = "{github.project_node_id}"
+{RepoOwner} = "{github.owner}"
 {RepoName} = "s2"
 {Today} = Current date in YYYY-MM-DD format
 ```
@@ -205,7 +210,7 @@ Before using this skill:
 
 Query available milestones at runtime:
 ```bash
-gh api repos/sipherxyz/s2/milestones --jq '.[] | "\(.number): \(.title)"'
+gh api repos/{github.repo}/milestones --jq '.[] | "\(.number): \(.title)"'
 ```
 
 **Domain-to-Milestone Mapping:**
@@ -213,14 +218,14 @@ gh api repos/sipherxyz/s2/milestones --jq '.[] | "\(.number): \(.title)"'
 | Domain Labels | Suggested Milestone |
 |---------------|---------------------|
 | `combat`, `gameplay` | PRE-PROD: Core Combat Complete (2) |
-| `ai`, `system` | GAME-AI (13) |
+| `ai`, `system` | {milestones.game_ai.name} ({milestones.game_ai.number}) |
 | `vfx`, `ArtAnim`, `main-char` | PRE-PROD: META (10) |
 | `level-design` | PRE-PROD: ENV (1) |
 | `UXUI` | PRE-PROD: UIUX COMPLETE (17) |
 | `Engineering` (framework) | PRE-PROD: Core Combat Complete (2) |
 | Default | PRE-PROD: Core Combat Complete (2) |
 
-**Note:** Query current milestones with `gh api repos/sipherxyz/s2/milestones --jq '.[] | "\(.number): \(.title)"'`
+**Note:** Query current milestones with `gh api repos/{github.repo}/milestones --jq '.[] | "\(.number): \(.title)"'`
 
 ## PR Template Reference
 
@@ -351,7 +356,7 @@ gh pr view {branch} --json number,url 2>nul
   Error: PR already exists for this branch
 
   PR #1234: Existing PR Title
-  URL: https://github.com/sipherxyz/s2/pull/1234
+  URL: https://github.com/{github.repo}/pull/1234
   Status: Open
 
   Actions:
@@ -396,7 +401,7 @@ Mode: Programmatic (skip user prompts if possible)
 
 Expected Return:
 - IssueNumber: e.g., 16177
-- IssueURL: e.g., https://github.com/sipherxyz/s2/issues/16177
+- IssueURL: e.g., https://github.com/{github.repo}/issues/16177
 - IssueTitle: e.g., "[ENG-FRAMEWORK-001] Smart IO Creator Tool"
 ```
 
@@ -708,13 +713,13 @@ Example labels: task, Engineering, combat, enhancement
 ```
 Logic:
 1. Query available milestones:
-   - Command: gh api repos/sipherxyz/s2/milestones --jq '.[] | "\(.number): \(.title)"'
+   - Command: gh api repos/{github.repo}/milestones --jq '.[] | "\(.number): \(.title)"'
    - Get current open milestones
 
 2. Auto-select based on domain labels (priority order):
    - If "combat" or "gameplay" in labels → PRE-PROD: Core Combat Complete (2)
-   - If "ai" in labels → GAME-AI (13)
-   - If "system" in labels → GAME-AI (13)
+   - If "ai" in labels → {milestones.game_ai.name} ({milestones.game_ai.number})
+   - If "system" in labels → {milestones.game_ai.name} ({milestones.game_ai.number})
    - If "vfx" or "ArtAnim" in labels → PRE-PROD: META (10)
    - If "level-design" in labels → PRE-PROD: ENV (1)
    - If "UXUI" in labels → PRE-PROD: UIUX COMPLETE (17)
@@ -726,17 +731,17 @@ Logic:
 
 Example:
 Labels: task, Engineering, system
-Auto-detected Milestone: GAME-AI (13)
+Auto-detected Milestone: {milestones.game_ai.name} ({milestones.game_ai.number})
 ```
 
 #### Project Assignment
 
 ```
 Logic:
-1. Default project: "S2 Huli" (number 5)
-2. Project ID: PVT_kwDOBR2Dpc4Azdrn
+1. Default project: "{project.fullname}" (number {github.project_number})
+2. Project ID: {github.project_node_id}
 3. After PR creation, add to project board:
-   gh project item-add 5 --owner sipherxyz --url {pr_url}
+   gh project item-add {github.project_number} --owner {github.owner} --url {pr_url}
 
 Note: The --project flag in gh pr create may not work reliably.
 Use gh project item-add after creation for guaranteed assignment.
@@ -1021,7 +1026,7 @@ EOF
   --assignee {auto-detected-username} \
   --label "task,Engineering,gameplay" \
   --milestone 2 \
-  --repo sipherxyz/s2
+  --repo {github.repo}
 ```
 
 **⚠️ CRITICAL - All flags are REQUIRED:**
@@ -1030,11 +1035,11 @@ EOF
 - `--milestone`: Use NUMBER (not title) - default is 2 (PRE-PROD: Core Combat Complete)
 - `--base main`: Target branch
 - `--head {branch}`: Source branch
-- `--repo sipherxyz/s2`: Repository
+- `--repo {github.repo}`: Repository
 
 **If `gh pr create` fails to set labels/milestone, use API fallback:**
 ```bash
-gh api repos/sipherxyz/s2/issues/{pr_number} -X PATCH \
+gh api repos/{github.repo}/issues/{pr_number} -X PATCH \
   -f milestone=2 \
   -f "labels[]=task" \
   -f "labels[]=Engineering" \
@@ -1044,7 +1049,7 @@ gh api repos/sipherxyz/s2/issues/{pr_number} -X PATCH \
 **Parse Output:**
 ```
 Example output:
-https://github.com/sipherxyz/s2/pull/1234
+https://github.com/{github.repo}/pull/1234
 
 Extract:
 - PR URL (full)
@@ -1053,20 +1058,20 @@ Extract:
 
 ### Step 11: Add PR to Project Board
 
-After PR creation, add to S2 Huli project:
+After PR creation, add to {project.fullname} project:
 
 ```bash
-gh project item-add 5 --owner sipherxyz --url https://github.com/sipherxyz/s2/pull/1234
+gh project item-add {github.project_number} --owner {github.owner} --url https://github.com/{github.repo}/pull/1234
 ```
 
 **Logic:**
-1. Use project number 5 (S2 Huli)
+1. Use project number {github.project_number} ({project.fullname})
 2. Pass the newly created PR URL
 3. If fails due to missing scope, warn user:
    ```
    Warning: Could not add PR to project board.
    Run: gh auth refresh -s project
-   Then manually add at: https://github.com/orgs/sipherxyz/projects/5
+   Then manually add at: https://github.com/orgs/{github.owner}/projects/{github.project_number}
    ```
 
 ### Step 12: Return Success Info
@@ -1077,10 +1082,10 @@ Output formatted success message with both PR and issue info:
 ✓ Pull Request created successfully!
 
 PR #1234: Smart IO Creator Tool
-URL: https://github.com/sipherxyz/s2/pull/1234
+URL: https://github.com/{github.repo}/pull/1234
 
 Linked Issue: #16177
-URL: https://github.com/sipherxyz/s2/issues/16177
+URL: https://github.com/{github.repo}/issues/16177
 
 Branch: feature/smart-io-creator-tool → main
 Status: Open (ready for review)
@@ -1091,7 +1096,7 @@ Summary:
 - QA Requested: Yes
 - Performance Impact: No Impact
 - Milestone: GAME-AI
-- Project: S2 Huli
+- Project: {project.fullname}
 
 Next steps:
 1. Request reviewers:
@@ -1188,7 +1193,7 @@ git push -u origin feature/smart-io-creator
 Error: Pull request already exists for this branch
 
 PR #1234: Existing PR Title
-URL: https://github.com/sipherxyz/s2/pull/1234
+URL: https://github.com/{github.repo}/pull/1234
 Status: Open
 Created: 2025-12-20
 
@@ -1242,7 +1247,7 @@ Common causes:
 
 Solution:
 1. Verify network connection
-2. Check repository access: gh repo view sipherxyz/s2
+2. Check repository access: gh repo view {github.repo}
 3. Retry after a moment (if rate limited)
 4. Check branch protection rules on main
 
@@ -1309,7 +1314,7 @@ Create PR with these auto-detected values?
 ✓ Pull Request created successfully!
 
 PR #1234: Update Master Materials
-URL: https://github.com/sipherxyz/s2/pull/1234
+URL: https://github.com/{github.repo}/pull/1234
 ```
 
 ### Specify Existing Issue
@@ -1388,7 +1393,7 @@ Invocation: /github-create-pr --update 16226
 2. **Auto-Detect Missing Fields:**
    - Check current assignees → If empty, detect from git user
    - Check current labels → If missing domain labels, detect from file changes
-   - Check project assignment → If not assigned, add to "S2 Huli Nine Tails Vengeance"
+   - Check project assignment → If not assigned, add to "{project.fullname}"
    - Check milestone → If not set, prompt user or use issue milestone
 
 3. **Update PR Metadata:**
@@ -1400,7 +1405,7 @@ Invocation: /github-create-pr --update 16226
    gh pr edit 16226 --add-label "task,Engineering,combat,enhancement"
 
    # Add to project (requires project scope)
-   gh project item-add {project-id} --owner sipherxyz --url https://github.com/sipherxyz/s2/pull/16226
+   gh project item-add {project-id} --owner {github.owner} --url https://github.com/{github.repo}/pull/16226
 
    # Set milestone
    gh pr edit 16226 --milestone {milestone-number}
@@ -1412,7 +1417,7 @@ Invocation: /github-create-pr --update 16226
 
    Added assignees: @DuyTranSipher
    Added labels: task, Engineering, combat, enhancement
-   Added to project: S2 Huli Nine Tails Vengeance
+   Added to project: {project.fullname}
    Set milestone: Sprint 24
 
    View PR: gh pr view 16226 --web
@@ -1432,7 +1437,7 @@ Invocation: /github-create-pr --update 16226
 # Auto-detect and apply:
 # - Assignee: DuyTranSipher (from git user)
 # - Labels: task, Engineering, combat (from file changes)
-# - Project: S2 Huli Nine Tails Vengeance
+# - Project: {project.fullname}
 # - Milestone: (prompt user if not set)
 ```
 
@@ -1474,7 +1479,7 @@ These are used in PR generation.
 - [ ] Determines QA request based on changes
 - [ ] Assesses performance impact
 - [ ] Auto-detects milestone from domain labels
-- [ ] Adds PR to S2 Huli project board
+- [ ] Adds PR to {project.fullname} project board
 - [ ] Builds PR body following template
 - [ ] Presents draft for user review
 - [ ] Allows field editing (including milestone)
@@ -1540,10 +1545,10 @@ Your choice: 1
 ✓ Pull Request created successfully!
 
 PR #1234: Smart IO Creator Tool
-URL: https://github.com/sipherxyz/s2/pull/1234
+URL: https://github.com/{github.repo}/pull/1234
 
 Linked Issue: #16177
-URL: https://github.com/sipherxyz/s2/issues/16177
+URL: https://github.com/{github.repo}/issues/16177
 
 Branch: feature/smart-io-creator-tool → main
 Status: Open (ready for review)
@@ -1632,7 +1637,7 @@ User: /github-create-pr
 Error: Pull request already exists for this branch
 
 PR #1234: Smart IO Creator Tool
-URL: https://github.com/sipherxyz/s2/pull/1234
+URL: https://github.com/{github.repo}/pull/1234
 Status: Open
 
 Actions:
@@ -1736,7 +1741,7 @@ Create PR with these auto-detected values?
 ✓ Pull Request created successfully!
 
 PR #1234: Update Master Materials
-URL: https://github.com/sipherxyz/s2/pull/1234
+URL: https://github.com/{github.repo}/pull/1234
 
 Branch: feature/update-master-materials → main
 Status: Open (ready for review)
@@ -1811,7 +1816,7 @@ Create PR with these auto-detected values?
 ✓ Pull Request created successfully!
 
 PR #1235: Tower Decorations
-URL: https://github.com/sipherxyz/s2/pull/1235
+URL: https://github.com/{github.repo}/pull/1235
 ```
 
 ### Session 7: --auto Mode with Combat Code (Minor Impact)
@@ -1867,7 +1872,7 @@ Create PR with these auto-detected values?
 ✓ Pull Request created successfully!
 
 PR #1236: New Combo System
-URL: https://github.com/sipherxyz/s2/pull/1236
+URL: https://github.com/{github.repo}/pull/1236
 ```
 
 ### Session 8: --auto Mode with Documentation Only (No Impact)
@@ -1938,7 +1943,7 @@ Create PR with these auto-detected values?
 ✓ Pull Request created successfully!
 
 PR #1237: Update Readme
-URL: https://github.com/sipherxyz/s2/pull/1237
+URL: https://github.com/{github.repo}/pull/1237
 ```
 
 ### Session 9: --auto Mode Cancelled
@@ -1974,8 +1979,8 @@ Create PR with these auto-detected values?
 ## Notes
 
 - All `gh` commands are already permitted in `settings.local.json`
-- Project: "S2 Huli" (number 5, ID: PVT_kwDOBR2Dpc4Azdrn)
-- Repository is hardcoded: sipherxyz/s2
+- Project: "{project.fullname}" (number {github.project_number}, ID: {github.project_node_id})
+- Repository is hardcoded: {github.repo}
 - Base branch defaults to: main
 - No Claude attribution footer (per CLAUDE.md guidelines)
 - PR template follows `pull_request_template.md` structure

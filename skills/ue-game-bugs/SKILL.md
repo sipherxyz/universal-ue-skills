@@ -3,6 +3,10 @@ name: ue-game-bugs
 description: Autonomous bug fixing system for UE5 - accepts GitHub issues, screenshots, logs, or text
 ---
 
+## Configuration
+This skill reads project-specific values from `skills.config.json` at the repository root.
+If not found, auto-detect using `ue-detect-engine` skill or prompt the user.
+
 # Autonomous Bug Fix Skill
 
 **Role:** Bug Fix Engineer
@@ -32,7 +36,7 @@ Routes fixes through BMGD workflows with adversarial code review.
 ### GitHub Issues
 ```
 /game-bugs 123
-/game-bugs https://github.com/sipherxyz/s2/issues/123
+/game-bugs https://github.com/{github.repo}/issues/123
 ```
 
 ### Screenshots
@@ -155,7 +159,7 @@ Routes fixes through BMGD workflows with adversarial code review.
 
 ```
 {CWD} = Current Working Directory
-{ProjectRoot} = H:\Jenkins\workspace\source\s2
+{ProjectRoot} = {ci.jenkins_workspace}
 {GameBugsDir} = agentic-systems/game-bugs
 {ReportsDir} = claude-agents/reports/game-bugs
 {CheckpointsDir} = {GameBugsDir}/checkpoints
@@ -204,7 +208,7 @@ Agent:
 11. Committing...
 12. Creating PR...
 
-PR Created: https://github.com/sipherxyz/s2/pull/789
+PR Created: https://github.com/{github.repo}/pull/789
 ```
 
 ### Multi-Input Bug
