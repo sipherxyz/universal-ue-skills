@@ -1,0 +1,20 @@
+{
+  "findings": [
+    {
+      "level": "P1",
+      "key": "P1:stable-short-key",
+      "path": "Source/Example.cpp",
+      "line": 123,
+      "title": "Short finding title",
+      "body": "One concise sentence explaining the concrete bug and smallest fix."
+    }
+  ],
+  "resolved": {
+    "P1:stable-short-key": "Optional override text for a resolved finding."
+  },
+  "focus": [
+    "Readable code changes",
+    "UObject lifetime and GC safety",
+    "Changed tests and validation coverage"
+  ]
+}
