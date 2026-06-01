@@ -26,6 +26,12 @@ DEFAULT_LOCAL_REPO = (
 )
 RULES_DIR = SKILL_DIR / "references" / "review-rules"
 MANAGED_REACTIONS = {"confused", "eyes", "+1", "hooray"}
+REACTION_ICONS = {
+    "confused": "😕",
+    "eyes": "👀",
+    "+1": "👍",
+    "hooray": "🎉",
+}
 
 
 @dataclass
@@ -282,12 +288,21 @@ def severity_label(level: str) -> str:
     return labels.get(level.upper(), level)
 
 
-def status_line(active: list[dict[str, Any]]) -> tuple[str, str]:
+def status_line(active: list[dict[str, Any]]) -> str:
     if not active:
-        return "✅", "Looks Good"
-    if any((f.get("level") or "").upper() == "P0" for f in active):
-        return "🚨", "Needs Attention"
-    return "⚠️", "Needs Attention"
+        return "Looks Good"
+    return "Needs Attention"
+
+
+def desired_reaction(active: list[dict[str, Any]]) -> str:
+    levels = {(finding.get("level") or "").upper() for finding in active}
+    if "P0" in levels:
+        return "confused"
+    if "P1" in levels:
+        return "eyes"
+    if "P2" in levels or "P3" in levels:
+        return "+1"
+    return "hooray"
 
 
 def reaction_for_body(body: str) -> str:
@@ -461,20 +476,22 @@ def render(args: argparse.Namespace) -> int:
                 "title": row["finding"],
             })
 
-    icon, status = status_line(active)
+    status = status_line(active)
     counts = {
         "P0": sum(1 for f in active if f["level"] == "P0"),
         "P1": sum(1 for f in active if f["level"] == "P1"),
         "P2": sum(1 for f in active if f["level"] == "P2"),
+        "P3": sum(1 for f in active if f["level"] == "P3"),
         "R0": sum(1 for f in resolved if "P0" in f["level"]),
         "R1": sum(1 for f in resolved if "P1" in f["level"]),
         "R2": sum(1 for f in resolved if "P2" in f["level"]),
+        "R3": sum(1 for f in resolved if "P3" in f["level"]),
     }
 
     lines = [
-        "## 🤖 AI Eng Forge Review",
+        f"## 🤖 AI Eng Forge Review #{pr['number']}",
         "",
-        f"{icon} **{status}**",
+        f"{REACTION_ICONS[desired_reaction(active)]} **{status}** · PR #{pr['number']}",
         "",
     ]
     if active:
@@ -488,6 +505,7 @@ def render(args: argparse.Namespace) -> int:
         f"| 🚨 Critical / P0 | {counts['P0']} | {counts['R0']} |",
         f"| ⚠️ Warning / P1 | {counts['P1']} | {counts['R1']} |",
         f"| 🟡 Note / P2 | {counts['P2']} | {counts['R2']} |",
+        f"| 💡 Suggestion / P3 | {counts['P3']} | {counts['R3']} |",
         "",
         "**Active Findings**",
     ])

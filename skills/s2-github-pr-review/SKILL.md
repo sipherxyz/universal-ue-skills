@@ -5,7 +5,7 @@ description: Review sipherxyz/s2 GitHub pull requests like an AI Eng Forge revie
 
 # S2 GitHub PR Review
 
-Review `sipherxyz/s2` PRs, find actionable code/content issues, then maintain one compact GitHub issue comment titled `🤖 AI Eng Forge Review`.
+Review `sipherxyz/s2` PRs, find actionable code/content issues, then maintain one compact GitHub issue comment titled `🤖 AI Eng Forge Review #<PR>`.
 
 Use the bundled helper for GitHub plumbing and token-efficient local context:
 
@@ -55,6 +55,8 @@ python3 .codex/skills/s2-github-pr-review/scripts/pr_review_helper.py cleanup <P
 - Findings must be concrete and verified against code context. Drop speculative or style-only comments.
 - Put all actionable review items only in `findings`. Do not duplicate findings in notes, suggestions, summaries, or any second action-item section.
 - Render long finding text as list items with compact metadata, not as wide Markdown tables.
+- The rendered dashboard title and status line include the PR number, for example `🤖 AI Eng Forge Review #123` and `👀 Needs Attention · PR #123`.
+- The status icon must match the synced GitHub comment reaction: P0 `confused` / `😕`, P1 `eyes` / `👀`, P2/P3 `+1` / `👍`, no active findings `hooray` / `🎉`.
 - `post` also syncs the review comment reaction by active severity: P0 `confused`, P1 `eyes`, P2/P3 `+1`, no active findings `hooray`.
 - Do not print secrets. If a secret may be exposed, name the file and risk without revealing the value.
 - For large PRs, prioritize highest-risk changed surfaces first: build/cook/load behavior, runtime paths, asset lifecycle, Blueprint API changes, platform/content validation, then polish.
@@ -112,7 +114,7 @@ Keep keys stable across re-reviews:
 }
 ```
 
-If there are no active findings, use `"findings": []`. The helper will render `✅ Looks Good` and keep previously resolved findings visible.
+If there are no active findings, use `"findings": []`. The helper will render `🎉 Looks Good · PR #<PR>` and keep previously resolved findings visible.
 
 ## Response Shape
 
