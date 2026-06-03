@@ -54,6 +54,8 @@ python3 .codex/skills/s2-github-pr-review/scripts/pr_review_helper.py cleanup <P
 - Do not mention Jenkins, pending checks, CI queues, or build status unless the user explicitly asks for CI triage.
 - Findings must be concrete and verified against code context. Drop speculative or style-only comments.
 - Put all actionable review items only in `findings`. Do not duplicate findings in notes, suggestions, summaries, or any second action-item section.
+- Do not add an `Evidence Gaps`, `Missing Evidence`, validation checklist, or other secondary caution section to the rendered dashboard.
+- Missing validation, screenshots, readable exports, or migration evidence is not a standalone finding. Only mention it inside a concrete finding when the changed code/content already shows a specific breakage risk; otherwise keep it out of the posted dashboard.
 - Render long finding text as list items with compact metadata, not as wide Markdown tables.
 - The rendered dashboard title and status line include the PR number, for example `🤖 AI Eng Forge Review #123` and `👀 Needs Attention · PR #123`.
 - The status icon must match the synced GitHub comment reaction: P0 `confused` / `😕`, P1 `eyes` / `👀`, P2/P3 `+1` / `👍`, no active findings `hooray` / `🎉`.
@@ -65,7 +67,7 @@ python3 .codex/skills/s2-github-pr-review/scripts/pr_review_helper.py cleanup <P
 
 - `P0`: Critical. Crash/common-path regression, broken build/cook, data loss, security exposure, or severe player-facing regression.
 - `P1`: Warning. Should fix before merge: lifecycle, correctness, replication, performance, content, or platform risk.
-- `P2`: Note. Worth fixing: edge case, missing validation, plausible maintainability risk.
+- `P2`: Note. Worth fixing: concrete edge case, visible validation failure, or plausible maintainability risk.
 - `P3`: Suggestion. Polish only; avoid unless requested or no higher-signal findings exist.
 
 ## Team Review Rules

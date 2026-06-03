@@ -346,17 +346,18 @@ def extract_rows(body: str, section: str) -> dict[str, dict[str, str]]:
             continue
 
         if line.startswith("- "):
-            key_match = re.search(r"`([^`]+)`", line)
-            level_match = re.search(r"\*\*(P[0-3])\*\*", line)
+            key_matches = re.findall(r"`([^`]+)`", line)
+            key = key_matches[-1] if key_matches else ""
+            level_match = re.search(r"(P[0-3])", line)
             location_match = re.search(r"(\[`[^`]+`\]\([^)]+\))", line)
             title_match = re.search(r"· \*\*(.+)\*\*$", line)
-            if not key_match:
+            if not key:
                 continue
-            rows[key_match.group(1)] = {
+            rows[key] = {
                 "level": level_match.group(1) if level_match else "",
                 "location": location_match.group(1) if location_match else "",
                 "finding": title_match.group(1) if title_match else "",
-                "key": key_match.group(1),
+                "key": key,
             }
     return rows
 
