@@ -1,6 +1,6 @@
 ---
 name: renderdoc-gpu-debug
-description: Use when debugging GPU frame captures, RenderDoc `.rdc` files, shader issues, pipeline state, render targets, draw calls, pixel history, visual artifacts, shadow problems, or frame comparisons with RenderDoc and `rdc-cli`; not for browser, CSS, React, SVG, or other web rendering problems
+description: Inspect RenderDoc `.rdc` captures for Unreal GPU crashes, shaders, resources, draw calls, and visual artifacts.
 ---
 
 # RenderDoc GPU Debugging Skill

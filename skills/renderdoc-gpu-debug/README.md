@@ -102,14 +102,8 @@ pip install -r skills/renderdoc-gpu-debug/requirements-mcp.txt
 python skills/renderdoc-gpu-debug/mcp_server/server.py
 ```
 
-Claude Code registration example:
-
-```bash
-claude mcp add rdc-tools -- python skills/renderdoc-gpu-debug/mcp_server/server.py
-```
-
-The vendored server comes from the upstream project and is most directly aligned with Claude Code style MCP usage.
+Register the command using your agent's MCP configuration. The server starts with the command shown above.
 
 ## Attribution
 
-This skill package is based on the upstream project at <https://github.com/rudybear/renderdoc-skill/tree/master>. The original project also documents a Claude Code-specific installation flow and demo video.
+This skill package is based on the upstream project at <https://github.com/rudybear/renderdoc-skill/tree/master>.
