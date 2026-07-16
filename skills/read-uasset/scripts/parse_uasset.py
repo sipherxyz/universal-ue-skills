@@ -912,7 +912,11 @@ def analyze_names(names: list) -> Dict[str, Any]:
 
     for name in names:
         # Gameplay tags
-        if name.startswith('Sipher.') or '.State.' in name or '.Ability.' in name:
+        segments = name.split('.')
+        if len(segments) >= 2 and all(
+            segment and segment[0].isalpha() and segment.replace('_', '').isalnum()
+            for segment in segments
+        ):
             analysis['gameplay_tags'].append(name)
         # BT node types
         elif name.startswith('BT') and ('Composite' in name or 'Decorator' in name or 'Task' in name or 'Service' in name):
@@ -929,9 +933,6 @@ def analyze_names(names: list) -> Dict[str, Any]:
         # Warnings - TEMP or Test prefixes
         if 'TEMP_' in name or 'BP_Test' in name:
             analysis['warnings'].append(f"WIP asset: {name}")
-        # Typo detection
-        if 'Bawuchang' in name:  # Common typo
-            analysis['warnings'].append(f"Possible typo 'Bawuchang' -> 'Baiwuchang': {name}")
 
     return analysis
 

@@ -1,6 +1,6 @@
 """Debugging recipe strings for MCP prompt definitions.
 
-Each recipe is a structured workflow that guides Claude through a GPU debugging scenario.
+Each recipe is a structured workflow that guides an agent through a GPU debugging scenario.
 """
 
 RECIPE_INVISIBLE_OBJECT = """\

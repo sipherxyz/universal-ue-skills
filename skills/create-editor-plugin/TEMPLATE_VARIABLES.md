@@ -10,7 +10,7 @@ This document lists all template variables used in the `create-editor-plugin` sk
 | `{{FRIENDLY_NAME}}` | Human-readable display name | `Gameplay Tag DataTable Exporter` |
 | `{{DESCRIPTION}}` | One-line plugin description | `Export GameplayTag DataTables to C++` |
 | `{{CATEGORY}}` | Plugin category | `Editor` |
-| `{{AUTHOR}}` | Creator name | `DuyTranSipher` |
+| `{{AUTHOR}}` | Creator name | `ExampleAuthor` |
 | `{{MODULE_API}}` | Module export macro | `GAMEPLAYTAGDATATABLEEXPORTER_API` |
 
 ## Toolbar Extension Variables

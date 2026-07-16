@@ -1,92 +1,50 @@
 # Universal UE Skills
 
-Universal Unreal Engine skill pack compatible with Codex, Claude Code, and Pi.
+A small, portable Unreal Engine skill pack for Codex, Claude Code, and Pi.
 
-## Contents
+## Scope
 
-- `skills/` - all universal skill folders (`<slug>/SKILL.md` + bundled resources)
-- `metadata/aliases.json` - legacy invoke alias mapping
-- `metadata/migration-report.json` - conversion report
-- `metadata/migration-report.md` - human-readable migration report
-- `scripts/install-skills.sh` - installer for Codex, Claude Code, and Pi
+This pack contains engine-level practices that travel between Unreal projects: official Unreal MCP operation, C++ builds, testing, debugging, rendering analysis, platform compliance, and editor-plugin authoring.
 
-## Highlighted Skill
+Live Editor and asset work starts with `unreal-mcp`, which uses Epic's `ModelContextProtocol` server and discovers the installed toolsets at runtime. The pack does not ship a parallel Unreal MCP, a generic asset editor, or project-specific asset conventions.
 
-### `renderdoc-gpu-debug`
+Project-specific skills, custom commandlets, asset naming, team trackers, CI, and GitHub workflow belong in that project's `.codex/skills` and documentation.
 
-GPU frame capture and RenderDoc investigation workflow for `.rdc` files, shader issues, broken shadows, render-target inspection, draw-call tracing, and frame diffs.
-
-Skill contents:
-
-- `skills/renderdoc-gpu-debug/SKILL.md`
-- `skills/renderdoc-gpu-debug/README.md`
-- `skills/renderdoc-gpu-debug/references/`
-- `skills/renderdoc-gpu-debug/mcp_server/`
-
-How to use after install:
+## Included skills
 
 ```text
-Open this RenderDoc capture and tell me why this pixel is black.
-Capture a frame and inspect the shadow map for acne artifacts.
-Compare these two .rdc files and summarize the rendering regression.
+create-editor-plugin          ue-cpp-build
+graphics-debug                ue-crash-callstack-linker
+plugin-documenter             ue-localization-scanner
+read-uasset                   ue-memory-leak-hunter
+renderdoc-gpu-debug           ue-network-replication-review
+ue-run-automation-tests       ue-toolbar-extension
+ue-trc-compliance-checker     ue-xr-compliance-checker
+unreal-mcp
 ```
+
+`read-uasset` is intentionally user-invoked: it is an offline fallback, not a substitute for live Editor inspection.
 
 ## Install
 
-### A) Install from local clone
-
-Use [`scripts/install-skills.sh`](scripts/install-skills.sh).
-
-Global install (Codex + Claude Code + Pi):
+From a clone:
 
 ```bash
-bash scripts/install-skills.sh --agent all --scope global
+bash scripts/install-skills.sh --agent codex --scope project --project-dir /path/to/project
 ```
 
-Project-scoped install (current directory):
+From GitHub:
 
 ```bash
-bash scripts/install-skills.sh --agent all --scope project --project-dir .
+bash <(curl -fsSL https://raw.githubusercontent.com/sipherxyz/universal-ue-skills/main/scripts/install-from-github.sh) --agent codex --scope project --project-dir /path/to/project
 ```
 
-Agent-specific installs:
+Use `--dry-run` to inspect the destination before copying. The installer replaces only skills with the same name.
+
+## Validate
 
 ```bash
-# Codex only (global)
-bash scripts/install-skills.sh --agent codex --scope global
-
-# Claude Code only (project)
-bash scripts/install-skills.sh --agent claude --scope project --project-dir /path/to/project
-
-# Pi only (global)
-bash scripts/install-skills.sh --agent pi --scope global
+bash scripts/validate-skills.sh
 ```
 
-### B) Install without cloning (curl installer)
-
-Use [`scripts/install-from-github.sh`](scripts/install-from-github.sh) directly:
-
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/buihuuloc/universal-ue-skills/main/scripts/install-from-github.sh) --agent all --scope global
-```
-
-Project-scoped via curl:
-
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/buihuuloc/universal-ue-skills/main/scripts/install-from-github.sh) \
-  --agent all \
-  --scope project \
-  --project-dir /path/to/project
-```
-
-### Legacy positional syntax (still supported)
-
-```bash
-bash scripts/install-skills.sh all global
-bash scripts/install-skills.sh codex project /path/to/project
-```
-
-## Notes
-
-- This repo is generated from `.claude` skill sources and normalized to universal `SKILL.md` format.
-- Some skills contain machine-specific absolute path examples; see `metadata/migration-report.json` warnings.
+The validator checks the skill catalog, frontmatter, retired integrations, and retained legacy tool vocabulary.

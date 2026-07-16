@@ -6,10 +6,10 @@ usage() {
 Install universal UE skills from GitHub without cloning the repository.
 
 Usage:
-  bash <(curl -fsSL https://raw.githubusercontent.com/buihuuloc/universal-ue-skills/main/scripts/install-from-github.sh) [options]
+  bash <(curl -fsSL https://raw.githubusercontent.com/sipherxyz/universal-ue-skills/main/scripts/install-from-github.sh) [options]
 
 Options:
-  --repo OWNER/REPO            GitHub repo (default: buihuuloc/universal-ue-skills)
+  --repo OWNER/REPO            GitHub repo (default: sipherxyz/universal-ue-skills)
   --ref BRANCH_OR_TAG          Git ref (default: main)
   --agent codex|claude|pi|both|all  Agent target (default: both)
   --scope global|project       Install scope (default: global)
@@ -22,15 +22,15 @@ Options:
 
 Examples:
   # Global install for both agents
-  bash <(curl -fsSL https://raw.githubusercontent.com/buihuuloc/universal-ue-skills/main/scripts/install-from-github.sh)
+  bash <(curl -fsSL https://raw.githubusercontent.com/sipherxyz/universal-ue-skills/main/scripts/install-from-github.sh)
 
   # Project-scoped install
-  bash <(curl -fsSL https://raw.githubusercontent.com/buihuuloc/universal-ue-skills/main/scripts/install-from-github.sh) \
+  bash <(curl -fsSL https://raw.githubusercontent.com/sipherxyz/universal-ue-skills/main/scripts/install-from-github.sh) \
     --scope project --project-dir /Users/me/work/my-game
 EOF
 }
 
-REPO="buihuuloc/universal-ue-skills"
+REPO="sipherxyz/universal-ue-skills"
 REF="main"
 PASSTHROUGH=()
 

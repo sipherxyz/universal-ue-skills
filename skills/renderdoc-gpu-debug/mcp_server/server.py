@@ -1,7 +1,7 @@
 """RenderDoc MCP Server — exposes rdc-cli as MCP tools for MCP-capable agents.
 
 Run with:  python mcp_server/server.py
-Register example:  claude mcp add rdc-tools -- python skills/renderdoc-gpu-debug/mcp_server/server.py
+Register this server with the MCP configuration supported by the host agent.
 
 stdout is sacred (JSON-RPC transport) — all logging goes to stderr.
 """

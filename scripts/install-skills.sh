@@ -187,7 +187,7 @@ install_to() {
 
   local count=0
   for dir in "$SKILLS_SRC"/*; do
-    [[ -d "$dir" ]] || continue
+    [[ -d "$dir" && -f "$dir/SKILL.md" ]] || continue
     local name
     name="$(basename "$dir")"
     if [[ "$DRY_RUN" -eq 1 ]]; then
@@ -199,7 +199,11 @@ install_to() {
     count=$((count + 1))
   done
 
-  echo "Installed $count skills to $label: $dest"
+  if [[ "$DRY_RUN" -eq 1 ]]; then
+    echo "Would install $count skills to $label: $dest"
+  else
+    echo "Installed $count skills to $label: $dest"
+  fi
 }
 
 case "$AGENT" in
