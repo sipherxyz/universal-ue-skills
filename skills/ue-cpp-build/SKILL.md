@@ -7,13 +7,17 @@ description: Build Unreal C++ targets and diagnose compiler, linker, UHT, and mo
 
 Use this skill after a C++ change or when a build fails. Resolve the project, target, engine, platform, and configuration from the repository before running anything.
 
+For UE5.8 Sentry work, treat the engine branch/commit and project revision as a hard gate. Compare the selected Windows checkout with the affected event/release before building; stop on revision drift instead of silently compiling a different engine.
+
 ## Operating order
 
-1. Identify the `.uproject`, engine association or documented engine path, and the target from `Source/*Target.cs`.
+1. Identify the `.uproject`, engine association or documented engine path, engine branch/commit when available, and the target from `Source/*Target.cs`.
 2. Start with the smallest appropriate target/configuration. Use the project's build wrapper when it exists; otherwise use the engine's `Build.bat` (or platform equivalent).
 3. Read the first actual UHT, compiler, or linker error, then inspect the referenced source and its immediate dependencies.
 4. Make one focused correction. Rebuild the same target and report the first error if it remains.
 5. Escalate to a clean or full rebuild only for generated-code, module-boundary, build-rule, or stale-artifact evidence.
+
+For a RED/GREEN proof, use the same target, platform, configuration, flags, and source fixture for both runs. Live Coding is an iteration aid, not packaged-client or final-cleanup proof. Preserve the exact command, exit code, first real error/success line, log path, and dirty-boundary result; do not clean or reset pre-existing user state.
 
 ## Standard command
 
@@ -42,4 +46,4 @@ When an Editor is already open, use a build or Live Coding operation only if the
 
 ## Completion
 
-Finish with the exact target/configuration, exit status, and the relevant success or remaining failure line. Do not claim a fix from source inspection alone.
+Finish with the exact engine/project revisions, target/configuration, exit status, and relevant success or remaining failure line. A successful build proves compilation only; do not claim a crash fix without comparable runtime evidence.

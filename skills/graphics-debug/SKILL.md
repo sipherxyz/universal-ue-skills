@@ -7,6 +7,8 @@ description: Diagnose Unreal rendering failures using reproducible RHI, shader, 
 
 Use this skill for renderer assertions, GPU device loss, corrupted output, shader failures, and render-thread crashes. Begin with the exact platform, RHI, GPU driver, build, and reproduction path.
 
+For remote Sentry work, require an explicitly selected Windows host and record the engine/project revisions, RHI, driver, GPU, process state, and initial configuration before changing diagnostics.
+
 ## Operating order
 
 1. Classify the incident from the first error and callstack: CPU render-thread assertion, shader/material/pipeline failure, GPU device removal, or visual regression.
@@ -14,6 +16,8 @@ Use this skill for renderer assertions, GPU device loss, corrupted output, shade
 3. Check the first project frame and the named pass/resource before changing render-thread settings or feature flags.
 4. Isolate one variable at a time: affected content, shader permutation, feature, thread mode, RHI, or driver. Record the command/configuration and result.
 5. Apply the smallest correction, restore diagnostic settings, and reproduce under the normal configuration.
+
+A diagnostic toggle, thread serialization profile, debug layer, DRED setting, or TDR change is not a fix. Preserve the pre-run config, use a fresh process/log for process-local failures, and classify an Editor-only result as isolation when the event came from a packaged client.
 
 ## Evidence guide
 
