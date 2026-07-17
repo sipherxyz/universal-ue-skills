@@ -7,6 +7,8 @@ description: Review Unreal replication for server authority, correct state sync,
 
 Use this skill for a multiplayer feature, replication defect, or network performance regression. Start from the actual server/client symptom and the owning actor/component; source patterns alone do not prove network behavior.
 
+For offline Huli/S2 cases, classify the skill as not applicable unless the event or reproduction includes a real networked path. For applicable UE5.8 work, record engine/project revisions, server/client builds, topology, and the exact latency/loss profile before changing code.
+
 ## Operating order
 
 1. Define authority, owner, recipients, join-in-progress expectations, and the exact state/action being reviewed.
@@ -33,4 +35,4 @@ Use this skill for a multiplayer feature, replication defect, or network perform
 
 ## Completion
 
-Report the topology and test conditions, observed behavior, confirmed issue, changed rule/code, and server/client plus late-join verification. Include network measurements when the conclusion concerns bandwidth.
+Report the revisions, topology and test conditions, observed behavior, confirmed issue, changed rule/code, and server/client plus late-join verification. Include network measurements when the conclusion concerns bandwidth; otherwise keep the issue blocked or not applicable rather than infer behavior from source alone.

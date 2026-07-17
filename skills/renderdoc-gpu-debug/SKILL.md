@@ -9,6 +9,8 @@ description: Inspect RenderDoc `.rdc` captures for Unreal GPU crashes, shaders, 
 
 This skill enables GPU frame capture, inspection, and debugging using `rdc-cli`, a 66-command CLI wrapping RenderDoc's Python API. It works with Vulkan, D3D11, D3D12, and OpenGL applications.
 
+For Unreal/Sentry work, preserve the application build, engine/project revision, platform, RHI, GPU driver, map, capture trigger, and frame range. A valid `.rdc` inspection is GPU evidence, not packaged-client GREEN or no-new-event proof by itself.
+
 ### Prerequisites
 
 Before any GPU debugging, verify the environment:
@@ -35,6 +37,8 @@ rdc close                       # Release resources, stop daemon
 Check session state with `rdc status`. Only one capture can be open per session (use `--session name` for parallel sessions).
 
 **IMPORTANT**: Always close sessions when done. Leaked daemon processes consume GPU memory.
+
+Record `rdc doctor`, `rdc status`, capture path, and the final `rdc close` result. Close only sessions created by the run and preserve the original capture.
 
 ## 2. Capture Workflow
 

@@ -18,9 +18,9 @@ graphics-debug                ue-crash-callstack-linker
 plugin-documenter             ue-localization-scanner
 read-uasset                   ue-memory-leak-hunter
 renderdoc-gpu-debug           ue-network-replication-review
-ue-run-automation-tests       ue-toolbar-extension
-ue-trc-compliance-checker     ue-xr-compliance-checker
-unreal-mcp
+ue-detect-engine              ue-run-automation-tests
+ue-toolbar-extension          ue-trc-compliance-checker
+ue-xr-compliance-checker      unreal-mcp
 ```
 
 `read-uasset` is intentionally user-invoked: it is an offline fallback, not a substitute for live Editor inspection.
