@@ -25,19 +25,24 @@ Keep large dumps, logs, symbols, and generated reports outside the source checko
 | D3D12 shader resource or state validation | D3D12 Debug Layer and GPU-Based Validation in a dedicated diagnostic run |
 | Supported NVIDIA hardware and driver | Nsight Aftermath dump with matching shader binaries and debug data |
 | Supported AMD hardware, OS, and driver | Radeon GPU Detective dump and text/JSON analysis |
+| Reproducible D3D12 frame or TDR | PIX GPU Capture for API replay, pipeline state, shaders, resources, warnings, and isolated GPU Validation |
+| Supported NVIDIA timeline investigation | Nsight Systems for CPU origin, GPU workload correlation, scheduling, stutter, and bottleneck evidence |
 | Supported DirectX Dump environment | DirectX Dump plus PIX analysis as an explicitly experimental route |
-| Stable frame or visual/pipeline failure | RenderDoc capture; use `renderdoc-gpu-debug` |
 
 DRED is the vendor-neutral baseline for D3D12 device loss. Vendor tools add shader, resource, residency, and hardware-specific detail. Verify current hardware, OS, driver, API, and tool compatibility before selecting a vendor route.
 
-RenderDoc is a frame-inspection route. Use it when a valid capture can contain the suspicious pass or state; it is not the default post-mortem artifact for an asynchronous device loss. Run interception-based tools separately unless current vendor documentation and the selected configuration prove coexistence.
+PIX is the frame-capture route for Windows D3D12. Capture and analyze on the selected debug host because replay is guaranteed only with the same GPU and driver. A PIX capture can inspect a reproducible TDR, but it does not replace event-side DRED or vendor dumps.
+
+Nsight Systems is a timeline and performance route on supported NVIDIA hosts. Use it to correlate CPU calls, GPU queues, scheduling, stutter, and utilization. It is supporting evidence for a crash investigation, not a post-mortem crash dump.
+
+Before either route, verify the supported tool version on the selected debug host. When missing, propose installation on that host, obtain explicit authorization, use the official installer, record version/path/reboot impact, and prove a minimal capture before the incident run.
 
 ## Diagnostic ladder
 
 1. Inspect the event artifacts before reproducing. Classify timeout, page fault, reset, out-of-memory, or unknown from the API result, device-removed reason, log, and dump data.
 2. Reproduce the unmodified event configuration with a fresh process and log.
 3. Add the lightest supported breadcrumbs or DRED profile and verify its startup markers.
-4. Escalate one evidence gap at a time to full DRED, D3D validation, Aftermath, RGD, DirectX Dump, or narrow instrumentation.
+4. Escalate one evidence gap at a time to full DRED, D3D validation, PIX, Nsight Systems, Aftermath, RGD, DirectX Dump, or narrow instrumentation.
 5. Use feature, execution, residency, and VRAM-pressure A/B tests to rank a named hypothesis. Return to the event configuration for causal confirmation.
 
 Completion criterion: each run changes one recorded diagnostic dimension, produces attributable artifacts, and either advances a named hypothesis or closes the route with a specific evidence gap.
@@ -83,6 +88,8 @@ Prefer smaller workloads, tiled passes, or a narrower reproduction when those re
 - [Epic Games: Dealing with a GPU Crash](https://dev.epicgames.com/documentation/en-us/unreal-engine/dealing-with-a-gpu-crash-when-using-unreal-engine)
 - [Microsoft: Use DRED to diagnose GPU faults](https://learn.microsoft.com/en-us/windows/win32/direct3d12/use-dred)
 - [Microsoft: GPU-Based Validation](https://learn.microsoft.com/en-us/windows/win32/direct3d12/using-d3d12-debug-layer-gpu-based-validation)
+- [Microsoft: PIX GPU Captures](https://devblogs.microsoft.com/pix/gpu-captures/)
+- [NVIDIA: Nsight Systems](https://developer.nvidia.com/nsight-systems)
 - [NVIDIA: Nsight Aftermath SDK Guide](https://docs.nvidia.com/nsight-aftermath/SDK/index.html)
 - [AMD: Radeon GPU Detective manual](https://gpuopen.com/manuals/rgd_manual/)
 - [Microsoft: DirectX Dump Files preview](https://devblogs.microsoft.com/directx/dx-dump-files-preview/)

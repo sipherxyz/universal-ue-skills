@@ -30,10 +30,13 @@ Completion criterion: one failure class and one frozen trigger are explicit, and
 | GPU out-of-memory or sustained memory growth | Use `ue-memory-leak-hunter` and the platform GPU-memory tools |
 | Renderer/RHI assertion | Trace the first actionable frame, object or resource lifetime, thread ownership, and named render pass |
 | Shader/material/pipeline failure | Compare the failing permutation, parameter layout, binding, resource state, and cooked shader availability |
-| Black, missing, or incorrect draw | Use `renderdoc-gpu-debug` when a stable frame capture can represent the failure |
+| Black, missing, or incorrect D3D12 draw | Use PIX GPU Capture for replay, pipeline state, shader, and bound-resource evidence |
+| GPU bottleneck, stutter, or CPU-GPU scheduling | Use Nsight Systems on a supported NVIDIA debug host |
 | Packaged- or cooked-only failure | Preserve the target configuration and validate platform shader, cook, and runtime feature availability |
 
 Use `unreal-mcp` only when live Editor state or interaction is required. Editor, PIE, commandlet, and frame-capture evidence remain isolation when the event came from a packaged client unless equivalence is proved.
+
+Install graphics diagnostics only on the selected Windows debug host that runs the reproduction. For a D3D12 host, propose PIX when it is missing. For a supported NVIDIA host, propose Nsight Systems as well. Require explicit authorization, use official installers, and record the installed versions and paths before capture.
 
 Completion criterion: the selected branch names its target signal, required artifacts, diagnostic configuration, prerequisites, and proof level before execution.
 
@@ -45,7 +48,7 @@ Change one diagnostic variable per comparison unless the selected Engine and too
 
 A missing prerequisite, unavailable artifact, failed tool bootstrap, or run that misses the target signal is invalid RED. Repair only run-owned prerequisites, then rerun. A feature toggle, serialized thread profile, debug layer, vendor dump, or TDR change can rank a hypothesis; it cannot establish a fix.
 
-Require explicit authorization before editing Engine/project configuration, changing the RHI, modifying registry state, restarting an existing Editor, or installing vendor tools.
+Require explicit authorization before editing Engine/project configuration, changing the RHI, modifying registry state, restarting an existing Editor, or installing graphics tools.
 
 Completion criterion: the target signal is repeatably RED with valid prerequisites, or the attempted route and exact evidence gap are preserved without a product change.
 
